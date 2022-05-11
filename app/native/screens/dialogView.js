@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import {Text, View, StyleSheet,} from 'react-native'
-import { Dialog, Button,Paragraph, Portal } from 'react-native-paper';
+import React from 'react';
+import {View, StyleSheet,} from 'react-native'
+import { Dialog,Paragraph, Portal } from 'react-native-paper';
+import CustomButtons from '../../helpers/customButtons';
 
 const DialogBox = (props) => {
     const visible = props.visible;
     const setVisible = props.setVisible;
     const city = props.city;
-    console.log(city);
-    const showDialog = () => setVisible(true);  
     const hideDialog = () => setVisible(false);
   
     return (
@@ -18,12 +17,8 @@ const DialogBox = (props) => {
                   <Paragraph style={styles.description}>(You will see the builders and projects of this particular city)</Paragraph>
                 </Dialog.Content>
                 <View style={styles.Buttons}>
-                    <Button contentStyle={styles.btntext} style={[styles.btn, styles.btn_1]} mode='contained' onPress={hideDialog}>
-                        <Text style={styles.btntext_1}>YES</Text>
-                    </Button>
-                    <Button contentStyle={styles.btntext} style={[styles.btn, styles.btn_2]} mode='outlined' onPress={hideDialog}>
-                        <Text style={styles.btntext_2}>Cancel</Text>
-                    </Button>
+                    <CustomButtons width={45} text="YES" isDone={true} pressHandler={hideDialog}/>
+                    <CustomButtons width={45} text="CANCEL" isDone={false} pressHandler={hideDialog}/>
                 </View>
             </Dialog>
         </Portal>
@@ -43,32 +38,10 @@ const styles = StyleSheet.create({
         fontSize: 11,
     },
     Buttons :{
-        justifyContent: "center",
+        marginBottom: 10,
+        justifyContent: "space-around",
         flexDirection: "row",
     },
-    btn :{
-        width: "40%",
-        margin: 10,
-        marginTop: 0,
-    },
-    btntext : {
-        margin: 8,
-    },
-    btn_1 : {
-        backgroundColor: "#0078E9",
-    },
-    btn_2 : {
-        borderColor: "#0078E9",
-        borderWidth: 1
-    },
-    btntext_1 : {
-        color: "#FFFFFF",
-        fontFamily: "Nunito-Bold",
-    },
-    btntext_2 : {
-        color : "#0078E9",
-        fontFamily: "Nunito-Bold",
-    }
 
 })
  

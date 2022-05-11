@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {Text, View, StyleSheet,} from 'react-native'
-import { Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 import CustomFlatList from '../../helpers/customFlatList';
 import CustomSearchBar from '../../helpers/customSearchBar';
+import CustomButtons from '../../helpers/customButtons';
 import DialogBox from './dialogView';
 const myIcon = <Icon name="camera" size={60}  color="blue"/>;
 
@@ -40,7 +40,7 @@ const SelectcityView = () => {
         });
         return name;
     }
-    // console.log(findName());
+    
     return (
         <View style={[styles.view]}>
             <View style={[styles.container]}>
@@ -53,9 +53,9 @@ const SelectcityView = () => {
                 <CustomSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} text="Search for your city" />
                 <CustomFlatList itemID={cityID} setItemID={setCityID} data={cities}/>
             </View>
-            <Button contentStyle={styles.btntext} style={styles.submitBtn} mode="contained" onPress={() => onSubmit()}>
-                <Text style={styles.doneText}>DONE</Text>
-            </Button>
+            <View style={{margin: 15, marginTop: 0}}>
+                <CustomButtons text="DONE" pressHandler={onSubmit} isDone={true}/>
+            </View>
             {visible && <DialogBox city={findName()} visible={visible} setVisible={setVisible} />}
         </View>
     );

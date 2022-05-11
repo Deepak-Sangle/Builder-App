@@ -42,8 +42,8 @@ const App = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
       </ScrollView> */}
-      <SelectcityView/>
-      {/* <RegisterView/> */}
+      {/* <SelectcityView/> */}
+      <RegisterView/>
       
     </SafeAreaView>
     // <SelectcityView/>
