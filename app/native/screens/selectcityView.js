@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import {Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native'
-import { Searchbar, RadioButton, Button } from 'react-native-paper';
+import {Text, View, StyleSheet,} from 'react-native'
+import { Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
-
-const myIcon = <Icon name="camera" size={60}  color="black"/>;
+import CustomFlatList from '../../helpers/customFlatList';
+import CustomSearchBar from '../../helpers/customSearchBar';
+const myIcon = <Icon name="camera" size={60}  color="blue"/>;
 
 const SelectcityView = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -12,33 +13,12 @@ const SelectcityView = () => {
         {title: "New Delhi", id: 2},
         {title: "Other Cities coming soon", id: 3},
     ]);
-    const [cityId, setCityID] = useState('');
-
-    const pressHandler = (id) =>{
-        setCityID(id);
-    }
+    const [cityID, setCityID] = useState('');
 
     const onSubmit = () =>{
-        const city = cityId;
-        
+        const city = cityID;
     }
-    const renderList =  ({item}) => {
-        return (
-        <TouchableOpacity activeOpacity={0.5} style={[styles.listView]} onPress={()=> pressHandler(item.id)}>
-            <View style={styles.listAlign}>
-                <Text style={[styles.listText]}>{item.title}</Text>
-                <Text style={[styles.checkText]}>
-                    <RadioButton
-                        value={item.id}
-                        status={ cityId === item.id ? 'checked' : 'unchecked' }
-                        onPress={() => setCityID(item.id)}
-                    />
-                </Text>
-            </View>
-        </TouchableOpacity>
-        )
-    }
-
+    
     return (
         <View style={[styles.view]}>
             <View style={[styles.container]}>
@@ -48,19 +28,15 @@ const SelectcityView = () => {
                 <Text style={styles.title}>SELECT YOUR LOCATION</Text>
             </View>
             <View style={styles.cities}>
-                <Searchbar 
+                {/* <Searchbar 
                     placeholder='Search for your city'
                     onChangeText={(query)=> setSearchQuery(query)}
                     value={searchQuery}
                     style={styles.searchBar}
                     inputStyle={styles.searchQuery}
-                />
-                <FlatList 
-                    data={cities}
-                    keyExtractor = {item => item.id}
-                    renderItem={renderList}
-                    style={styles.listBox}
-                />
+                /> */}
+                <CustomSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} text="Search for your city" />
+                <CustomFlatList itemID={cityID} setItemID={setCityID} data={cities}/>
             </View>
             <Button style={styles.submitBtn} mode="contained" onPress={() => onSubmit()}>
                 <Text style={styles.doneText}>DONE</Text>
@@ -72,20 +48,16 @@ const SelectcityView = () => {
 const styles = StyleSheet.create({
     view :{
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: "#f5f8fc",
     },
     container :{
-        // backgroundColor: "grey",
         padding: 10,
         margin: 15,
     },
-    debuggindBorder: {
-        borderColor: "red",
-        borderWidth: 2,
-    },
     title : {
         textAlign: "center",
-        fontFamily: "Raleway-Bold",
+        fontFamily: "Nunito-Bold",
+        color: "#757575"
     },
     icon: {
         textAlign: "center",
@@ -100,36 +72,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     searchQuery : {
-        fontSize: 12,
+        fontSize: 13,
         color: "#4A4A4A",
-        fontFamily: "sans-serif"
-    },
-    listBox :{
-        borderColor: "#E6EBF3",
-        borderWidth: 1,
-        borderRadius: 4,
-        backgroundColor: "rgba(255,255,255,0.71)",
-    },
-    listView : {
-        borderColor: "#E6EBF3",
-
-        borderBottomWidth: 1,
-    },
-    listAlign : {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignContent: "center",
-    },
-    checkText :{
-        padding: 10,
-        // paddingVertical: 15,
-    },
-    listText :{
-        fontSize: 14,
-        // fontFamily: "Nunito",
-        padding: 20,
-        color: "#545454",
+        fontFamily: "Nunito-Regular"
     },
     submitBtn :{
         backgroundColor: "#0078E9",
@@ -141,6 +86,7 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         fontSize: 15,
         fontWeight: "bold",
+        fontFamily: "Nunito-Bold",
     }
 })
 
