@@ -4,21 +4,43 @@ import { Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 import CustomFlatList from '../../helpers/customFlatList';
 import CustomSearchBar from '../../helpers/customSearchBar';
+import DialogBox from './dialogView';
 const myIcon = <Icon name="camera" size={60}  color="blue"/>;
 
 const SelectcityView = () => {
     const [searchQuery, setSearchQuery] = useState('');
+
     const [cities, setCities] = useState([
         {title: "Gurugram", id: 1},
         {title: "New Delhi", id: 2},
-        {title: "Other Cities coming soon", id: 3},
+        // {title: "New Delhi", id: 3},
+        // {title: "New Delhi", id: 4},
+        // {title: "New Delhi", id: 5},
+        // {title: "New Delhi", id: 6},
+        // {title: "New Delhi", id: 7},
+        // {title: "New Delhi", id: 8},
+        // {title: "New Delhi", id: 9},
+        // {title: "New Delhi", id: 10},
+        // {title: "New Delhi", id: 11},
+        // {title: "New Delhi", id: 21},
     ]);
     const [cityID, setCityID] = useState('');
 
+    const [visible, setVisible] = React.useState(false);
+
     const onSubmit = () =>{
+        setVisible(true);
         const city = cityID;
     }
     
+    function findName(){
+        let name = '';
+        cities.map((city)=>{
+            if(city.id == cityID) name = city.title;
+        });
+        return name;
+    }
+    // console.log(findName());
     return (
         <View style={[styles.view]}>
             <View style={[styles.container]}>
@@ -28,19 +50,13 @@ const SelectcityView = () => {
                 <Text style={styles.title}>SELECT YOUR LOCATION</Text>
             </View>
             <View style={styles.cities}>
-                {/* <Searchbar 
-                    placeholder='Search for your city'
-                    onChangeText={(query)=> setSearchQuery(query)}
-                    value={searchQuery}
-                    style={styles.searchBar}
-                    inputStyle={styles.searchQuery}
-                /> */}
                 <CustomSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} text="Search for your city" />
                 <CustomFlatList itemID={cityID} setItemID={setCityID} data={cities}/>
             </View>
-            <Button style={styles.submitBtn} mode="contained" onPress={() => onSubmit()}>
+            <Button contentStyle={styles.btntext} style={styles.submitBtn} mode="contained" onPress={() => onSubmit()}>
                 <Text style={styles.doneText}>DONE</Text>
             </Button>
+            {visible && <DialogBox city={findName()} visible={visible} setVisible={setVisible} />}
         </View>
     );
 }
@@ -68,19 +84,14 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 15,
     },
-    searchBar :{
-        marginBottom: 10,
-    },
-    searchQuery : {
-        fontSize: 13,
-        color: "#4A4A4A",
-        fontFamily: "Nunito-Regular"
-    },
     submitBtn :{
         backgroundColor: "#0078E9",
         borderRadius: 5,
         marginTop: 0,
         margin: 15,
+    },
+    btntext : {
+        padding: 5
     },
     doneText : {
         color: "#FFFFFF",

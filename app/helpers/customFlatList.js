@@ -30,17 +30,23 @@ const CustomFlatList = (props) => {
     }
 
     return (
-        <FlatList 
-            data={data}
-            keyExtractor = {item => item.id}
-            renderItem={renderList}
-            style={styles.listBox}
-        />
+        <View style={[styles.BoxView]}>
+            <FlatList 
+                data={data}
+                keyExtractor = {item => item.id}
+                renderItem={renderList}
+                style={styles.BoxView}
+                />
+            <Text style={[styles.otherBox]}>
+                <Text style={[styles.listText]}>Other Cities coming soon</Text>
+            </Text>
+        </View>
     );
 }
  
 const styles = StyleSheet.create({
-    listBox :{
+    BoxView :{
+        flex: 1,
         borderColor: "#E6EBF3",
         borderWidth: 1,
         borderRadius: 4,
@@ -55,6 +61,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignContent: "center",
+    },
+    otherBox :{
+        padding: 20,
+        fontFamily: "Nunito-BlackItalic"
     },
     checkText :{
         padding: 10,
