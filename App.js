@@ -26,7 +26,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import SelectcityView from './app/native/screens/selectcityView'
-import RegisterView from './app/native/screens/registerView'
+import SelectCompanyView from './app/native/screens/selectCompanyView'
+import OtpView from './app/native/screens/otpView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -43,7 +44,8 @@ const App = () => {
         style={backgroundStyle}>
       </ScrollView> */}
       {/* <SelectcityView/> */}
-      <RegisterView/>
+      {/* <SelectCompanyView/> */}
+      <OtpView />
       
     </SafeAreaView>
     // <SelectcityView/>

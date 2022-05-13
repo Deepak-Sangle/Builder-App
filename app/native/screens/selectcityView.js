@@ -41,6 +41,8 @@ const SelectcityView = () => {
         return name;
     }
     
+    const text = "Other cities coming soon";
+
     return (
         <View style={[styles.view]}>
             <View style={[styles.container]}>
@@ -51,7 +53,7 @@ const SelectcityView = () => {
             </View>
             <View style={styles.cities}>
                 <CustomSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} text="Search for your city" />
-                <CustomFlatList itemID={cityID} setItemID={setCityID} data={cities}/>
+                <CustomFlatList text={text} itemID={cityID} setItemID={setCityID} data={cities}/>
             </View>
             <View style={{margin: 15, marginTop: 0}}>
                 <CustomButtons text="DONE" pressHandler={onSubmit} isDone={true}/>

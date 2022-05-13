@@ -11,7 +11,8 @@ const CustomButtons = (props) => {
     const width = props.width ? props.width + "%" : "100%";
     const backbgcolor = {
         backgroundColor: primary_color,
-        width : width
+        width : width,
+        borderColor : primary_color,
     }
 
     const textcolor = {
@@ -28,7 +29,8 @@ const CustomButtons = (props) => {
 const styles = StyleSheet.create({
     btn :{
         marginTop: 0,
-        borderWidth: 1
+        borderWidth: 1,
+        borderRadius: 7,
     },
     btntext : {
         margin: 6,
