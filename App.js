@@ -28,6 +28,7 @@ import {
 import SelectcityView from './app/native/screens/selectcityView'
 import SelectCompanyView from './app/native/screens/selectCompanyView'
 import OtpView from './app/native/screens/otpView';
+import RegisterView from './app/native/screens/registerView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -45,7 +46,8 @@ const App = () => {
       </ScrollView> */}
       {/* <SelectcityView/> */}
       {/* <SelectCompanyView/> */}
-      <OtpView />
+      {/* <OtpView /> */}
+      <RegisterView />
       
     </SafeAreaView>
     // <SelectcityView/>
