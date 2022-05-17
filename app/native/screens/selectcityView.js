@@ -53,7 +53,7 @@ const SelectcityView = () => {
             </View>
             <View style={styles.cities}>
                 <CustomSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} text="Search for your city" />
-                <CustomFlatList text={text} itemID={cityID} setItemID={setCityID} data={cities}/>
+                <CustomFlatList text="Other cities coming soon" itemID={cityID} setItemID={setCityID} data={cities}/>
             </View>
             <View style={{margin: 15, marginTop: 0}}>
                 <CustomButtons text="DONE" pressHandler={onSubmit} isDone={true}/>
@@ -66,7 +66,7 @@ const SelectcityView = () => {
 const styles = StyleSheet.create({
     view :{
         flex: 1,
-        backgroundColor: "#f5f8fc",
+        backgroundColor: "white",
     },
     container :{
         padding: 10,
@@ -86,21 +86,6 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 15,
     },
-    submitBtn :{
-        backgroundColor: "#0078E9",
-        borderRadius: 5,
-        marginTop: 0,
-        margin: 15,
-    },
-    btntext : {
-        padding: 5
-    },
-    doneText : {
-        color: "#FFFFFF",
-        fontSize: 15,
-        fontWeight: "bold",
-        fontFamily: "Nunito-Bold",
-    }
 })
 
 export default SelectcityView;

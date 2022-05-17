@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {Node} from 'react';
 import {
   SafeAreaView,
@@ -29,28 +29,33 @@ import SelectcityView from './app/native/screens/selectcityView'
 import SelectCompanyView from './app/native/screens/selectCompanyView'
 import OtpView from './app/native/screens/otpView';
 import RegisterView from './app/native/screens/registerView';
+import CompleteProfileView from './app/native/screens/completeProfileView';
+import WelcomeView from './app/native/screens/welcomeView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  //Set background color to "#0078E9" when Otp view is enabled
+  const [backgroundColor, setBackgroundColor] = useState("white")
+  
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: backgroundColor,
   };
 
   return (
     <SafeAreaView style={[backgroundStyle, {flex: 1} ]}>
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
-      {/* <ScrollView
+      <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-      </ScrollView> */}
-      {/* <SelectcityView/> */}
-      {/* <SelectCompanyView/> */}
-      {/* <OtpView /> */}
-      <RegisterView />
-      
+        >
+        {/* <RegisterView /> */}
+        {/* <SelectCompanyView/> */}
+        {/* <SelectcityView/> */}
+        {/* <CompleteProfileView /> */}
+        <WelcomeView/>
+        {/* <OtpView /> */}
+      </ScrollView>
     </SafeAreaView>
-    // <SelectcityView/>
   );
 };
 

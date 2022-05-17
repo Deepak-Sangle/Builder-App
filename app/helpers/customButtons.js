@@ -12,7 +12,7 @@ const CustomButtons = (props) => {
     const backbgcolor = {
         backgroundColor: primary_color,
         width : width,
-        borderColor : primary_color,
+        borderColor : secondary_color,
     }
 
     const textcolor = {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         borderRadius: 7,
     },
     btntext : {
-        margin: 6,
+        margin: 10,
     },
     btntext_2 : {
         fontFamily: "Nunito-Bold",

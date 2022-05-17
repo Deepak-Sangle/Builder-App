@@ -53,11 +53,10 @@ const CustomFlatList = (props) => {
                 data={data}
                 keyExtractor = {item => item.id}
                 renderItem={renderList}
-                style={styles.BoxView}
-                />
+            />
 
-            { (!text=="") && <Text style={[styles.otherBox]}>
-                <Text style={[styles.listText]}>{text}</Text>
+            {text!=="" && <Text style={[styles.otherBox]}>
+                <Text style={[styles.eachText]}>{text}</Text>
             </Text>}
         </View>
     );

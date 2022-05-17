@@ -1,4 +1,4 @@
-import React, { useEffect,useCallback } from 'react';
+import React, { useEffect,useCallback, useState } from 'react';
 import {Linking, Text, View, StyleSheet, TextInput} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 import {useForm, Controller} from 'react-hook-form'
@@ -22,11 +22,11 @@ const RegisterView = () => {
                     control={control}
                     name={name}
                     rules={{required: true}}
-                    render={({field : {onChange, onBlur, value}})=>(
+                    render={({field : {onChange, value}})=>(
                         <TextInput
                             placeholder={placeholder}
                             keyboardType={keyboardType}
-                            onBlur={onBlur}
+                            placeholderTextColor="#A6A6A6"
                             style = {styles.textBox}
                             onChangeText = {onChange}
                         />
@@ -84,6 +84,7 @@ const RegisterView = () => {
                                     <TextInput
                                     keyboardType="numeric"
                                     maxLength={2}
+                                    placeholder="91"
                                     style = {[styles.textBox, styles.phno_1]}
                                     />
                                 )}
@@ -104,12 +105,12 @@ const RegisterView = () => {
                         />
                     </View>
                 </View>
-                <View style={styles.createView}>
+                <View style={styles.form}>
                     <CustomButtons text="REGISTER" isDone={true} pressHandler={handleSubmit(onSubmit)}/>
                 </View>
-                <View style={styles.createView}>
+                <View style={[styles.createView, styles.termsView]}>
                     <Text style={[styles.textStyle, styles.termsText]}>By registering, I agree to builders broadcast’s
-                    <Text style={{color: '#008AF4'}} onPress={termspage}> terms {"&"}  conditions </Text>
+                    <Text style={{color: '#008AF4'}} onPress={termspage}> terms {"&"} conditions </Text>
                     {"&"}
                     <Text style={{color: '#008AF4'}} onPress={termspage}> privacy policy </Text>
                     </Text>
@@ -123,7 +124,6 @@ const RegisterView = () => {
 const styles = StyleSheet.create({
     container : {
         flex : 1,
-        borderWidth : 1,
         backgroundColor : "white",
     },
     textStyle : {
@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
         flexDirection : "row",
         alignItems : "center",
         margin: 40,
+        marginTop: 60,
     },
     companyView : {
         marginHorizontal : 20,
@@ -145,21 +146,19 @@ const styles = StyleSheet.create({
     },
     createView : {
         marginHorizontal : 40,
-        marginTop : 10,    
     },
     form : {
         marginHorizontal: 40,
         marginTop: 20,
     },
-
     label : {
         fontSize : 12,
-
+        fontWeight: "900",
     },
     createText : {
         fontSize : 22,
         textAlign : "center",
-        fontWeight : "300",
+        fontWeight : "900",
         marginBottom : 20,
     },
     textBox : {
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
         paddingHorizontal : 0,
         paddingVertical : 2,
         color: "#3E506D",
-        fontWeight: "600",
+        fontFamily : "Nunito-SemiBold",
         letterSpacing: 0.6,
         fontSize : 15,
     },
@@ -182,7 +181,7 @@ const styles = StyleSheet.create({
         flexDirection : "row",
     },
     phno_1 : {
-        width : 50,
+        width : 40,
     },
     phno_plus : {
         width : 15,
@@ -192,7 +191,11 @@ const styles = StyleSheet.create({
     },
     termsText : {
         color : "#757575",
-        textAlign : "center"
+        textAlign : "center",
+        fontSize: 12,
+    },
+    termsView : {
+        marginTop: 10,
     }
 
 })

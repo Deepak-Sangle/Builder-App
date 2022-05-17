@@ -11,15 +11,20 @@ const SelectCompanyView = () => {
         {name : "Asset Advisor India", address : "FF10, Ninex Mall, Sohna Road, Sector 49,", city: "Gurugram", id : 1},
         {name : "Asset Advisor India Pvt. Ltd.", address : "B3-590, Greenwood, Sector 46,", city: "Gurugram", id : 2},
     ]);
-    const size = company.length;
-    const name = "Asset Advisor India";         //Assuming this as props
-
-    const [companyID, setCompanyID] = useState('');
+    
+    let size;
+    if(company[company.length-1].id!=0)
+        size = company.length;
+    else size = company.length-1;
 
     useEffect(()=>{
         company.push({name : "None of the above", id : "0"});
-    }, [])
+    }, []);
 
+    const name = "Asset Advisor India";         //Assuming this as props
+
+    const [companyID, setCompanyID] = useState('');
+    
     const onSubmit = () => {
         const company = companyID;
     }
@@ -48,6 +53,7 @@ const styles = StyleSheet.create({
     },
     boxView : {
         flex : 1,
+        justifyContent : "flex-start",
         backgroundColor : "white",
     },
     foundCompanyText : {

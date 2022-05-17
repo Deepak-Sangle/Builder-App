@@ -15,7 +15,7 @@ const OtpView = () => {
     const RESEND_TIME_LIMIT = 30;    
     const [resendTime, setResendTime] = useState(30);
 
-    const onOptChange = (index) => {
+    const onOtpChange = (index) => {
         return (value) => {
             if (isNaN(Number(value))) {
                 return;
@@ -54,14 +54,16 @@ const OtpView = () => {
         };
     };
     
-    // Timer not working :(
     useEffect(() => {
         const resendOtpTimer = setInterval(() => {
             if (resendTime > 0) {
                 setResendTime(resendTime - 1);
             }
+            else clearInterval(resendOtpTimer);
         }, 1000);
-        return clearInterval(resendOtpTimer);
+        return ()=> {
+            clearInterval(resendOtpTimer);
+        }
     }, [resendTime]);
 
     function onSubmit() {
@@ -69,7 +71,7 @@ const OtpView = () => {
     }
 
     function resendOtp(){
-
+        setResendTime(RESEND_TIME_LIMIT);
     }
 
     return (
@@ -77,12 +79,12 @@ const OtpView = () => {
             <View style={styles.box}>
                 <Text style={styles.enterotp}>Enter OTP</Text>
                 <Text style={styles.text}>One time password has been sent to</Text>
-                <Text style={[styles.phno, styles.text]}>+91 9146361134</Text>
+                <Text style={[styles.phno, styles.text]}>+91 9876543210</Text>
                 <View style={styles.inputView}>
                     {ref_array.map((inputRef, i) => (
                     <TextInput
                         value={otpArray[i]}
-                        onChangeText={onOptChange(i)}
+                        onChangeText={onOtpChange(i)}
                         onKeyPress={onOTPKeyPress(i)}
                         keyboardType="numeric"
                         maxLength={1}
@@ -97,14 +99,13 @@ const OtpView = () => {
                     <CustomButtons text="VERIFY" isDone={false} pressHandler={onSubmit}/>
                 </View>
                 <View style={styles.resendView}>
-                    {resendTime>0 && <Text style={styles.resendText}>You can resend code in 00:{resendTime}</Text>}
+                    {resendTime>0 && <Text style={styles.resendText}>You can resend code in 00:{resendTime>9 ? resendTime: "0"+ resendTime}</Text>}
                     {!resendTime>0 && 
                     <Pressable onPressOut={resendOtp}>
                         <Text style={styles.resendText}>Resend OTP</Text>
                     </Pressable>}
                 </View>
             </View>
-        
         </View>
     );
 }
@@ -113,10 +114,13 @@ const styles = StyleSheet.create({
     container : {
         flex : 1,
         backgroundColor : "#0078E9",
+        justifyContent: "flex-end",
     },
     box : {
         margin: 50,
-        // marginTop: 150,
+        flex: 1,
+        marginTop: 200,
+        // marginBottom: 400,
     },
     enterotp : {
         fontFamily : "Nunito-Medium",
@@ -136,7 +140,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     inputView : {
-        marginTop : 10,
+        marginTop : 20,
         flexDirection : "row",
     },
     inputBox : {
