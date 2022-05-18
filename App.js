@@ -46,11 +46,11 @@ const App = () => {
     <SafeAreaView style={[backgroundStyle, {flex: 1} ]}>
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
         {/* <SelectcityView/> */}
-        {/* <SelectCompanyView/> */}
+        <SelectCompanyView/>
         {/* <RegisterView /> */}
         {/* <OtpView /> */}
         {/* <CompleteProfileView /> */}
-        <WelcomeView/>
+        {/* <WelcomeView/> */}
     </SafeAreaView>
   );
 };
