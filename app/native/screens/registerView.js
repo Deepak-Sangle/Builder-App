@@ -1,11 +1,8 @@
-import React, { useEffect,useCallback, useState } from 'react';
-import {Linking, Text, View, StyleSheet, TextInput} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'; 
+import React from 'react';
+import {Text, View, StyleSheet, TextInput, ScrollView} from 'react-native'
 import {useForm, Controller} from 'react-hook-form'
-
 import CustomButtons from '../../helpers/customButtons';
-
-const myIcon = <Icon name="camera" size={60}  color="blue"/>;
+import LogoHeader from '../../helpers/LogoHeader';
 
 const RegisterView = () => { 
   
@@ -55,69 +52,64 @@ const RegisterView = () => {
     }
     
     return (
-        <View style={styles.container}>
-            <View style={styles.topBox}>
+        <ScrollView>
+            <View style={styles.container}>
+                <LogoHeader isHeader={true} size={75}/>
+                <View style={[styles.createView]}>
+                    <Text style={[styles.createText, styles.textStyle]}>Create New Account</Text>
+                </View>
                 <View>
-                    {myIcon}
-                </View>
-                <View style={styles.companyView}>
-                    <Text style={[styles.companyText, styles.textStyle]}> Builders {"\n"} Broadcast </Text>
-                </View>
-            </View>
-            <View style={[styles.createView]}>
-                <Text style={[styles.createText, styles.textStyle]}>Create New Account</Text>
-            </View>
-            <View>
-                <CustomInputView label="Full Name" name='full-name' />
-                <CustomInputView label="Company Name" name='company-name'/>
-                <CustomInputView label="Email ID" placeholder="Enter your official email address" name='email-id' />
-                <View style={styles.form}>
-                    <Text style={[styles.label, styles.textStyle]}>Mobile Number</Text>
-                    <View style={styles.phnoView}>    
-                        <View style={styles.phno_first}>
-                            <TextInput style={[styles.textBox, styles.phno_plus]}>+</TextInput>
-                            <Controller 
+                    <CustomInputView label="Full Name" name='full-name' />
+                    <CustomInputView label="Company Name" name='company-name'/>
+                    <CustomInputView label="Email ID" placeholder="Enter your official email address" name='email-id' />
+                    <View style={styles.form}>
+                        <Text style={[styles.label, styles.textStyle]}>Mobile Number</Text>
+                        <View style={styles.phnoView}>    
+                            <View style={styles.phno_first}>
+                                <TextInput style={[styles.textBox, styles.phno_plus]}>+</TextInput>
+                                <Controller 
+                                    control={control}
+                                    name='country-code'
+                                    rules={{required: true}}
+                                    render = {({field : {onChange, value}})=>(
+                                        <TextInput
+                                        keyboardType="numeric"
+                                        maxLength={2}
+                                        placeholder="91"
+                                        style = {[styles.textBox, styles.phno_1]}
+                                        />
+                                    )}
+                                />
+                            </View>
+                            <Controller
                                 control={control}
-                                name='country-code'
+                                name='phone-no'
                                 rules={{required: true}}
                                 render = {({field : {onChange, value}})=>(
                                     <TextInput
-                                    keyboardType="numeric"
-                                    maxLength={2}
-                                    placeholder="91"
-                                    style = {[styles.textBox, styles.phno_1]}
+                                        keyboardType="numeric"
+                                        maxLength={10}
+                                        onChangeText={onChange}
+                                        style = {[styles.textBox, styles.phno_2]}
                                     />
                                 )}
                             />
                         </View>
-                        <Controller
-                            control={control}
-                            name='phone-no'
-                            rules={{required: true}}
-                            render = {({field : {onChange, value}})=>(
-                                <TextInput
-                                    keyboardType="numeric"
-                                    maxLength={10}
-                                    onChangeText={onChange}
-                                    style = {[styles.textBox, styles.phno_2]}
-                                />
-                            )}
-                        />
                     </View>
-                </View>
-                <View style={styles.form}>
-                    <CustomButtons text="REGISTER" isDone={true} pressHandler={handleSubmit(onSubmit)}/>
-                </View>
-                <View style={[styles.createView, styles.termsView]}>
-                    <Text style={[styles.textStyle, styles.termsText]}>By registering, I agree to builders broadcast’s
-                    <Text style={{color: '#008AF4'}} onPress={termspage}> terms {"&"} conditions </Text>
-                    {"&"}
-                    <Text style={{color: '#008AF4'}} onPress={termspage}> privacy policy </Text>
-                    </Text>
-                </View>
+                    <View style={styles.form}>
+                        <CustomButtons text="REGISTER" isDone={true} pressHandler={handleSubmit(onSubmit)}/>
+                    </View>
+                    <View style={[styles.createView, styles.termsView]}>
+                        <Text style={[styles.textStyle, styles.termsText]}>By registering, I agree to builders broadcast’s
+                        <Text style={{color: '#008AF4'}} onPress={termspage}> terms {"&"} conditions </Text>
+                        {"&"}
+                        <Text style={{color: '#008AF4'}} onPress={termspage}> privacy policy </Text>
+                        </Text>
+                    </View>
 
+                </View>
             </View>
-        </View>
+        </ScrollView>
     );
 }
  
@@ -131,25 +123,13 @@ const styles = StyleSheet.create({
         letterSpacing : 0.6,
         color : "#4A4A4A",
     },
-    topBox : {
-        flexDirection : "row",
-        alignItems : "center",
-        margin: 40,
-        marginTop: 60,
-    },
-    companyView : {
-        marginHorizontal : 20,
-    },
-    companyText : {
-        fontWeight : "300",
-        fontSize : 18,
-    },
     createView : {
+        marginTop : 30,
         marginHorizontal : 40,
     },
     form : {
         marginHorizontal: 40,
-        marginTop: 20,
+        marginTop: 30,
     },
     label : {
         fontSize : 12,

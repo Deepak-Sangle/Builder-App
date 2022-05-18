@@ -1,16 +1,12 @@
 import React, { useEffect,useCallback, useState } from 'react';
-import {Linking, Text, View, StyleSheet, ScrollView, TextInput} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'; 
-import {useForm, Controller} from 'react-hook-form'
-import DropDownPicker from 'react-native-dropdown-picker';
-
-import CustomButtons from '../../helpers/customButtons';
-const myIcon = <Icon name="camera" size={60}  color="blue"/>;
+import {Text, View, StyleSheet, ScrollView, TextInput} from 'react-native'
+import LogoHeader from '../../helpers/LogoHeader';
 
 
 const WelcomeView = () => {
     return (
-        <View>
+        <View style={styles.container}>
+            <LogoHeader isHeader={false} size={55} />
             
         </View>
     );

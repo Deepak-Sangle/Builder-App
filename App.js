@@ -45,16 +45,12 @@ const App = () => {
   return (
     <SafeAreaView style={[backgroundStyle, {flex: 1} ]}>
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        >
-        {/* <RegisterView /> */}
-        {/* <SelectCompanyView/> */}
         {/* <SelectcityView/> */}
+        {/* <SelectCompanyView/> */}
+        {/* <RegisterView /> */}
+        {/* <OtpView /> */}
         {/* <CompleteProfileView /> */}
         <WelcomeView/>
-        {/* <OtpView /> */}
-      </ScrollView>
     </SafeAreaView>
   );
 };

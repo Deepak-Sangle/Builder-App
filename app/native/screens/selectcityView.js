@@ -4,8 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomFlatList from '../../helpers/customFlatList';
 import CustomSearchBar from '../../helpers/customSearchBar';
 import CustomButtons from '../../helpers/customButtons';
+import LogoHeader from '../../helpers/LogoHeader';
 import DialogBox from './dialogView';
-const myIcon = <Icon name="camera" size={60}  color="blue"/>;
 
 const SelectcityView = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -45,12 +45,7 @@ const SelectcityView = () => {
 
     return (
         <View style={[styles.view]}>
-            <View style={[styles.container]}>
-                <Text style={[styles.icon]}>
-                    {myIcon}
-                </Text>
-                <Text style={styles.title}>SELECT YOUR LOCATION</Text>
-            </View>
+            <LogoHeader isHeader={false} text="SELECT YOUR LOCATION" size={70} />
             <View style={styles.cities}>
                 <CustomSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} text="Search for your city" />
                 <CustomFlatList text="Other cities coming soon" itemID={cityID} setItemID={setCityID} data={cities}/>
@@ -67,20 +62,6 @@ const styles = StyleSheet.create({
     view :{
         flex: 1,
         backgroundColor: "white",
-    },
-    container :{
-        padding: 10,
-        margin: 15,
-    },
-    title : {
-        textAlign: "center",
-        fontFamily: "Nunito-Bold",
-        color: "#757575"
-    },
-    icon: {
-        textAlign: "center",
-        paddingVertical: 10,
-        marginVertical: 10,    
     },
     cities : {
         flex: 1,
