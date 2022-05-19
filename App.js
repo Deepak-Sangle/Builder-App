@@ -31,6 +31,7 @@ import OtpView from './app/native/screens/otpView';
 import RegisterView from './app/native/screens/registerView';
 import CompleteProfileView from './app/native/screens/completeProfileView';
 import WelcomeView from './app/native/screens/welcomeView';
+import BuilderPlanView from './app/native/screens/builderPlanView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -46,11 +47,12 @@ const App = () => {
     <SafeAreaView style={[backgroundStyle, {flex: 1} ]}>
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
         {/* <SelectcityView/> */}
-        <SelectCompanyView/>
+        {/* <SelectCompanyView/> */}
         {/* <RegisterView /> */}
         {/* <OtpView /> */}
         {/* <CompleteProfileView /> */}
         {/* <WelcomeView/> */}
+        <BuilderPlanView / >
     </SafeAreaView>
   );
 };

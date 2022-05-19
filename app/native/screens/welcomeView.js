@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native'
+import {Text, View, StyleSheet,ScrollView, TouchableOpacity} from 'react-native'
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
 
 const WelcomeView = () => {
 
+    const name = "Deepak" ;         //Assuming you getting the user name from database
     const onStart = ()=> {
         
     }
@@ -14,6 +15,7 @@ const WelcomeView = () => {
     }
 
     return (
+        <ScrollView>
         <View style={styles.container}>
             <View>
                 <View>
@@ -23,7 +25,7 @@ const WelcomeView = () => {
                     <View style={styles.bigcircle}></View>
                 </View>
                 <View>
-                    <Text style={[styles.congo, styles.textStyle]}>Congratulations, Deepak!</Text>
+                    <Text style={[styles.congo, styles.textStyle]}>Congratulations, {name}!</Text>
                     <Text style={[styles.trial, styles.textStyle]}>You’ve got unconditional 30-day free trial</Text>
                     <Text style={[styles.access, styles.textStyle]}>You will have unlimited access to all projects of builders in your city for 30 days.</Text>
                     <View style={{paddingHorizontal: 40, paddingVertical: 20}}>
@@ -37,6 +39,7 @@ const WelcomeView = () => {
                 </TouchableOpacity>
             </View>
         </View>
+        </ScrollView>
     );
 }
 
@@ -60,6 +63,7 @@ const styles = StyleSheet.create({
     textStyle : {
         textAlign : "center",
         fontFamily : "Nunito",
+        marginBottom : 20,
     },  
     congo : {
         color : "#429B38",  
