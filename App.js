@@ -32,6 +32,7 @@ import RegisterView from './app/native/screens/registerView';
 import CompleteProfileView from './app/native/screens/completeProfileView';
 import WelcomeView from './app/native/screens/welcomeView';
 import BuilderPlanView from './app/native/screens/builderPlanView';
+import PlansPricingView from './app/native/screens/plans&pricingView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -52,7 +53,8 @@ const App = () => {
         {/* <OtpView /> */}
         {/* <CompleteProfileView /> */}
         {/* <WelcomeView/> */}
-        <BuilderPlanView / >
+        {/* <BuilderPlanView / > */}
+        <PlansPricingView />
     </SafeAreaView>
   );
 };
