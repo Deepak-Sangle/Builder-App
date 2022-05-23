@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     boxView : {
         flex : 1,
         justifyContent : "flex-start",
-        backgroundColor : "white",
     },
     foundCompanyText : {
         color : "#4A4A4A",
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
         backgroundColor : "#E0E7F1",
     },
     selectView : {
-
+        backgroundColor :"#FFFFFF",
     },
     selectText : {
         padding : 20,

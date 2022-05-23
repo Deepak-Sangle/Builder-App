@@ -4,6 +4,7 @@ import { Divider } from 'react-native-paper';
 import LogoHeader from '../../helpers/LogoHeader';
 import CustomArrow from '../../helpers/customArrow';
 import LinearGradient from 'react-native-linear-gradient';
+import CustomGradient from '../../helpers/customGradient';
 
 const PlansPricingView = () => {
 
@@ -16,9 +17,8 @@ const PlansPricingView = () => {
 
         return (
             <TouchableOpacity activeOpacity={0.7} style={styles.cardView}>
-                {tag!='' && <View style={styles.tagView}>
-                    <LinearGradient colors={["#F0DC57", "#DDB62C"]} style={styles.tagGradient} ><Text style={[styles.textStyle, styles.tagText]}>{tag}</Text></LinearGradient>
-                </View>}
+                <CustomGradient text={tag}/>
+                
                 <View style={styles.cardTop}>
                     <View style={{marginHorizontal : 10}}>
                         <Text style={[styles.textStyle, styles.headingStyle]}>{heading}</Text>
@@ -86,7 +86,6 @@ const PlansPricingView = () => {
 const styles = StyleSheet.create({
     container : {
         flex : 1,
-        backgroundColor : "#F5F8FC",
         justifyContent : "space-between",
     },
     plansView : {

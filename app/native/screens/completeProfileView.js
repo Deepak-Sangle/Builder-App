@@ -204,7 +204,6 @@ const styles = StyleSheet.create({
     mainView: {
         flex: 1,
         flexGrow: 1,
-        backgroundColor: "white",
     },
     container: {
         marginHorizontal: 50,
@@ -250,7 +249,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: "#BECCE0",
         borderRadius: 0,
-
+        backgroundColor : "#F5F8FC",
     },
     dropdown: {
         borderRadius: 0,

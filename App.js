@@ -33,12 +33,13 @@ import CompleteProfileView from './app/native/screens/completeProfileView';
 import WelcomeView from './app/native/screens/welcomeView';
 import BuilderPlanView from './app/native/screens/builderPlanView';
 import PlansPricingView from './app/native/screens/plans&pricingView';
+import PreAccessView from './app/native/screens/preAccessView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   //Set background color to "#0078E9" when Otp view is enabled
-  const [backgroundColor, setBackgroundColor] = useState("white")
+  const [backgroundColor, setBackgroundColor] = useState("#F5F8FC");
   
   const backgroundStyle = {
     backgroundColor: backgroundColor,
@@ -54,7 +55,8 @@ const App = () => {
         {/* <CompleteProfileView /> */}
         {/* <WelcomeView/> */}
         {/* <BuilderPlanView / > */}
-        <PlansPricingView />
+        {/* <PlansPricingView /> */}
+        <PreAccessView />
     </SafeAreaView>
   );
 };

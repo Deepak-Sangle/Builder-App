@@ -116,7 +116,6 @@ const RegisterView = () => {
 const styles = StyleSheet.create({
     container : {
         flex : 1,
-        backgroundColor : "white",
         marginBottom : 20,
     },
     textStyle : {

@@ -5,10 +5,12 @@ const LogoHeader = (props) => {
     const dimensions = props.size;
     const text = props.text;
     const isHeader = props.isHeader ? props.isHeader : false ; 
-    
+    const source = props.source ? props.source : require('../../android/app/src/main/assets/images/Logo.png') ;
+
     const alignLogo = isHeader ? "flex-start" : "center" ;
     const leftPadding = isHeader ? 50 : 0;
-    
+    const topPadding = props.source ? 20 : 60;
+
     const icon = {
         width : dimensions,
         height : dimensions,
@@ -17,6 +19,7 @@ const LogoHeader = (props) => {
     const headingStyle = {
         justifyContent : alignLogo,
         paddingLeft : leftPadding,
+        paddingTop : topPadding,
     }
 
     return (
@@ -24,8 +27,9 @@ const LogoHeader = (props) => {
             <View style={[styles.container, headingStyle]}>
                 <View>
                     <Image 
-                        source={require('../../android/app/src/main/assets/images/Logo.png')}
+                        source={source}
                         style={icon}
+                        resizeMode="contain"
                     />
                 </View>
                 {isHeader && <View style={styles.companyView}>
@@ -40,7 +44,6 @@ const LogoHeader = (props) => {
 const styles = StyleSheet.create({ 
     container :{
         flexDirection : "row",
-        paddingTop : 60,
         alignItems : "center",
     },
     title : {

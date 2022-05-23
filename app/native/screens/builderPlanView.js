@@ -3,7 +3,8 @@ import {Text, View, StyleSheet, ScrollView} from 'react-native'
 import CustomButtons from '../../helpers/customButtons';
 import CustomCompanyList from '../../helpers/customCompanyList';
 import LogoHeader from '../../helpers/LogoHeader';
-import SearchLocation from '../../helpers/searchLocation';
+import CustomFilterMenu from '../../helpers/customFilterMenu';
+import LinearGradient from 'react-native-linear-gradient';
 
 const BuilderPlanView = () => {
 
@@ -13,20 +14,20 @@ const BuilderPlanView = () => {
         {label : "Mumbai", value : "mumbai"},
     ]);
 
-    const [location, setLocation] = useState();
+    const [location, setLocation] = useState("gurugram");
 
     const [company,setCompany] = useState([
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-2.jpg"), num_of_projects : 12, id: 2, isSelected: false , isAccess : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-5.jpg"), num_of_projects : 12, id: 5, isSelected: false , isAccess : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-1.jpg"), num_of_projects : 18, id: 1, isSelected: false , isAccess : true},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), num_of_projects : 12, id: 3, isSelected: false , isAccess : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-4.png"), num_of_projects : 18, id: 4, isSelected: false , isAccess : true},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"), num_of_projects : 18, id : 6,  isSelected: false ,isAccess : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"), num_of_projects : 18, id : 7,  isSelected: false ,isAccess : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"), num_of_projects : 18, id : 8,  isSelected: false ,isAccess : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), num_of_projects : 12, id: 9, isSelected: false , isAccess : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-4.png"), num_of_projects : 18, id: 4, isSelected: false , isAccess : true},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-5.jpg"), num_of_projects : 12, id: 10, isSelected: false , isAccess : false},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-2.jpg"), num_of_projects : 12, id: 2, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-5.jpg"), num_of_projects : 12, id: 5, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-1.jpg"), num_of_projects : 18, id: 1, isSelected: false , isTag : true},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), num_of_projects : 12, id: 3, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-4.png"), num_of_projects : 18, id: 4, isSelected: false , isTag : true},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"),   num_of_projects : 18, id: 6, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"),   num_of_projects : 18, id: 7, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"),   num_of_projects : 18, id: 8, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), num_of_projects : 12, id: 9, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-4.png"), num_of_projects : 18, id: 4, isSelected: false , isTag : true},
+        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-5.jpg"), num_of_projects : 12, id: 10,isSelected: false , isTag : false},
     ]);
 
     const [numofCompany, setNumofCompany ] = useState(0);
@@ -44,14 +45,14 @@ const BuilderPlanView = () => {
             <View style={styles.container}>
                 <LogoHeader size={55}/>
                 <View style={styles.searchBar}>
-                    <SearchLocation list={locationList} item={location} setItem={setLocation} />
+                    <CustomFilterMenu backgroundColor="#FFFFFF" radius={30} isIcon={true} list={locationList} item={location} setItem={setLocation} />
                 </View>
                 <View>
                     <Text style={[styles.textStyle, styles.selectBuilders]}>Select builders you would like to gain access for ({company.length}) </Text>
-                    <View style={styles.comingSoonText}><Text style={[styles.textStyle, styles.comingSoon]}>Coming Soon! Private Builder Floors</Text></View>
+                    <View style={styles.comingSoonText}><LinearGradient style={styles.gradientView} colors={["#F0DC57", "#DDB62C"]}><Text style={[styles.textStyle, styles.comingSoon]}>Coming Soon! Private Builder Floors</Text></LinearGradient></View>
                 </View>
                 <View style={styles.companylist}>
-                    <CustomCompanyList numofSelection={numofCompany} setNumofSelection={setNumofCompany} data={company} setData={setCompany} text="APPROVED ACCESS"/>
+                    <CustomCompanyList isTouchable={true} numofSelection={numofCompany} setNumofSelection={setNumofCompany} data={company} setData={setCompany} text="APPROVED ACCESS"/>
                 </View>
                 <View>
                     <Text style={styles.priceText}>Rs. 1990 x {numofCompany}</Text>
@@ -83,15 +84,19 @@ const styles = StyleSheet.create({
     comingSoonText : {
         flexDirection : "row",
         justifyContent : "flex-end",
+        marginVertical : 10,
+    },
+    gradientView : {
+        padding : 5, 
+        borderRadius : 5,
     },
     comingSoon :{
         fontFamily : "Nunito-BoldItalic",
-        borderRadius : 10,
         fontSize : 12,
-        padding : 5,
-        backgroundColor : "#F0DC57",
+        marginVertical : 0,
     },
     companylist : {
+        backgroundColor : "white",
         height : 525,
     },
     payBtnView : {

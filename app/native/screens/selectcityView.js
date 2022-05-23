@@ -61,7 +61,6 @@ const SelectcityView = () => {
 const styles = StyleSheet.create({
     view :{
         flex: 1,
-        backgroundColor: "white",
     },
     cities : {
         flex: 1,
