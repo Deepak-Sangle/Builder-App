@@ -34,6 +34,7 @@ import WelcomeView from './app/native/screens/welcomeView';
 import BuilderPlanView from './app/native/screens/builderPlanView';
 import PlansPricingView from './app/native/screens/plans&pricingView';
 import PreAccessView from './app/native/screens/preAccessView';
+import ProjectDetailView from './app/native/screens/projectDetailView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -56,7 +57,9 @@ const App = () => {
         {/* <WelcomeView/> */}
         {/* <BuilderPlanView / > */}
         {/* <PlansPricingView /> */}
-        <PreAccessView />
+        {/* <PreAccessView /> */}
+        <ProjectDetailView />
+
     </SafeAreaView>
   );
 };

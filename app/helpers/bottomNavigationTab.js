@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     iconView : {
         justifyContent : "center",
         margin : 15,
-        marginHorizontal : 20,
+        marginHorizontal : 10,
     },
     iconStyle : {
         textAlign : "center",

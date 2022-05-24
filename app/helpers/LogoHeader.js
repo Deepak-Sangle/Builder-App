@@ -1,15 +1,19 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image} from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, Image} from 'react-native'
+import Icons from 'react-native-vector-icons/Octicons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons' //arrow-back-ios
 
 const LogoHeader = (props) => {
     const dimensions = props.size;
     const text = props.text;
     const isHeader = props.isHeader ? props.isHeader : false ; 
     const source = props.source ? props.source : require('../../android/app/src/main/assets/images/Logo.png') ;
+    const isThreeDot = props.isThreeDot ? props.isThreeDot : false ;
+    const isBack = props.isBack ? props.isBack : false;
 
     const alignLogo = isHeader ? "flex-start" : "center" ;
     const leftPadding = isHeader ? 50 : 0;
-    const topPadding = props.source ? 20 : 60;
+    const topPadding = props.topPadding ? props.topPadding : props.source ? 20 : 60;
 
     const icon = {
         width : dimensions,
@@ -25,6 +29,10 @@ const LogoHeader = (props) => {
     return (
         <View>
             <View style={[styles.container, headingStyle]}>
+                {isBack && <TouchableOpacity  style={styles.backView}>
+                    <MaterialIcons name="arrow-back-ios" size={20} color="#0078E9" />
+                </TouchableOpacity>}
+
                 <View>
                     <Image 
                         source={source}
@@ -32,9 +40,14 @@ const LogoHeader = (props) => {
                         resizeMode="contain"
                     />
                 </View>
+                
                 {isHeader && <View style={styles.companyView}>
                     <Text style={[styles.companyText, styles.textStyle]}> Builders {"\n"} Broadcast </Text>
                 </View>}
+
+                {isThreeDot && <TouchableOpacity style={styles.navigationView}>
+                    <Icons name='three-bars' size={25} color="#4A4A4A" />
+                </TouchableOpacity>}
             </View>
             {text && <Text style={styles.title}>{text}</Text>}
         </View>
@@ -65,6 +78,16 @@ const styles = StyleSheet.create({
         letterSpacing : 0.6,
         color : "#4A4A4A",
     },
+    backView : {
+        position : "absolute",
+        left : 40,
+        bottom : 30,
+    },
+    navigationView : {
+        bottom : 30,
+        position : "absolute",
+        right : 40,
+    }
 
 });
  

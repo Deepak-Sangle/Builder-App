@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native'
+import {Text, View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native'
 
 import CustomButtons from '../../helpers/customButtons';
 import CustomCompanyList from '../../helpers/customCompanyList';
@@ -7,10 +7,13 @@ import LogoHeader from '../../helpers/LogoHeader';
 import CustomFilterMenu from '../../helpers/customFilterMenu';
 
 import Icon from 'react-native-vector-icons/AntDesign';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
 
 const PreAccessView = () => {
-    const source = require('../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg');
+    const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap.jpg');
+    const icon = <MaterialIcon name="arrow-forward-ios" size={15} color="#FFFFFF" />
 
     const [projectTypeList, setprojectTypeList] = useState([
         {label : "Residential Projects", value : "residential_projects"},
@@ -22,15 +25,15 @@ const PreAccessView = () => {
     const [projectType, setProjectType] = useState("residential_projects");
 
     const [projectList, setProjectList] = useState([
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-1.jpg"), id: 1, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-2.jpg"), id: 2, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), id: 3, isNew : true },
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-4.png"), id: 4, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-5.jpg"), id: 5, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"),   id: 6, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), id: 7, isNew : false },
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), id: 8, isNew : false },
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-1.jpg"), id: 9, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.jpg"), id: 1, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-2.jpg"), id: 2, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.jpg"), id: 3, isNew : true },
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-4.png"), id: 4, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-5.jpg"), id: 5, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap.jpg"),   id: 6, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.jpg"), id: 7, isNew : false },
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.jpg"), id: 8, isNew : false },
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.jpg"), id: 9, isNew : false},
     ]);
 
     const onClick = () => {
@@ -39,30 +42,34 @@ const PreAccessView = () => {
 
     return (
         <View style={styles.container}>
-            <LogoHeader source={source} size={75}   />
+            <ScrollView style={{flex : 1}} nestedScrollEnabled={true}>
+                <LogoHeader isBack={true} isThreeDot={true} source={source} size={75}   />
+                <View>
+                    <View style={styles.accessView}>
+                        <Icon style={styles.minusStyle} name='minuscircle' color="#E84242" size={25} />
+                        <Text style={[styles.textStyle,styles.accessText]}>You do not have access</Text>
+                    </View>
+                </View>
+                <View style={styles.projectView}>
+                    <CustomFilterMenu  list={projectTypeList} item={projectType} setItem={setProjectType}  />
+                    <View style={styles.flatListView}>
+                        <CustomCompanyList height={125} text="New Launch" data={projectList} />
+                    </View>
+                </View>
+                <View style={styles.plansView}>
+                    <Text style={[styles.gainText, styles.textStyle]}>To gain access, check</Text>
+                    <View style={styles.btnView}>
+                        <CustomButtons right={true} icon={icon} margin={10} text="PLANS & PRICING" isDone={true} pressHandler={onClick}  />
+                    </View>
+                </View>
+                <View style={styles.codeView}>
+                    <Text style={styles.textStyle}>Or if you have access code from builder?</Text>
+                    <TouchableOpacity><Text style={styles.clickText}> Click Here</Text></TouchableOpacity>
+                </View>
+            </ScrollView>
             <View>
-                <View style={styles.accessView}>
-                    <Icon style={styles.minusStyle} name='minuscircle' color="#E84242" size={25} />
-                    <Text style={[styles.textStyle,styles.accessText]}>You do not have access</Text>
-                </View>
+                <BottomNavigationTab />
             </View>
-            <View style={styles.projectView}>
-                <CustomFilterMenu  list={projectTypeList} item={projectType} setItem={setProjectType}  />
-                <View style={styles.flatListView}>
-                    <CustomCompanyList height={125} text="New Launch" data={projectList} />
-                </View>
-            </View>
-            <View style={styles.plansView}>
-                <Text style={[styles.gainText, styles.textStyle]}>To gain access, check</Text>
-                <View style={styles.btnView}>
-                    <CustomButtons isArrow={true} margin={3} text="PLANS & PRICING" isDone={true} pressHandler={onClick}  />
-                </View>
-            </View>
-            <View style={styles.codeView}>
-                <Text style={styles.textStyle}>Or if you have access code from builder?</Text>
-                <TouchableOpacity><Text style={styles.clickText}> Click Here</Text></TouchableOpacity>
-            </View>
-            <BottomNavigationTab />
         </View>
     );
 }
@@ -70,6 +77,7 @@ const PreAccessView = () => {
 const styles = StyleSheet.create({
     container : {
         flex : 1,
+        justifyContent : "space-between",
     },
     accessView : {
         flexDirection : "row",
@@ -103,18 +111,21 @@ const styles = StyleSheet.create({
     },
     flatListView : {
         marginTop : 10,
-        flex : 1,
         backgroundColor : "#FFFFFF",
-        // height : 375,
+        height : 500,
     },
     plansView : {
         flexDirection : "row",
         alignItems : "center",
         padding : 20,
+        justifyContent : "flex-start",
         backgroundColor : "#E0E7F1",
     },
     gainText : {
         marginHorizontal : 10,
+    },
+    btnView : {
+        width : 200,
     },
     codeView : {
         flexDirection : "row",

@@ -25,7 +25,7 @@ const PlansPricingView = () => {
                         <Text style={[styles.textStyle, styles.priceStyle]}>Rs. {price}/<Text style={styles.peryearText}>{price_durn}</Text></Text>
                     </View>    
                     <View>
-                        <CustomArrow />
+                        <CustomArrow color="#FFFFFF" borderWidth={6} borderColor="#D0E8FF" backgroundColor="#0078E9" />
                     </View>
                 </View>
 
@@ -43,43 +43,44 @@ const PlansPricingView = () => {
     const text_2 = "Unlimited access to all builders in your region.";
 
     return (
-        <View style={styles.container}>
-            <LogoHeader size={55} />
-            
-            <View style={styles.plansView}>
-                <Text style={[styles.textStyle, styles.plansText ]}>Plans {"&"} Pricing</Text>
-            </View>
-            
-            <ScrollView style={styles.scrollView}>
-                <View style={styles.planCardView}>
-                    <BuilderplanCard tag="" heading="Per Builder Plan" price="2990" price_durn="year/builder" description={text_1}/>
+        <ScrollView>
+            <View style={styles.container}>
+                <LogoHeader size={55} />
+                
+                <View style={styles.plansView}>
+                    <Text style={[styles.textStyle, styles.plansText ]}>Plans {"&"} Pricing</Text>
                 </View>
-                <View style={styles.planCardView}>
-                    <BuilderplanCard tag="Best seller" heading="All Access Plan" price="19990" price_durn="year" description={text_2}/>
-                </View>
-            </ScrollView>
-
-            <View style={styles.bottomView}>
-                <View style={styles.proPlanView}>
-                    <View style={styles.proView}><Text style={[styles.textStyle, styles.proText]}> PRO </Text></View>
-                    <Text style={[styles.textStyle, styles.addText ]}>Add team members to any of the plan</Text>
-                    <Text style={[styles.textStyle, styles.priceText]}>Rs. 2399/<Text style={styles.peryearText}>year/member</Text></Text>
-                </View>
-                <Divider/>
-                <View style={styles.descriptionView}>
-                    <View style={styles.bulletView}>
-                        <Text style={styles.textStyle}>- </Text>
-                        <Text style={styles.textStyle}>Your team members can access all builders you have access to.</Text>
+                
+                <View  style={styles.scrollView}>
+                    <View style={styles.planCardView}>
+                        <BuilderplanCard tag="" heading="Per Builder Plan" price="2990" price_durn="year/builder" description={text_1}/>
                     </View>
-                    
-                    <View style={styles.bulletView}>
-                        <Text style={styles.textStyle}>- </Text>
-                        <Text style={styles.textStyle}>Track your team’s site visits, registrations and bookings.</Text>
+                    <View style={styles.planCardView}>
+                        <BuilderplanCard tag="Best seller" heading="All Access Plan" price="19990" price_durn="year" description={text_2}/>
                     </View>
                 </View>
-            </View>
 
-        </View>
+                <View style={styles.bottomView}>
+                    <View style={styles.proPlanView}>
+                        <View style={styles.proView}><Text style={[styles.textStyle, styles.proText]}> PRO </Text></View>
+                        <Text style={[styles.textStyle, styles.addText ]}>Add team members to any of the plan</Text>
+                        <Text style={[styles.textStyle, styles.priceText]}>Rs. 2399/<Text style={styles.peryearText}>year/member</Text></Text>
+                    </View>
+                    <Divider/>
+                    <View style={styles.descriptionView}>
+                        <View style={styles.bulletView}>
+                            <Text style={styles.textStyle}>- </Text>
+                            <Text style={styles.textStyle}>Your team members can access all builders you have access to.</Text>
+                        </View>
+                        
+                        <View style={styles.bulletView}>
+                            <Text style={styles.textStyle}>- </Text>
+                            <Text style={styles.textStyle}>Track your team’s site visits, registrations and bookings.</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        </ScrollView>
     );
 }
 
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     },
     scrollView : {
         flex : 1,
+        marginBottom : 30,
     },
     planCardView : {
         margin : 20,

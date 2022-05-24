@@ -17,17 +17,17 @@ const BuilderPlanView = () => {
     const [location, setLocation] = useState("gurugram");
 
     const [company,setCompany] = useState([
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-2.jpg"), num_of_projects : 12, id: 2, isSelected: false , isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-5.jpg"), num_of_projects : 12, id: 5, isSelected: false , isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-1.jpg"), num_of_projects : 18, id: 1, isSelected: false , isTag : true},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), num_of_projects : 12, id: 3, isSelected: false , isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-4.png"), num_of_projects : 18, id: 4, isSelected: false , isTag : true},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"),   num_of_projects : 18, id: 6, isSelected: false , isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"),   num_of_projects : 18, id: 7, isSelected: false , isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap.jpg"),   num_of_projects : 18, id: 8, isSelected: false , isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-3.jpg"), num_of_projects : 12, id: 9, isSelected: false , isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-4.png"), num_of_projects : 18, id: 4, isSelected: false , isTag : true},
-        {image_url : require("../../../android/app/src/main/assets/images/companyLogos/Bitmap-5.jpg"), num_of_projects : 12, id: 10,isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-2.jpg"), num_of_projects : 12, id: 2, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-5.jpg"), num_of_projects : 12, id: 5, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.jpg"), num_of_projects : 18, id: 1, isSelected: false , isTag : true},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.jpg"), num_of_projects : 12, id: 3, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-4.png"), num_of_projects : 18, id: 4, isSelected: false , isTag : true},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap.jpg"),   num_of_projects : 18, id: 6, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap.jpg"),   num_of_projects : 18, id: 7, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap.jpg"),   num_of_projects : 18, id: 8, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.jpg"), num_of_projects : 12, id: 9, isSelected: false , isTag : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-4.png"), num_of_projects : 18, id: 4, isSelected: false , isTag : true},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-5.jpg"), num_of_projects : 12, id: 10,isSelected: false , isTag : false},
     ]);
 
     const [numofCompany, setNumofCompany ] = useState(0);
