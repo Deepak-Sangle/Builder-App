@@ -12,7 +12,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
 
 const PreAccessView = () => {
-    const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap.jpg');
+    const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap.png');
     const icon = <MaterialIcon name="arrow-forward-ios" size={15} color="#FFFFFF" />
 
     const [projectTypeList, setprojectTypeList] = useState([
@@ -25,15 +25,15 @@ const PreAccessView = () => {
     const [projectType, setProjectType] = useState("residential_projects");
 
     const [projectList, setProjectList] = useState([
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.jpg"), id: 1, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-2.jpg"), id: 2, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.jpg"), id: 3, isNew : true },
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png"), id: 1, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-2.png"), id: 2, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.png"), id: 3, isNew : true },
         {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-4.png"), id: 4, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-5.jpg"), id: 5, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap.jpg"),   id: 6, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.jpg"), id: 7, isNew : false },
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.jpg"), id: 8, isNew : false },
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.jpg"), id: 9, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-5.png"), id: 5, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap.png"),   id: 6, isNew : false},
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.png"), id: 7, isNew : false },
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.png"), id: 8, isNew : false },
+        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png"), id: 9, isNew : false},
     ]);
 
     const onClick = () => {

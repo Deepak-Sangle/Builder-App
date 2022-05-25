@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native'
-import LinearGradient from 'react-native-linear-gradient';
+
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
 import CustomArrow from '../../helpers/customArrow';
-
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
-
+import UpdateCard from '../../helpers/updateCard';
+import HorizontalImageScroll from '../../helpers/horizontalImageScroll';
+import HorizontalDataScroll from '../../helpers/HorizontalDataScroll';
 import CustomIcons from '../../helpers/CustomIcons';
+
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IonIcon from 'react-native-vector-icons/Ionicons'
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5'
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
-import UpdateCard from '../../helpers/updateCard';
 
 const ProjectDetailView = () => {
 
     const icon = <IonIcon name="call-sharp" size={20} color="#FFFFFF" /> 
 
     //get all this values from fetch api's
-    const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap-1.jpg');
+    const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png');
     const rera_no = "HERA34535D3";      
     const address = "DLF Phase 5, Sector 54, 122002 - Gurgaon";
     const [isFav, setIsFav] = useState(false);
@@ -62,16 +63,6 @@ const ProjectDetailView = () => {
         {icon : <MaterialCommunityIcon name="form-select" size={20} color="#3D6386" />, id : 6, name: "Bookmark Form / LOI"},
         {icon : <MaterialIcon name="people-alt" size={20} color="#3D6386" />, id : 8, name: "Project Team"},
     ]);
-    
-    const [colorGradientPairs, setColorGradientPairs ] = useState([
-        {color1 : "#736DFF", color2 : "#A97FFF"},
-        {color1 : "#F7C598", color2 : "#FF8886"},
-        {color1 : "#F9B4BD", color2 : "#9573DB"},
-        {color1 : "#44DEC5", color2 : "#4EBCFA"},
-        {color1 : "#36BDFF", color2 : "#4EBCFA"},
-    ]);
-
-    const GRADIENT_PAIRS = colorGradientPairs.length;
 
     const viewMap = () => {
 
@@ -141,19 +132,7 @@ const ProjectDetailView = () => {
 
                 </View>
 
-                <ScrollView horizontal={true}>
-                    {imagesList.map((img)=>{
-                        return (
-                            <View key={img.id} style={styles.imgView}>
-                                <Image 
-                                    source={img.source}
-                                    resizeMode="cover"
-                                    style={styles.imgStyle}    
-                                />
-                            </View>
-                        )
-                    })}
-                </ScrollView>
+                <HorizontalImageScroll size={350} data={imagesList}  />
 
                 <View style={styles.map}>
                     <View style={{flex : 1}}>
@@ -230,27 +209,9 @@ const ProjectDetailView = () => {
 
                     </View>
 
-                    <View style={styles.updatesView}>
-                        <Text style={[styles.textStyle, styles.headingText]}>PROJECT UPDATES</Text>
+                    <HorizontalDataScroll data={updateDetails} heading="PROJECT UPDATES"  />
 
-                        <ScrollView horizontal={true} >
-                            <View style={styles.allupdateView}>
-                                {updateDetails.map((update,index)=>{
-                                    return(
-                                        <LinearGradient start={{x:0.2, y:0}} colors={(index < GRADIENT_PAIRS) ? [colorGradientPairs[index].color1, colorGradientPairs[index].color2] : [colorGradientPairs[index-GRADIENT_PAIRS].color1, colorGradientPairs[index-GRADIENT_PAIRS].color2]} key={update.id} style={styles.eachupdateView}>
-                                            <Text style={[styles.textStyle, styles.updateText]}>{update.title}</Text>
-                                            <Text style={[styles.textStyle, styles.updateValue]}>{update.value}</Text>
-                                        </LinearGradient>
-                                    )
-                                })}
-                            </View>
-                        </ScrollView>
-                        
-                    </View>
-
-                    <View>
-                        <UpdateCard setDetails={setCardUpdates} details={cardUpdates} />
-                    </View>
+                    <UpdateCard setDetails={setCardUpdates} details={cardUpdates} />
 
             </ScrollView>
             <View>
@@ -430,34 +391,7 @@ const styles = StyleSheet.create({
         color : "#0078E9",
         fontFamily : "Nunito-SemiBold",
     },
-    updatesView : {
-        paddingLeft : 15,    
-    },
-    allupdateView : {
-        flexDirection : "row",
-    },
-    eachupdateView : {
-        justifyContent : "space-between",
-        width : 100,
-        height : 100,
-        elevation : 2,
-        borderRadius : 6,
-        backgroundColor : "#A97FFF",
-        marginBottom : 10,
-        padding : 15,
-        marginRight : 5,
-    },
-    updateText : {
-        fontFamily : "Nunito-Bold",
-        lineHeight : 18,
-    },
-    updateValue : {
-        fontSize : 20,
-        fontFamily : "Nunito-Bold",
-    }
-    
 
-
-})
+});
  
 export default ProjectDetailView;

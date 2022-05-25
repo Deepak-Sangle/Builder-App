@@ -28,10 +28,21 @@ const UpdateCard = (props) => {
             {completeData.map((data, index)=>{
                 const isFile = data.file != undefined ? true : false;
                 const isImages = data.images != undefined ? true : false;
+                const isCompanyLogo = data.companyLogo != undefined ? true : false ;
 
                 return (
                     <View key={data.id} style={styles.container}>
-                        <Text style={[styles.textStyle,styles.timeText]}>{data.time} ago</Text>
+                        <View style={styles.topView}>
+                            {isCompanyLogo && <Image 
+                                source={data.companyLogo}
+                                resizeMode="contain"
+                                style={styles.logoImg}
+                            />}
+                            <View style={styles.textView}>
+                                {data.name &&<Text style={[styles.textStyle,styles.nameText]}>{data.name}</Text>}
+                                <Text style={[styles.textStyle,styles.timeText]}>{data.time} ago</Text>
+                            </View>
+                        </View>
                         
                         <Divider />
                         
@@ -95,9 +106,28 @@ const styles = StyleSheet.create({
         fontFamily : "Nunito",
         letterSpacing : 0.5,
     },
+    topView : {
+        flexDirection : "row",
+        alignItems : "center",
+    },
+    nameText : {
+        marginLeft : 20,
+        marginBottom : 10,
+        color : "#4A4A4A",
+        fontFamily : "Nunito-Bold",
+    },
+    textView : {
+        marginVertical : 20,
+    },
     timeText : {
-        margin : 20,
+        marginLeft : 20,
         color : "#969696",
+    },
+    logoImg : {
+        margin : 20,
+        marginRight : 0,
+        width : 80,
+        height : 40,
     },
     headingText : {
         color : "#4A4A4A",

@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
         color: "#545454",
         fontSize: 22,
         margin: 7,
+        marginTop : 20,
         letterSpacing: 0.5,
     },
     describtion: {

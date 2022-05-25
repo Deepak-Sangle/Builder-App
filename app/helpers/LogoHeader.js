@@ -11,7 +11,7 @@ const LogoHeader = (props) => {
     const isThreeDot = props.isThreeDot ? props.isThreeDot : false ;
     const isBack = props.isBack ? props.isBack : false;
 
-    const alignLogo = isHeader ? "flex-start" : "center" ;
+    const alignLogo = isHeader ? "flex-start" : "space-between" ;
     const leftPadding = isHeader ? 50 : 0;
     const topPadding = props.topPadding ? props.topPadding : props.source ? 20 : 60;
 
@@ -29,7 +29,7 @@ const LogoHeader = (props) => {
     return (
         <View>
             <View style={[styles.container, headingStyle]}>
-                {isBack && <TouchableOpacity  style={styles.backView}>
+                {!isHeader && <TouchableOpacity style={[styles.backView, {opacity : isBack ? 1 : 0}]}>
                     <MaterialIcons name="arrow-back-ios" size={20} color="#0078E9" />
                 </TouchableOpacity>}
 
@@ -45,7 +45,7 @@ const LogoHeader = (props) => {
                     <Text style={[styles.companyText, styles.textStyle]}> Builders {"\n"} Broadcast </Text>
                 </View>}
 
-                {isThreeDot && <TouchableOpacity style={styles.navigationView}>
+                {!isHeader && <TouchableOpacity style={[styles.navigationView, {opacity : isThreeDot ? 1 : 0}]}>
                     <Icons name='three-bars' size={25} color="#4A4A4A" />
                 </TouchableOpacity>}
             </View>
@@ -63,8 +63,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontFamily: "Nunito-Bold",
         color: "#757575",
-        marginBottom : 40,
-        marginTop : 20,
+        marginVertical : 20,
     },
     companyView : {
         marginHorizontal : 20,
@@ -79,14 +78,10 @@ const styles = StyleSheet.create({
         color : "#4A4A4A",
     },
     backView : {
-        position : "absolute",
-        left : 40,
-        bottom : 30,
+        marginHorizontal : 40,
     },
     navigationView : {
-        bottom : 30,
-        position : "absolute",
-        right : 40,
+        marginHorizontal : 40,
     }
 
 });
