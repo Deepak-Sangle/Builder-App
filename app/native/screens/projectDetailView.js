@@ -7,6 +7,7 @@ import CustomArrow from '../../helpers/customArrow';
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
 
+import CustomIcons from '../../helpers/CustomIcons';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -36,6 +37,20 @@ const ProjectDetailView = () => {
         {name : "Deepak Sangle", source : require('../../../android/app/src/main/assets/images/temp_images/dp-2.png'), id : 2},
         {name : "Naruto Uzumaki", source : require('../../../android/app/src/main/assets/images/temp_images/dp-3.png'), id : 3},
     ]);
+    
+    const [cardUpdates, setCardUpdates] = useState([
+        {title : "Lorem ipsum dolor sit amet", description : "Curabitur porttitor tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.", file : "Update-Rate-List.xls", youLiked : true, likes: "345",time : "39 mins", id: 1 },
+        {title : "Lorem ipsum dolor sit amet", description : "Curabitur porttitor Curabitur porttitor tellus et libero dignissim, commodo tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.", youLiked : false, likes: "345", time : "2 hours", id: 2, images : [require('../../../android/app/src/main/assets/images/temp_images/building1.jpg'), require('../../../android/app/src/main/assets/images/temp_images/building2.jpg')]},
+    ]);
+    
+    const [updateDetails, setUpdateDetails] = useState([
+        {title : "General Updates", value : "1546", id : 1},
+        {title : "Broker sales Incentives", value : "355", id : 2},
+        {title : "Offers for Clients", value : "567", id : 3},
+        {title : "News Updates", value : "256", id : 4},
+        {title : "Sales Update ", value : "123", id : 5},
+        {title : "New Update", value : "729", id : 6},
+    ]);
 
     const [actionsDetails, setActionsDetails] = useState([
         {icon : <AwesomeIcon name="building" size={20} color="#3D6386" />, id : 1, name: "Project info"},
@@ -48,26 +63,12 @@ const ProjectDetailView = () => {
         {icon : <MaterialIcon name="people-alt" size={20} color="#3D6386" />, id : 8, name: "Project Team"},
     ]);
     
-    const [updateDetails, setUpdateDetails] = useState([
-        {title : "General Updates", value : "1546", id : 1},
-        {title : "Broker sales Incentives", value : "355", id : 2},
-        {title : "Offers for Clients", value : "567", id : 3},
-        {title : "News Updates", value : "256", id : 4},
-        {title : "Sales Update ", value : "123", id : 5},
-        {title : "New Update", value : "729", id : 6},
-    ]);
-
     const [colorGradientPairs, setColorGradientPairs ] = useState([
         {color1 : "#736DFF", color2 : "#A97FFF"},
         {color1 : "#F7C598", color2 : "#FF8886"},
         {color1 : "#F9B4BD", color2 : "#9573DB"},
         {color1 : "#44DEC5", color2 : "#4EBCFA"},
         {color1 : "#36BDFF", color2 : "#4EBCFA"},
-    ]);
-
-    const [cardUpdates, setCardUpdates] = useState([
-        {title : "Lorem ipsum dolor sit amet", description : "Curabitur porttitor tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.", file : "Update-Rate-List.xls", youLiked : true, likes: "345",time : "39 mins", id: 1 },
-        {title : "Lorem ipsum dolor sit amet", description : "Curabitur porttitor Curabitur porttitor tellus et libero dignissim, commodo tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.", youLiked : false, likes: "345", time : "2 hours", id: 2, images : [require('../../../android/app/src/main/assets/images/temp_images/building1.jpg'), require('../../../android/app/src/main/assets/images/temp_images/building2.jpg')]},
     ]);
 
     const GRADIENT_PAIRS = colorGradientPairs.length;
@@ -118,9 +119,9 @@ const ProjectDetailView = () => {
                     <TouchableOpacity activeOpacity={0.5} style={[styles.cardView, {backgroundColor : "#00B055" }]}>
                         <View style={{marginRight : 50, flex : 1}}>
                             <Text style={[styles.textStyle, styles.heading]}>UPCOMING EVENT</Text>
-                            <ScrollView horizontal={true}>
-                                <Text style={[styles.textStyle, styles.description]}>Golf Estate Phase 2 Launch Party</Text>
-                            </ScrollView>
+                            <View horizontal={true}>
+                                <Text numberOfLines={1} style={[styles.textStyle, styles.description]}>Golf Estate Phase 2 Launch Party</Text>
+                            </View>
                             <Text style={[styles.textStyle, styles.line]}>Radission, Sohna Road</Text>
                             <Text style={[styles.textStyle, styles.line]}>Dec 15, 2020 at 6 p.m</Text>
                         </View>
@@ -130,9 +131,9 @@ const ProjectDetailView = () => {
                     <TouchableOpacity activeOpacity={0.5} style={[styles.cardView, {backgroundColor : "#F9D56B" }]}>
                         <View style={{marginRight : 50, flex : 1}}>
                             <Text style={[styles.textStyle, styles.heading, {color : "#8B6B0F"}]}>RUNNING POLL</Text>
-                            <ScrollView horizontal={true}>
-                                <Text style={[styles.textStyle, styles.description, {color : "#202020"}]}>What should be the Pt should be the Pt should be the PLC charges fo…</Text>
-                            </ScrollView>
+                            <View horizontal={true}>
+                                <Text numberOfLines={1} style={[styles.textStyle, styles.description, {color : "#202020"}]}>What should be the Pt should be the Pt should be the PLC charges fo…</Text>
+                            </View>
                             <Text style={[styles.textStyle, styles.line, {color : "#4A4A4A"}]}>Ends on: Dec 15, 2020</Text>
                         </View>
                         <CustomArrow color="#0078E9" />
@@ -158,7 +159,7 @@ const ProjectDetailView = () => {
                     <View style={{flex : 1}}>
                         <Text style={[styles.textStyle, styles.address]}>{address}</Text>
                         <View style={styles.mapView}>
-                            <EntypoIcon name="location-pin" size={30} color="#0078E9"/>
+                            <CustomIcons name="location-pin" size={20} color="#0078E9" />
                             <TouchableOpacity activeOpacity={0.6} onPress={viewMap}>
                                 <Text style={[styles.textStyle, styles.view]}>View on map</Text>
                             </TouchableOpacity>
@@ -322,6 +323,7 @@ const styles = StyleSheet.create({
     view : {
         color : "#0078E9",
         fontSize : 13,
+        marginHorizontal : 10,
     },
     favView : {
         justifyContent : "center",

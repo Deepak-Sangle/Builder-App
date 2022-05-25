@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image} from 'react-native'
+import { View, StyleSheet} from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import CustomIcons from './CustomIcons';
 
 const CustomFilterMenu = (props) => {
     
@@ -17,7 +17,7 @@ const CustomFilterMenu = (props) => {
     return (
         <View style={styles.inputView}>
             <View style={styles.searchBar}>
-                {isIcon && <Icon style={styles.icon} name='location-pin' size={30} color="#898989"/>}
+                {isIcon && <CustomIcons style={styles.icon} name='location-pin' size={25} color="#898989"/>}
                 <DropDownPicker
                     listMode='SCROLLVIEW'
                     showTickIcon={false}
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     },
     icon : {
         position : "absolute",
-        left : 10,
+        left : 20,
     },
     inputView: {
         marginVertical: 20,

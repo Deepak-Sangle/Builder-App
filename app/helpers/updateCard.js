@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react
 import { Divider } from 'react-native-paper';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import CustomIcons from './CustomIcons';
 
 const UpdateCard = (props) => {
     const completeData = props.details;
@@ -60,8 +61,10 @@ const UpdateCard = (props) => {
                         <View style={styles.bottomView}>
                             <View style={styles.likeView}>
                                 <TouchableOpacity onPress={()=> onLike(index)} activeOpacity={0.5}>
-                                    {data.youLiked && <AntDesignIcon style={styles.likeIcon} name='like1' size={25} color='#0078E9' />}
-                                    {!data.youLiked && <AntDesignIcon style={styles.likeIcon} name='like2' size={25} color='#0078E9' />}
+                                    {data.youLiked && <CustomIcons name='like-active' style={styles.likeIcon} size={25} color='#0078E9' />}
+                                    {/* {data.youLiked && <AntDesignIcon style={styles.likeIcon} name='like1' size={25} color='#0078E9' />} */}
+                                    {!data.youLiked && <CustomIcons name='like-inactive' style={styles.likeIcon} size={25} color='#000000' />}
+                                    {/* {!data.youLiked && <AntDesignIcon style={styles.likeIcon} name='like2' size={25} color='#0078E9' />} */}
                                 </TouchableOpacity>
 
                                 {data.youLiked && <Text style={[styles.textStyle,styles.likeText]}>You {'&'} {data.likes} Liked this</Text>}

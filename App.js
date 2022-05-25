@@ -58,8 +58,8 @@ const App = () => {
         {/* <BuilderPlanView / > */}
         {/* <PlansPricingView /> */}
         {/* <PreAccessView /> */}
-        <ProjectDetailView />
-
+        {/* <ProjectDetailView /> */}
+      
     </SafeAreaView>
   );
 };

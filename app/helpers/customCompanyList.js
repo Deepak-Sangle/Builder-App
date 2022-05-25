@@ -6,6 +6,7 @@ import CustomGradient from './customGradient';
 
 const CustomCompanyList = (props) => {
     const data = props.data;
+    const setData = props.setData;
     const text = props.text;
     const size = data.length;
     const numofSelection = props.numofSelection;
@@ -36,6 +37,7 @@ const CustomCompanyList = (props) => {
             else
                 setNumofSelection(numofSelection+1);
             item.isSelected = !item.isSelected;
+            setData(data);
         }
 
         return (
