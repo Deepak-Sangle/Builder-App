@@ -8,8 +8,8 @@ const SelectCompanyView = () => {
     //Assuming you will get the company data from the database
 
     const [company, setCompany] = useState([
-        {name : "Asset Advisor India", address : "FF10, Ninex Mall, Sohna Road, Sector 49,", city: "Gurugram", id : 1},
-        {name : "Asset Advisor India Pvt. Ltd.", address : "B3-590, Greenwood, Sector 46,", city: "Gurugram", id : 2},
+        {name : "Asset Advisor India", address : "FF10, Ninex Mall, Sohna Road, Sector 49, Gurugram", id : 1},
+        {name : "Asset Advisor India Pvt. Ltd.", address : "B3-590, Greenwood, Sector 46, Gurugram", id : 2},
     ]);
     
     let size;
@@ -27,6 +27,7 @@ const SelectCompanyView = () => {
     
     const onSubmit = () => {
         const company = companyID;
+        console.log(company);
     }
 
     return (

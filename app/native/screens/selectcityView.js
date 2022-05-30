@@ -11,18 +11,18 @@ const SelectcityView = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const [cities, setCities] = useState([
-        {title: "Gurugram", id: 1},
-        {title: "New Delhi", id: 2},
-        // {title: "New Delhi", id: 3},
-        // {title: "New Delhi", id: 4},
-        // {title: "New Delhi", id: 5},
-        // {title: "New Delhi", id: 6},
-        // {title: "New Delhi", id: 7},
-        // {title: "New Delhi", id: 8},
-        // {title: "New Delhi", id: 9},
-        // {title: "New Delhi", id: 10},
-        // {title: "New Delhi", id: 11},
-        // {title: "New Delhi", id: 21},
+        {name: "Gurugram", id: 1},
+        {name: "New Delhi", id: 2},
+        // {name: "New Delhi", id: 3},
+        // {name: "New Delhi", id: 4},
+        // {name: "New Delhi", id: 5},
+        // {name: "New Delhi", id: 6},
+        // {name: "New Delhi", id: 7},
+        // {name: "New Delhi", id: 8},
+        // {name: "New Delhi", id: 9},
+        // {name: "New Delhi", id: 10},
+        // {name: "New Delhi", id: 11},
+        // {name: "New Delhi", id: 21},
     ]);
     const [cityID, setCityID] = useState('');
 
@@ -36,7 +36,7 @@ const SelectcityView = () => {
     function findName(){
         let name = '';
         cities.map((city)=>{
-            if(city.id == cityID) name = city.title;
+            if(city.id == cityID) name = city.name;
         });
         return name;
     }

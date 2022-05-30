@@ -39,11 +39,11 @@ const RegisterView = () => {
 
     const { control, handleSubmit, setValue } = useForm({
         defaultValues : {
-            'full-name' : '',
-            'company-name' : '' ,
-            'email-id' : '',
-            'country-code' : '91',
-            'phone-no' : ''
+            'full_name' : '',
+            'company_name' : '' ,
+            'email_id' : '',
+            'country_code' : '91',
+            'phone_no' : ''
         }
     });
 
@@ -59,9 +59,9 @@ const RegisterView = () => {
                     <Text style={[styles.createText, styles.textStyle]}>Create New Account</Text>
                 </View>
                 <View>
-                    <CustomInputView label="Full Name" name='full-name' />
-                    <CustomInputView label="Company Name" name='company-name'/>
-                    <CustomInputView label="Email ID" placeholder="Enter your official email address" name='email-id' />
+                    <CustomInputView label="Full Name" name='full_name' />
+                    <CustomInputView label="Company Name" name='company_name'/>
+                    <CustomInputView label="Email ID" placeholder="Enter your official email address" name='email_id' />
                     <View style={styles.form}>
                         <Text style={[styles.label, styles.textStyle]}>Mobile Number</Text>
                         <View style={styles.phnoView}>    
@@ -69,7 +69,7 @@ const RegisterView = () => {
                                 <TextInput style={[styles.textBox, styles.phno_plus]}>+</TextInput>
                                 <Controller 
                                     control={control}
-                                    name='country-code'
+                                    name='country_code'
                                     rules={{required: true}}
                                     render = {({field : {onChange, value}})=>(
                                         <TextInput
@@ -83,7 +83,7 @@ const RegisterView = () => {
                             </View>
                             <Controller
                                 control={control}
-                                name='phone-no'
+                                name='phone_no'
                                 rules={{required: true}}
                                 render = {({field : {onChange, value}})=>(
                                     <TextInput

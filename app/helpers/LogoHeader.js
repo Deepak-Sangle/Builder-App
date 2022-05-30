@@ -6,11 +6,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons' //arrow-back
 const LogoHeader = (props) => {
     const dimensions = props.size;
     const text = props.text;
-    const isHeader = props.isHeader ? props.isHeader : false ; 
+    const isHeader = props.isHeader!=undefined ? props.isHeader : false ; 
     const source = props.source ? props.source : require('../../android/app/src/main/assets/images/Logo.png') ;
     const isThreeDot = props.isThreeDot ? props.isThreeDot : false ;
     const isBack = props.isBack ? props.isBack : false;
-
+    const isImage = props.isImage!=undefined ? props.isImage : true; 
+    
     const alignLogo = isHeader ? "flex-start" : "space-between" ;
     const leftPadding = isHeader ? 50 : 0;
     const topPadding = props.topPadding ? props.topPadding : props.source ? 20 : 60;
@@ -29,23 +30,23 @@ const LogoHeader = (props) => {
     return (
         <View>
             <View style={[styles.container, headingStyle]}>
-                {!isHeader && <TouchableOpacity style={[styles.backView, {opacity : isBack ? 1 : 0}]}>
+                {!isHeader && <TouchableOpacity activeOpacity={isBack ? 0.5 : 0} style={[styles.backView, {opacity : isBack ? 1 : 0}]}>
                     <MaterialIcons name="arrow-back-ios" size={20} color="#0078E9" />
                 </TouchableOpacity>}
 
-                <View>
+                <View >
                     <Image 
                         source={source}
-                        style={icon}
+                        style={[icon, {opacity : isImage ? 1 : 0}]}
                         resizeMode="contain"
                     />
                 </View>
-                
+
                 {isHeader && <View style={styles.companyView}>
                     <Text style={[styles.companyText, styles.textStyle]}> Builders {"\n"} Broadcast </Text>
                 </View>}
 
-                {!isHeader && <TouchableOpacity style={[styles.navigationView, {opacity : isThreeDot ? 1 : 0}]}>
+                {!isHeader && <TouchableOpacity activeOpacity={isThreeDot ? 0.5 : 0} style={[styles.navigationView, {opacity : isThreeDot ? 1 : 0}]}>
                     <Icons name='three-bars' size={25} color="#4A4A4A" />
                 </TouchableOpacity>}
             </View>
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
         fontFamily: "Nunito-Bold",
         color: "#757575",
         marginVertical : 20,
+        letterSpacing : 0.5,
     },
     companyView : {
         marginHorizontal : 20,

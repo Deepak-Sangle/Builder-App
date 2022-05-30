@@ -13,14 +13,11 @@ const CustomFlatList = (props) => {
     }
     
     const RenderEachKey = (item) => {
-        const itemData = [];
-        for (const [key, value] of Object.entries(item)) {
-            if(key!="id") itemData.push(value); 
-        }
         return (
             <View style={styles.listText}>
-                {itemData.map((val)=> {
-                   return <Text style={styles.eachText} key={val}> {val} </Text>
+                {[item.name, item.address].map((val, index)=> {
+                    if(val==undefined) return;
+                    return <Text style={styles.eachText} key={index}>{val}</Text>
                 })}
             </View>
         )
@@ -89,6 +86,7 @@ const styles = StyleSheet.create({
         justifyContent : "center",
     },
     listText :{
+        flex : 1,
         padding: 20,
     },
     eachText : {

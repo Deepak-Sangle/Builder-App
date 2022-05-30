@@ -36,6 +36,7 @@ import PlansPricingView from './app/native/screens/plans&pricingView';
 import PreAccessView from './app/native/screens/preAccessView';
 import ProjectDetailView from './app/native/screens/projectDetailView';
 import DashBoardView from './app/native/screens/accessDashboardView';
+import ManageAccount from './app/native/screens/manageAccountView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -60,7 +61,9 @@ const App = () => {
         {/* <PlansPricingView /> */}
         {/* <PreAccessView /> */}
         {/* <ProjectDetailView /> */}
-        <DashBoardView />
+        {/* <DashBoardView /> */}
+        <ManageAccount />
+        
     </SafeAreaView>
   );
 };

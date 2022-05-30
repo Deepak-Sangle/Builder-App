@@ -1,19 +1,17 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { Linking, Text, View, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { useForm, Controller } from 'react-hook-form'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Switch } from 'react-native-paper';
 import EntypoIcon from 'react-native-vector-icons/Entypo'
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
-const myIcon = <Icon name="camera" size={60} color="blue" />;
 
 const CompleteProfileView = () => {
 
     const { control, handleSubmit, setValue } = useForm({
         defaultValues: {
-            'company-type': '',
+            'company_type': '',
             'address': '',
             'state': '',
             'pan' : '',
@@ -25,7 +23,7 @@ const CompleteProfileView = () => {
     const onSubmit = (data) => {
         data['rera'] = reraSwitch;
         data['state'] = state;
-        data['company-type'] = company;
+        data['company_type'] = company;
         console.log(data);
     }
 
@@ -298,7 +296,7 @@ const styles = StyleSheet.create({
     },
     btnView: {
         marginVertical: 20,
-    }
+    },
 });
 
 export default CompleteProfileView;
