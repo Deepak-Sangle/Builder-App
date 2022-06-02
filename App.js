@@ -37,15 +37,13 @@ import PreAccessView from './app/native/screens/preAccessView';
 import ProjectDetailView from './app/native/screens/projectDetailView';
 import DashBoardView from './app/native/screens/accessDashboardView';
 import ManageAccount from './app/native/screens/manageAccountView';
+import TeamDashboardView from './app/native/screens/teamDashboardView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  //Set background color to "#0078E9" when Otp view is enabled
-  const [backgroundColor, setBackgroundColor] = useState("#F5F8FC");
-  
   const backgroundStyle = {
-    backgroundColor: backgroundColor,
+    backgroundColor: "#F5F8FC",
   };
 
   return (
@@ -62,8 +60,8 @@ const App = () => {
         {/* <PreAccessView /> */}
         {/* <ProjectDetailView /> */}
         {/* <DashBoardView /> */}
-        <ManageAccount />
-        
+        {/* <ManageAccount /> */}
+        <TeamDashboardView />
     </SafeAreaView>
   );
 };

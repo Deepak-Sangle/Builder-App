@@ -43,7 +43,7 @@ const PreAccessView = () => {
     return (
         <View style={styles.container}>
             <ScrollView style={{flex : 1}} nestedScrollEnabled={true}>
-                <LogoHeader isBack={true} isThreeDot={true} source={source} size={75}   />
+                <LogoHeader isBack={true} isThreeDot={true} source={source} size={75} topPadding={20}  />
                 <View>
                     <View style={styles.accessView}>
                         <Icon style={styles.minusStyle} name='minuscircle' color="#E84242" size={25} />

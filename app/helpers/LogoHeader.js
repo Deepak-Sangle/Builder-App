@@ -8,13 +8,13 @@ const LogoHeader = (props) => {
     const text = props.text;
     const isHeader = props.isHeader!=undefined ? props.isHeader : false ; 
     const source = props.source ? props.source : require('../../android/app/src/main/assets/images/Logo.png') ;
-    const isThreeDot = props.isThreeDot ? props.isThreeDot : false ;
-    const isBack = props.isBack ? props.isBack : false;
-    const isImage = props.isImage!=undefined ? props.isImage : true; 
+    const isThreeDot = (props.isThreeDot!=undefined) ? props.isThreeDot : false ;
+    const isBack = (props.isBack!=undefined) ? props.isBack : false;
+    const isImage = (props.isImage!=undefined) ? props.isImage : true; 
     
     const alignLogo = isHeader ? "flex-start" : "space-between" ;
     const leftPadding = isHeader ? 50 : 0;
-    const topPadding = props.topPadding ? props.topPadding : props.source ? 20 : 60;
+    const topPadding = props.topPadding ? props.topPadding : props.source ? 20 : 30;
 
     const icon = {
         width : dimensions,

@@ -26,7 +26,7 @@ const ManageAccount = () => {
 
     return (
         <ScrollView>
-            <LogoHeader text="MANAGE YOUR ACCOUNT" topPadding={20} isImage={false} size={55} isThreeDot={true} isBack={true}  />
+            <LogoHeader text="MANAGE YOUR ACCOUNT" topPadding={30} isImage={false} size={55} isThreeDot={true} isBack={true}  />
 
             <View style={[styles.boxView, {marginTop : 20}]}>
                 <View style={styles.detailView}>
