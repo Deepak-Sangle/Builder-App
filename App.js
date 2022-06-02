@@ -38,6 +38,7 @@ import ProjectDetailView from './app/native/screens/projectDetailView';
 import DashBoardView from './app/native/screens/accessDashboardView';
 import ManageAccount from './app/native/screens/manageAccountView';
 import TeamDashboardView from './app/native/screens/teamDashboardView';
+import NewsView from './app/native/screens/newsView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -56,12 +57,13 @@ const App = () => {
         {/* <CompleteProfileView /> */}
         {/* <WelcomeView/> */}
         {/* <BuilderPlanView / > */}
-        {/* <PlansPricingView /> */}
+        <PlansPricingView />
         {/* <PreAccessView /> */}
         {/* <ProjectDetailView /> */}
         {/* <DashBoardView /> */}
         {/* <ManageAccount /> */}
-        <TeamDashboardView />
+        {/* <TeamDashboardView /> */}
+        {/* <NewsView /> */}
     </SafeAreaView>
   );
 };

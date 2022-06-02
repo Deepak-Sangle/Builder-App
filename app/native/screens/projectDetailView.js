@@ -77,11 +77,12 @@ const ProjectDetailView = () => {
     }
 
     const forwardButtonPressed = () => {
-        if(currentIndex < managerDetails.length - 1) setCurrentIndex(currentIndex+1); 
+        if(currentIndex < managerDetails.length - 1) setCurrentIndex(currentIndex+1);
     }
     
     const [currentIndex, setCurrentIndex] = useState(0);
     const [leftArrowColor, setLeftArrowColor] = useState("#A6A6A6");
+    const [rightArrowColor, setRightArrowColor] = useState("#0078E9");
 
     const [open, setOpen] = useState(false);
     const MAX_ACTION_OPEN = 6;
@@ -94,9 +95,15 @@ const ProjectDetailView = () => {
         setOpen(!open);
     }
 
-    useEffect(()=>{
+    const setArrowColor = () => {
         if(currentIndex ==0) setLeftArrowColor("#A6A6A6");
         else setLeftArrowColor("#0078E9");
+        if(currentIndex == managerDetails.length - 1) setRightArrowColor("#A6A6A6");
+        else setRightArrowColor("#0078E9");
+    }
+
+    useEffect(()=>{
+        setArrowColor();
     });
 
     return (
@@ -160,7 +167,7 @@ const ProjectDetailView = () => {
                                     <Text style={[styles.textStyle, styles.managerText]}>Relationship Managers ({managerDetails.length})</Text>
                                     <View style={styles.arrowsView}>
                                         <TouchableOpacity onPress={(index) => backButtonPressed(index)}><MaterialIcon style={{marginHorizontal : 10}} name='arrow-back-ios' size={20} color={leftArrowColor} /></TouchableOpacity>
-                                        <TouchableOpacity onPress={(index) => forwardButtonPressed(index)}><MaterialIcon style={{marginHorizontal : 10}} name='arrow-forward-ios' size={20} color={"#0078E9"} /></TouchableOpacity>
+                                        <TouchableOpacity onPress={(index) => forwardButtonPressed(index)}><MaterialIcon style={{marginHorizontal : 10}} name='arrow-forward-ios' size={20} color={rightArrowColor} /></TouchableOpacity>
                                     </View>
                                 </View>
                                 <View style={styles.managerBot}>
