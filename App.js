@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {Node} from 'react';
 import {
@@ -17,7 +9,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import MyClient from './app/native/screens/myClientScreen/myClient';
 import {
   Colors,
   DebugInstructions,
@@ -25,6 +17,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import MyEvents from './app/native/screens/myEventsScreen/myEvents';
+import ClientRegScreen from './app/native/screens/clientRegScreen/clientRegScreen';
+import MenuScreen from './app/native/screens/menuScreen/menuScreen';
+import SorryScreen from './app/native/screens/SorryScreen/sorryScreen';
+import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -34,14 +31,14 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-      </ScrollView>
-    </SafeAreaView>
+    <View>
+      {/* <MyClient /> */}
+      <MyEvents />
+      {/* <ClientRegScreen /> */}
+      {/* <MenuScreen /> */}
+      {/* <SorryScreen /> */}
+      {/* <DeedDocScreen /> */}
+    </View>
   );
 };
 

@@ -12,6 +12,12 @@
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.68.1",
+    "react-native-element-dropdown": "^1.8.11",
+    "react-native-elements": "^3.4.2",
+    "react-native-otp-textinput": "0.0.9",
+    "react-native-paper": "^4.12.1",
+    "react-native-timeline-flatlist": "^0.8.0",
+    "react-native-vector-icons": "^9.1.0",
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1"
