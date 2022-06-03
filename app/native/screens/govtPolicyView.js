@@ -23,7 +23,7 @@ const GovtPolicyView = () => {
         {heading : "DTCP allows extra construction in stilt parking areas in Gurugram, Haryana.", id : 2,},
         {heading : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime molestias facilis quis officia?", id : 3,},  
         {heading : "DTCP allows extra construction in stilt.", id : 4, source : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png"),},
-        {heading : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio vero, deserunt, fugit dolor quis ex animi veritatis aut, eos mollitia non reprehenderit soluta quos accusantium. Quis animi consequuntur harum ", id : 2,},
+        {heading : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio vero, deserunt, fugit dolor quis ex animi veritatis aut, eos mollitia non reprehenderit soluta quos accusantium. Quis animi consequuntur harum ", id : 5,},
     ]);
     
     const size = policyList.length;
@@ -41,8 +41,8 @@ const GovtPolicyView = () => {
                 <View>
                     {policyList.map((policy, index)=> {
                         return (
-                            <View>
-                                <View key={policy.id} style={styles.policyView}>
+                            <View key={policy.id} >
+                                <View style={styles.policyView}>
                                     <View style={{flex : 3}}>
                                         <Text numberOfLines={2} style={[styles.textStyle, styles.headingText]}>{policy.heading}</Text>
                                         <TouchableOpacity activeOpacity={0.5}><Text style={[styles.textStyle, styles.readText]}>Real Full Policy</Text></TouchableOpacity>
