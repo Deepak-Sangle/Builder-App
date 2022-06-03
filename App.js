@@ -40,6 +40,7 @@ import ManageAccount from './app/native/screens/manageAccountView';
 import TeamDashboardView from './app/native/screens/teamDashboardView';
 import NewsView from './app/native/screens/newsView';
 import CircleRateView from './app/native/screens/circleRateView';
+import GovtPolicyView from './app/native/screens/govtPolicyView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -65,7 +66,8 @@ const App = () => {
         {/* <ManageAccount /> */}
         {/* <TeamDashboardView /> */}
         {/* <NewsView /> */}
-        <CircleRateView />
+        {/* <CircleRateView /> */}
+        <GovtPolicyView />
     </SafeAreaView>
   );
 };

@@ -28,19 +28,20 @@ const CircleRateView = () => {
     ]);
 
     return (
-        <View style={{flex : 1,}}>
-            <ScrollView nestedScrollEnabled>
-                <LogoHeader size={55} text="CIRCLE RATE" isThreeDot={true} isBack={true} isImage={false} />
+        <View style={{flex : 1}}>
+            <ScrollView contentContainerStyle={{flexGrow: 1}}>
 
+                <LogoHeader size={55} text="CIRCLE RATE" isThreeDot={true} isBack={true} isImage={false} />
+                
                 <View style={styles.textView}>
                     <Text style={[styles.textStyle, {textAlign : "center"}]}>Circle rates refer to the minimum rate notified by the government through the registrar or sub registrar office of Gurgaon for registration of property transactions.</Text>
                 </View>
-
+                
                 <View style={styles.searchView}>
                     <Text style={[styles.textStyle, styles.selectText]}>Select city to see its circle rates</Text>
                     <CustomFilterMenu list={cityList} item={city} setItem={setCity} backgroundColor="#FFFFFF" />
                 </View>
-
+                
                 <View>
                     {rateList.map((rate,index)=> {
                         return (
