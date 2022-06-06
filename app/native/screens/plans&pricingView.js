@@ -3,10 +3,9 @@ import {Text, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native
 import { Divider } from 'react-native-paper';
 import LogoHeader from '../../helpers/LogoHeader';
 import CustomArrow from '../../helpers/customArrow';
-import LinearGradient from 'react-native-linear-gradient';
 import CustomGradient from '../../helpers/customGradient';
 
-const PlansPricingView = () => {
+const PlansPricingView = ({navigation}) => {
 
     const BuilderplanCard = (props)=> {
         const tag = props.tag;
@@ -14,9 +13,10 @@ const PlansPricingView = () => {
         const price = props.price;
         const price_durn = props.price_durn;
         const description = props.description;
+        const pressHandler = props.pressHandler;
 
         return (
-            <TouchableOpacity activeOpacity={0.7} style={styles.cardView}>
+            <View style={styles.cardView}>
                 <CustomGradient text={tag}/>
                 
                 <View style={styles.cardTop}>
@@ -25,7 +25,7 @@ const PlansPricingView = () => {
                         <Text style={[styles.textStyle, styles.priceStyle]}>Rs. {price}/<Text style={styles.peryearText}>{price_durn}</Text></Text>
                     </View>    
                     <View>
-                        <CustomArrow color="#FFFFFF" borderWidth={6} borderColor="#D0E8FF" backgroundColor="#0078E9" />
+                        <CustomArrow pressHandler={pressHandler} color="#FFFFFF" borderWidth={6} borderColor="#D0E8FF" backgroundColor="#0078E9" />
                     </View>
                 </View>
 
@@ -35,12 +35,20 @@ const PlansPricingView = () => {
                     <Text style={[styles.textStyle, styles.descriptionStyle]}>{description}</Text>
                 </View>
 
-            </TouchableOpacity>
+            </View>
         )
     }
 
     const text_1 = "Dealing with selected builders, get unlimited access to all their projects in your region.";
     const text_2 = "Unlimited access to all builders in your region.";
+
+    const onPress_perBuilder = ()=> {
+        navigation.navigate('BuilderPlanView');
+    }
+
+    const onPress_allAccess = ()=> {
+
+    }
 
     return (
         <ScrollView>
@@ -53,10 +61,10 @@ const PlansPricingView = () => {
                 
                 <View  style={styles.scrollView}>
                     <View style={styles.planCardView}>
-                        <BuilderplanCard tag="" heading="Per Builder Plan" price="2990" price_durn="year/builder" description={text_1}/>
+                        <BuilderplanCard pressHandler={onPress_perBuilder} tag="" heading="Per Builder Plan" price="2990" price_durn="year/builder" description={text_1}/>
                     </View>
                     <View style={styles.planCardView}>
-                        <BuilderplanCard tag="Best seller" heading="All Access Plan" price="19990" price_durn="year" description={text_2}/>
+                        <BuilderplanCard pressHandler={onPress_allAccess} tag="Best seller" heading="All Access Plan" price="19990" price_durn="year" description={text_2}/>
                     </View>
                 </View>
 
@@ -87,7 +95,6 @@ const PlansPricingView = () => {
 const styles = StyleSheet.create({
     container : {
         flex : 1,
-        justifyContent : "space-between",
     },
     plansView : {
         marginVertical : 30,
@@ -160,7 +167,6 @@ const styles = StyleSheet.create({
     },
     proPlanView : {
         marginBottom : 20,
-        
     },
     proView :{
         marginVertical : 5,

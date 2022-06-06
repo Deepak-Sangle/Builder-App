@@ -3,7 +3,7 @@ import {Text, View, StyleSheet,ScrollView, TouchableOpacity} from 'react-native'
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
 
-const WelcomeView = () => {
+const WelcomeView = ({navigation}) => {
 
     const name = "Deepak" ;         //Assuming you getting the user name from database
     const onStart = ()=> {
@@ -11,7 +11,7 @@ const WelcomeView = () => {
     }
 
     const checkPlans = ()=> {
-        
+        navigation.navigate('PlansPricingView');
     }
 
     return (

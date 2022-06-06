@@ -4,7 +4,7 @@ import { Divider } from 'react-native-paper';
 import CustomFlatList from '../../helpers/customFlatList';
 import CustomButtons from '../../helpers/customButtons';
 
-const SelectCompanyView = () => {
+const SelectCompanyView = ({navigation}) => {
     //Assuming you will get the company data from the database
 
     const [company, setCompany] = useState([
@@ -23,11 +23,13 @@ const SelectCompanyView = () => {
 
     const name = "Asset Advisor India";         //Assuming this as props
 
-    const [companyID, setCompanyID] = useState('');
+    const [companyID, setCompanyID] = useState();
     
     const onSubmit = () => {
+        if(companyID==undefined) return ;
         const company = companyID;
         console.log(company);
+        navigation.navigate('WelcomeView');
     }
 
     return (

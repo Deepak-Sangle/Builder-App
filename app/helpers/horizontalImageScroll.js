@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import {Text, View, StyleSheet, Image, ScrollView} from 'react-native'
+import {Text, View, StyleSheet, Image,TouchableOpacity, ScrollView} from 'react-native'
 
 const HorizontalImageScroll = (props) => {
     const dimensions = props.size;
     const imagesList = props.data;
     const resizeMode = props.resizeMode ? props.resizeMode : 'cover'; 
+    const navigation = props.navigation;
+    const opacity = (navigation==undefined) ? 1 : 0.5;
 
     const setDimesnions = {
         width : dimensions,
         height : dimensions,
     }
 
+    const pressedImage = () => {
+        if(navigation!=undefined)
+            navigation.navigate('PreAccessView');    
+    }
+
     return (
         <ScrollView horizontal={true}>
             {imagesList.map((img)=>{
                 return (
-                    <View key={img.id} style={[styles.imgView, setDimesnions]}>
+                    <TouchableOpacity onPressOut={pressedImage} activeOpacity={opacity} key={img.id} style={[styles.imgView, setDimesnions]}>
                         <Image 
                             source={img.source}
                             resizeMode={resizeMode}
                             style={[styles.imgStyle, setDimesnions]}    
                         />
-                    </View>
+                    </TouchableOpacity>
                 )
             })}
         </ScrollView>

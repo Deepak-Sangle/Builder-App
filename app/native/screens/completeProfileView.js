@@ -7,7 +7,7 @@ import EntypoIcon from 'react-native-vector-icons/Entypo'
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
 
-const CompleteProfileView = () => {
+const CompleteProfileView = ({navigation}) => {
 
     const { control, handleSubmit, setValue } = useForm({
         defaultValues: {
@@ -25,6 +25,7 @@ const CompleteProfileView = () => {
         data['state'] = state;
         data['company_type'] = company;
         console.log(data);
+        navigation.navigate('DashBoardView');
     }
 
     const UploadPANRedirect = () => {
@@ -202,6 +203,7 @@ const styles = StyleSheet.create({
     mainView: {
         flex: 1,
         flexGrow: 1,
+        backgroundColor : "#F5F8FC",
     },
     container: {
         marginHorizontal: 50,
@@ -253,6 +255,7 @@ const styles = StyleSheet.create({
     dropdown: {
         borderRadius: 0,
         borderColor: "#BECCE0",
+        backgroundColor : "#F5F8FC",
         borderWidth: 1,
         borderBottomWidth : 0,
     },

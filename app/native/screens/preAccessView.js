@@ -11,7 +11,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
 
-const PreAccessView = () => {
+const PreAccessView = ({navigation}) => {
     const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap.png');
     const icon = <MaterialIcon name="arrow-forward-ios" size={15} color="#FFFFFF" />
 
@@ -37,7 +37,7 @@ const PreAccessView = () => {
     ]);
 
     const onClick = () => {
-
+        navigation.navigate('PlansPricingView');
     }
 
     return (

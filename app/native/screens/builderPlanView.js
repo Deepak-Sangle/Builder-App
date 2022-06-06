@@ -6,7 +6,7 @@ import LogoHeader from '../../helpers/LogoHeader';
 import CustomFilterMenu from '../../helpers/customFilterMenu';
 import LinearGradient from 'react-native-linear-gradient';
 
-const BuilderPlanView = () => {
+const BuilderPlanView = ({navigation}) => {
 
     const [locationList, setLocationList] = useState([
         {label : "Gurugram", value : "gurugram"},
@@ -39,6 +39,7 @@ const BuilderPlanView = () => {
         });
         setNumofCompany(0);
         console.log(company);
+        navigation.navigate('PaymentView');
     }
 
     return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import {Text, View, StyleSheet, TextInput, Pressable} from 'react-native'
 import CustomButtons from '../../helpers/customButtons';
 
-const OtpView = () => {
+const OtpView = ({navigation}) => {
     const inputRef1 = useRef(null);
     const inputRef2 = useRef(null);
     const inputRef3 = useRef(null);
@@ -55,6 +55,7 @@ const OtpView = () => {
     };
     
     useEffect(() => {
+        if(resendTime <= 0) onSubmit();
         const resendOtpTimer = setInterval(() => {
             if (resendTime > 0) {
                 setResendTime(resendTime - 1);
@@ -67,7 +68,16 @@ const OtpView = () => {
     }, [resendTime]);
 
     function onSubmit() {
-
+        var emptyOtp=0;
+        otpArray.map((otp)=> {if(otp==="") emptyOtp=1;});
+        if(emptyOtp) return ;
+        if(otpArray.length!=4) return;
+        var newArr = [];
+        otpArray.map((otp)=> {
+            newArr.push(parseInt(otp));
+        });
+        console.log(newArr);
+        navigation.navigate('SelectcityView');
     }
 
     function resendOtp(){
@@ -86,6 +96,7 @@ const OtpView = () => {
                         value={otpArray[i]}
                         onChangeText={onOtpChange(i)}
                         onKeyPress={onOTPKeyPress(i)}
+                        editable={resendTime>0 ? true : false}
                         keyboardType="numeric"
                         maxLength={1}
                         key={i}

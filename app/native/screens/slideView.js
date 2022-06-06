@@ -3,7 +3,7 @@ import {Text, View, StyleSheet,ScrollView, TouchableOpacity} from 'react-native'
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
 
-const SlideView = () => {
+const SlideView = ({navigation}) => {
 
     const [slideDetails, setSlideDetails] = useState([
         {heading : "Exclusive Member Access", description : "Your privilege pass to exclusive information, latest offers, events and builder communications.", id : 1},
@@ -15,6 +15,9 @@ const SlideView = () => {
 
     const onStarted = ()=> {
         if(currentSlide<2) setCurrentSlide(currentSlide+1);
+        else {
+            navigation.navigate('RegisterView');
+        }
     }
 
     return (

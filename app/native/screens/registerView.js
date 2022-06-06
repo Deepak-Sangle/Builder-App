@@ -4,7 +4,7 @@ import {useForm, Controller} from 'react-hook-form'
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
 
-const RegisterView = () => { 
+const RegisterView = ({navigation}) => { 
   
     const CustomInputView = (props) => {
         const label = props.label;
@@ -49,12 +49,15 @@ const RegisterView = () => {
 
     function onSubmit(data) {
         console.log(data);
+        navigation.navigate('OtpView');   
     }
     
     return (
         <ScrollView>
             <View style={styles.container}>
-                <LogoHeader isHeader={true} size={75}/>
+                <View style={{marginVertical : 30,}}>
+                    <LogoHeader  isHeader={true} size={70}/>
+                </View>
                 <View style={[styles.createView]}>
                     <Text style={[styles.createText, styles.textStyle]}>Create New Account</Text>
                 </View>
@@ -112,7 +115,7 @@ const RegisterView = () => {
         </ScrollView>
     );
 }
- 
+
 const styles = StyleSheet.create({
     container : {
         flex : 1,

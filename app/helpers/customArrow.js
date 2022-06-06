@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native'
+import {View, StyleSheet, TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const CustomArrow = (props)=>{
@@ -7,13 +7,14 @@ const CustomArrow = (props)=>{
     const borderColor = props.borderColor;
     const backgroundColor = props.backgroundColor ? props.backgroundColor : "#FFFFFF";
     const color = props.color ;
+    const pressHandler = props.pressHandler;
 
     return (
-        <View style={{borderWidth, borderColor, borderRadius : 50}}>
+        <TouchableOpacity onPressOut={pressHandler} style={{borderWidth, borderColor, borderRadius : 50}}>
             <View style={[styles.blueCircle, {backgroundColor}]}>
                 <Icon name="arrow-forward-ios" size={20} color={color} />
             </View>
-        </View>
+        </TouchableOpacity>
     );
 }
 

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native'
 
-import CustomButtons from '../../helpers/customButtons';
-import CustomCompanyList from '../../helpers/customCompanyList';
 import LogoHeader from '../../helpers/LogoHeader';
-import CustomFilterMenu from '../../helpers/customFilterMenu';
-
-import EntypoIcons from 'react-native-vector-icons/Entypo';
 
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
 import CustomSearchBar from '../../helpers/customSearchBar';
@@ -16,7 +11,7 @@ import HorizontalDataScroll from '../../helpers/HorizontalDataScroll';
 import { Divider } from 'react-native-paper';
 import UpdateCard from '../../helpers/updateCard';
 
-const DashBoardView = () => {
+const DashBoardView = ({navigation}) => {
 
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -81,7 +76,7 @@ const DashBoardView = () => {
 
                 <View style={{marginVertical : 20}}>
                     <Text style={[styles.textStyle, styles.headers, {marginBottom : 20}]}>BUILDERS ONBOARD</Text>
-                    <HorizontalImageScroll resizeMode="contain" data={buildersImage} size={100} />
+                    <HorizontalImageScroll navigation={navigation} resizeMode="contain" data={buildersImage} size={100} />
                 </View>
 
                 <Divider />
