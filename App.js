@@ -42,6 +42,7 @@ import NewsView from './app/native/screens/newsView';
 import CircleRateView from './app/native/screens/circleRateView';
 import GovtPolicyView from './app/native/screens/govtPolicyView';
 import SampleDocumentView from './app/native/screens/sampleDocumentView';
+import SlideView from './app/native/screens/slideView';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -69,7 +70,9 @@ const App = () => {
         {/* <NewsView /> */}
         {/* <CircleRateView /> */}
         {/* <GovtPolicyView /> */}
-        <SampleDocumentView />
+        {/* <SampleDocumentView /> */}
+        <SlideView />
+        
     </SafeAreaView>
   );
 };

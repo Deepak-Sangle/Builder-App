@@ -11,6 +11,7 @@ const LogoHeader = (props) => {
     const isThreeDot = (props.isThreeDot!=undefined) ? props.isThreeDot : false ;
     const isBack = (props.isBack!=undefined) ? props.isBack : false;
     const isImage = (props.isImage!=undefined) ? props.isImage : true; 
+    const isDescription = (props.isDescription!=undefined) ? props.isDescription : false;
     
     const alignLogo = isHeader ? "flex-start" : "space-between" ;
     const leftPadding = isHeader ? 50 : 0;
@@ -43,7 +44,8 @@ const LogoHeader = (props) => {
                 </View>
 
                 {isHeader && <View style={styles.companyView}>
-                    <Text style={[styles.companyText, styles.textStyle]}> Builders {"\n"} Broadcast </Text>
+                    <Text style={[styles.companyText, styles.textStyle]}>Builders{"\n"}Broadcast</Text>
+                    {isDescription && <Text style={[styles.textStyle, styles.descriptionText]}>Real Estate Simplified</Text>}
                 </View>}
 
                 {!isHeader && <TouchableOpacity activeOpacity={isThreeDot ? 0.5 : 0} style={[styles.navigationView, {opacity : isThreeDot ? 1 : 0}]}>
@@ -73,6 +75,10 @@ const styles = StyleSheet.create({
     companyText : {
         fontWeight : "300",
         fontSize : 18,
+    },
+    descriptionText : {
+        fontFamily : "Nunito-SemiBold",
+        fontSize : 12,
     },
     textStyle : {
         fontFamily : "Nunito",
