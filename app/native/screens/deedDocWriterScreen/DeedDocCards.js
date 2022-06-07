@@ -11,6 +11,7 @@ export default function DeedDocCards({data}) {
   var isDashedCSS;
   var isNumCSS;
   var isNameCSS;
+  var isVerImgLogoCSS;
   var leng = data.length;
   return (
     <View style={styles.deedDocCards}>
@@ -36,6 +37,7 @@ export default function DeedDocCards({data}) {
             : styles.deedDocCardCompNo;
           isNumCSS = item.isVer ? styles.conCompYes : styles.conCompNo;
           isNameCSS = item.isVer ? styles.nameStylesYes : styles.nameStylesNo;
+          isVerImgLogoCSS = item.isVer ? styles.veriPngYes : styles.veriPngNo;
         }
         return (
           <View style={isVerCSS} key={item.key}>
@@ -45,6 +47,10 @@ export default function DeedDocCards({data}) {
                 source={{
                   uri: 'https://m.cricbuzz.com/a/img/v1/192x192/i1/c170661/virat-kohli.jpg',
                 }}
+              />
+              <Image
+                style={isVerImgLogoCSS}
+                source={require('../../assests/verified.png')}
               />
             </View>
             <View style={styles.deedDocPart22}>
@@ -179,5 +185,16 @@ const styles = StyleSheet.create({
   nameStylesNo: {
     color: '#000',
     fontWeight: 'bold',
+  },
+  veriPngYes: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: '100%',
+    height: 50,
+    zIndex: 3,
+    marginTop: -30,
+  },
+  veriPngNo: {
+    display: 'none',
   },
 });

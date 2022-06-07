@@ -6,12 +6,10 @@ import {Badge} from 'react-native-paper';
 export default function MenuList() {
   return (
     <View style={styles.menuList}>
-      <Text style={styles.createYourTeamText}>
-        Create Your Team
-        <Badge size={25} style={styles.badgeMenu}>
-          PRO
-        </Badge>
-      </Text>
+      <Text style={styles.createYourTeamText}>Create Your Team</Text>
+      <Badge size={20} style={styles.badgeMenu}>
+        PRO
+      </Badge>
 
       <View>
         {MenuListData.map(item => {
@@ -71,11 +69,11 @@ const styles = StyleSheet.create({
   },
   badgeMenu: {
     position: 'absolute',
-    left: '41%',
+    left: '42%',
     backgroundColor: '#f5e350',
     fontWeight: 'bold',
     color: '#4a4a4a',
     borderRadius: 5,
-    top: '10%',
+    top: '1%',
   },
 });
