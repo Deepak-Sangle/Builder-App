@@ -1,8 +1,8 @@
 export const Clients = [
   {
     key: 1,
-    date: '08 DEC',
-    day: 'Today',
+    date: '07 JUN',
+    day: 'Monday',
     time: '10:30 am',
     name: 'MR. MALIK',
     info: '3BHK - 3452 sqft',

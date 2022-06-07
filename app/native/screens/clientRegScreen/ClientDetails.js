@@ -24,6 +24,9 @@ export default function ClientDetails() {
           textInputStyle={styles.contactNoClientDetails}
           autoFocus={false}
         />
+        <Text style={styles.fourDigTxt}>
+          Provide last 4 digits for confirmation later
+        </Text>
       </View>
     </View>
   );
@@ -53,5 +56,9 @@ const styles = StyleSheet.create({
   contactNoClientDetails: {
     width: '7%',
     fontSize: 17,
+  },
+  fourDigTxt: {
+    marginTop: 10,
+    color: '#768497',
   },
 });

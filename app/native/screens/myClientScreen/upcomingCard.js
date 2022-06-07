@@ -5,16 +5,48 @@ import Dot from 'react-native-vector-icons/Entypo';
 const radius = 10;
 
 export default function UpcomingCard({data}) {
+  var date = new Date().getDate();
+  var month = new Date().getMonth() + 1;
+  // var year = new Date().getFullYear();
+
+  const getMonthFromString = mon => {
+    return new Date(Date.parse(mon + ' 1, 2012')).getMonth() + 1;
+  };
+
+  var dataDate = parseInt(data.date.substring(0, 2));
+  var temp = data.date.substring(3);
+  var dataMonth = getMonthFromString(temp);
+  var isTrue;
+  var dayy;
+  var isTrueCSS;
+  var isTrueDate;
+  var isTrueDay;
+  // console.log('date' + dataDate);
+  // console.log('moth' + dataMonth);
+  if (dataDate == date && dataMonth == month) {
+    isTrue = true;
+    dayy = 'Today';
+    isTrueCSS = styles.cc1Yes;
+    isTrueDate = styles.cc1dateYes;
+    isTrueDay = styles.cc1textYes;
+  } else {
+    isTrue = false;
+    dayy = data.day;
+    isTrueCSS = styles.cc1No;
+    isTrueDate = styles.cc1dateNo;
+    isTrueDay = styles.cc1textNo;
+  }
+
   return (
     <View style={styles.card} key={data.key}>
-      <View style={styles.cc1}>
+      <View style={isTrueCSS}>
         <View style={styles.textCardComp}>
-          <Text style={styles.cc1date}>{data.date}</Text>
-          <Text style={styles.cc1text}>
-            {data.day}
+          <Text style={isTrueDate}>{data.date}</Text>
+          <Text style={isTrueDay}>
+            {dayy}
             {'\n'}
           </Text>
-          <Text style={styles.cc1text}>
+          <Text style={isTrueDay}>
             {data.time}
             {'\n'}
           </Text>
@@ -53,12 +85,21 @@ const styles = StyleSheet.create({
     height: 150,
     flexDirection: 'row',
   },
-  cc1: {
+  cc1Yes: {
     borderTopLeftRadius: radius,
     borderBottomLeftRadius: radius,
     backgroundColor: '#429b38',
     padding: 10,
     width: '27%',
+  },
+  cc1No: {
+    borderTopLeftRadius: radius,
+    borderBottomLeftRadius: radius,
+    backgroundColor: '#ffffff',
+    padding: 10,
+    width: '27%',
+    borderRightWidth: 0.5,
+    borderColor: '#d9d9d9',
   },
   nocc1: {
     borderTopLeftRadius: radius,
@@ -66,11 +107,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'aqua',
     padding: 10,
   },
-  cc1text: {
+  cc1textYes: {
     color: '#fff',
   },
-  cc1date: {
+  cc1textNo: {
+    color: '#000',
+  },
+  cc1dateYes: {
     color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  cc1dateNo: {
+    color: '#000',
     fontSize: 18,
     fontWeight: 'bold',
   },
