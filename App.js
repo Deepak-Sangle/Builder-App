@@ -47,6 +47,13 @@ import GovtPolicyView from './app/native/screens/govtPolicyView';
 import SampleDocumentView from './app/native/screens/sampleDocumentView';
 import SlideView from './app/native/screens/slideView';
 import PaymentView from './app/native/screens/paymentView';
+import MyEvents from './app/native/screens/myEventsScreen/myEvents';
+import ClientRegScreen from './app/native/screens/clientRegScreen/clientRegScreen';
+import MenuScreen from './app/native/screens/menuScreen/menuScreen';
+import SorryScreen from './app/native/screens/SorryScreen/sorryScreen';
+import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
+import TeamPack from './app/native/screens/teamPackScreen/teamPack';
+import MyClient from './app/native/screens/myClientScreen/myClient';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +69,13 @@ const App = () => {
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
+          <Stack.Screen name='MyEvents' component={MyEvents} />
+          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
+          <Stack.Screen name='MenuScreen' component={MenuScreen} />
+          <Stack.Screen name='SorryScreen' component={SorryScreen} />
+          <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />
+          <Stack.Screen name='TeamPack' component={TeamPack} />
+          <Stack.Screen name='MyClient' component={MyClient} />
           <Stack.Screen name='SlideView' component={SlideView} />
           <Stack.Screen name='RegisterView' component={RegisterView} />
           <Stack.Screen name='OtpView' component={OtpView} />

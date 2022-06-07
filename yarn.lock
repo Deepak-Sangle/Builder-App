@@ -1467,6 +1467,21 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz"
   "version" "15.7.5"
 
+"@types/react-native-vector-icons@^6.4.6":
+  "integrity" "sha512-z4sexbuZ7nmYsp7Z9YB5fSQoN3KFn6nZA3QsCkQLOYnVmVlxX4U22v/bM9Xx/6dOA1vClxoRZo2CFDX16uryXQ=="
+  "resolved" "https://registry.npmjs.org/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.10.tgz"
+  "version" "6.4.10"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
+"@types/react-native@*":
+  "integrity" "sha512-xA8rYiTHvO6RoZv/LFnmEeqRuhA2y34mGB8zX3bGHe/pCt9jEStUPyUO4q1KcDc9GiGIOBD8ArfRtThprAjSfQ=="
+  "resolved" "https://registry.npmjs.org/@types/react-native/-/react-native-0.67.8.tgz"
+  "version" "0.67.8"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.8 || ^17.0 || ^18.0":
   "integrity" "sha512-+j2hk9BzCOrrOSJASi5XiOyBbERk9jG5O73Ya4M0env5Ixi6vUNli4qy994AINcEF+1IEHISYFfIT4zwr++LKw=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.8.tgz"
@@ -5211,6 +5226,11 @@
   "resolved" "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   "version" "4.0.8"
 
+"lodash.isequal@^4.5.0":
+  "integrity" "sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ=="
+  "resolved" "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
+  "version" "4.5.0"
+
 "lodash.merge@^4.6.2":
   "integrity" "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ=="
   "resolved" "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
@@ -5226,7 +5246,7 @@
   "resolved" "https://registry.npmjs.org/lodash.truncate/-/lodash.truncate-4.4.2.tgz"
   "version" "4.4.2"
 
-"lodash@^4.17.10", "lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.7.0", "lodash@~4.17.10":
+"lodash@*", "lodash@^4.17.10", "lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.7.0", "lodash@~4.17.10":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
@@ -6167,6 +6187,11 @@
   dependencies:
     "is-wsl" "^1.1.0"
 
+"opencollective-postinstall@^2.0.3":
+  "integrity" "sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q=="
+  "resolved" "https://registry.npmjs.org/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz"
+  "version" "2.0.3"
+
 "optionator@^0.8.1":
   "integrity" "sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA=="
   "resolved" "https://registry.npmjs.org/optionator/-/optionator-0.8.3.tgz"
@@ -6463,7 +6488,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@*", "prop-types@^15.7.2", "prop-types@^15.8.1":
+"prop-types@*", "prop-types@^15.6.2", "prop-types@^15.7.2", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -6578,6 +6603,27 @@
   "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.2.tgz"
   "version" "5.4.2"
 
+"react-native-element-dropdown@^1.8.12":
+  "integrity" "sha512-tADlqE9YK08t9d+wgT9Zfvlt3xjqGMv3qgDkbyqfz3TUy8y1R9itPrhiZmH2zVs3b7utfQmpzDGvl1V5mvtKjA=="
+  "resolved" "https://registry.npmjs.org/react-native-element-dropdown/-/react-native-element-dropdown-1.8.12.tgz"
+  "version" "1.8.12"
+  dependencies:
+    "lodash" "*"
+
+"react-native-elements@^3.4.2":
+  "integrity" "sha512-m0eAWOn7JuR1wNTNY0WHuaqst4LI/gFE4N5Bbyfsc4DiryWsMST7aAg5w/Gos4IexWIzhLKCIkPxthND1m/8Xg=="
+  "resolved" "https://registry.npmjs.org/react-native-elements/-/react-native-elements-3.4.2.tgz"
+  "version" "3.4.2"
+  dependencies:
+    "@types/react-native-vector-icons" "^6.4.6"
+    "color" "^3.1.2"
+    "deepmerge" "^4.2.2"
+    "hoist-non-react-statics" "^3.3.2"
+    "lodash.isequal" "^4.5.0"
+    "opencollective-postinstall" "^2.0.3"
+    "react-native-ratings" "8.0.4"
+    "react-native-size-matters" "^0.3.1"
+
 "react-native-gradle-plugin@^0.0.6":
   "integrity" "sha512-eIlgtsmDp1jLC24dRn43hB3kEcZVqx6DUQbR0N1ABXGnMEafm9I3V3dUUeD1vh+Dy5WqijSoEwLNUPLgu5zDMg=="
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.6.tgz"
@@ -6593,6 +6639,13 @@
   "resolved" "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz"
   "version" "2.5.6"
 
+"react-native-otp-textinput@0.0.9":
+  "integrity" "sha512-JVt9OjAA2G5cTHwjqUyxnHT5ieRJt291+M2Osmzbnj7ari6DgKa8hg5RI6HfSUxH242vqZ4zq78EPU07FWoXqQ=="
+  "resolved" "https://registry.npmjs.org/react-native-otp-textinput/-/react-native-otp-textinput-0.0.9.tgz"
+  "version" "0.0.9"
+  dependencies:
+    "prop-types" "^15.6.2"
+
 "react-native-paper@^4.12.1":
   "integrity" "sha512-xvAkwtRatsDcB/eSBUwoThBAT5Yy32SgKwrfHRUXi/9s5lR2SEuPZwmsZyAaq+bsxtAH1CaIT4CDeVLSaArzyg=="
   "resolved" "https://registry.npmjs.org/react-native-paper/-/react-native-paper-4.12.1.tgz"
@@ -6607,10 +6660,17 @@
   "resolved" "https://registry.npmjs.org/react-native-pie-chart/-/react-native-pie-chart-2.0.2.tgz"
   "version" "2.0.2"
 
-"react-native-safe-area-context@^4.3.1", "react-native-safe-area-context@>= 3.0.0":
-  "integrity" "sha512-cEr7fknJCToTrSyDCVNg0GRdRMhyLeQa2NZwVCuzEQcWedOw/59ExomjmzCE4rxrKXs6OJbyfNtFRNyewDaHuA=="
-  "resolved" "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.3.1.tgz"
-  "version" "4.3.1"
+"react-native-ratings@8.0.4":
+  "integrity" "sha512-Xczu5lskIIRD6BEdz9A0jDRpEck/SFxRqiglkXi0u67yAtI1/pcJC76P4MukCbT8K4BPVl+42w83YqXBoBRl7A=="
+  "resolved" "https://registry.npmjs.org/react-native-ratings/-/react-native-ratings-8.0.4.tgz"
+  "version" "8.0.4"
+  dependencies:
+    "lodash" "^4.17.15"
+
+"react-native-safe-area-context@^3.1.9", "react-native-safe-area-context@>= 3.0.0":
+  "integrity" "sha512-xfpVd0CiZR7oBhuwJ2HcZMehg5bjha1Ohu1XHpcT+9ykula0TgovH2BNU0R5Krzf/jBR1LMjR6VabxdlUjqxcA=="
+  "resolved" "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-3.4.1.tgz"
+  "version" "3.4.1"
 
 "react-native-sass-transformer@^2.0.0":
   "integrity" "sha512-Bk/nocqGajU8iCt0dXYoa5tzuzE/cDthheCWbQtwtBw2qeaR8Gea3k/H3Q1c2UA9r/y5Ofe+UpcfK4yJt7Ciag=="
@@ -6629,7 +6689,17 @@
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
 
-"react-native-vector-icons@*", "react-native-vector-icons@^9.1.0":
+"react-native-size-matters@^0.3.1":
+  "integrity" "sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw=="
+  "resolved" "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz"
+  "version" "0.3.1"
+
+"react-native-timeline-flatlist@^0.8.0":
+  "integrity" "sha512-IVfCOxYx7Js84CaUJmtuxq2eyLvoQ1nRO5GG0mri14NH2NbMUwL9VhX19/yI8LpU2bnarlo7kjR6GLUP3DM/iQ=="
+  "resolved" "https://registry.npmjs.org/react-native-timeline-flatlist/-/react-native-timeline-flatlist-0.8.0.tgz"
+  "version" "0.8.0"
+
+"react-native-vector-icons@*", "react-native-vector-icons@^9.1.0", "react-native-vector-icons@>7.0.0":
   "integrity" "sha512-2AHZ/h9d/+rC0odz+OwbGNlc1Lik/pHhSixn4HfC8RtQ8CxfSBZ6gg7bTLcZhdSvZN+ZEGi30Fj+ZnOSQy+smg=="
   "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-9.1.0.tgz"
   "version" "9.1.0"
@@ -6637,7 +6707,7 @@
     "prop-types" "^15.7.2"
     "yargs" "^16.1.1"
 
-"react-native@*", "react-native@>=0.42.0", "react-native@>=0.45.0", "react-native@>=0.55", "react-native@>=0.58.0", "react-native@>=0.59", "react-native@0.68.1":
+"react-native@*", "react-native@>= 0.58.2", "react-native@>=0.20.0", "react-native@>=0.42.0", "react-native@>=0.45.0", "react-native@>=0.55", "react-native@>=0.58.0", "react-native@>=0.59", "react-native@0.68.1":
   "integrity" "sha512-5gfvslo5NO2Ece2k/q41eVOK3ca4u1QAOf+qM+auvOiUA4/QR5Yr0WfSGbRpUr2GaFgv7qP11F4+elCravg7uQ=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.68.1.tgz"
   "version" "0.68.1"
