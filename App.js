@@ -23,6 +23,7 @@ import MenuScreen from './app/native/screens/menuScreen/menuScreen';
 import SorryScreen from './app/native/screens/SorryScreen/sorryScreen';
 import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
 import TeamPack from './app/native/screens/teamPackScreen/teamPack';
+import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemScreen';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,8 +39,9 @@ const App = () => {
       {/* <ClientRegScreen /> */}
       {/* <MenuScreen /> */}
       {/* <SorryScreen /> */}
-      <DeedDocScreen />
+      {/* <DeedDocScreen /> */}
       {/* <TeamPack /> */}
+      {/* <AlreadyMember /> */}
     </View>
   );
 };
