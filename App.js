@@ -33,12 +33,12 @@ const App = () => {
 
   return (
     <View>
-      <MyClient />
+      {/* <MyClient /> */}
       {/* <MyEvents /> */}
       {/* <ClientRegScreen /> */}
       {/* <MenuScreen /> */}
       {/* <SorryScreen /> */}
-      {/* <DeedDocScreen /> */}
+      <DeedDocScreen />
       {/* <TeamPack /> */}
     </View>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
 import deviceWidth from '../../../Constants/projectConstants';
+import Telephone from 'react-native-vector-icons/Foundation';
 
 //green card means verified and white means not verified
 export default function DeedDocCards({data}) {
@@ -60,7 +61,7 @@ export default function DeedDocCards({data}) {
                 <Text style={isVerTextCSS}>{item.exp}</Text>
               </View>
               <View style={isDashedCSS}>
-                <Text style={isCircleCSS}>hey</Text>
+                <Telephone name="telephone" size={15} style={isCircleCSS} />
                 <Text style={isNumCSS}>{item.contact}</Text>
               </View>
             </View>
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 10,
     paddingLeft: 4,
-    marginTop: 7,
+    marginTop: 15,
     borderStyle: 'dashed',
     borderColor: '#ffffff',
   },
@@ -158,7 +159,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 10,
     paddingLeft: 4,
-    marginTop: 7,
+    marginTop: 15,
     borderStyle: 'dashed',
     borderColor: '#000',
   },
@@ -169,14 +170,25 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   roundCardThingYes: {
-    backgroundColor: '#ffffff',
+    borderRadius: 35,
+    borderWidth: 1,
+    borderColor: '#ffffff',
+    padding: 5,
+    paddingRight: 7,
+    paddingLeft: 7,
+    textAlign: 'center',
     color: '#ffffff',
-    borderRadius: 100,
   },
   roundCardThingNo: {
-    backgroundColor: '#0078e9',
-    color: '#0078e9',
     borderRadius: 100,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: '#0078e9',
+    padding: 5,
+    paddingRight: 7,
+    paddingLeft: 7,
+    textAlign: 'center',
+    color: '#0078e9',
   },
   nameStylesYes: {
     color: '#ffffff',
