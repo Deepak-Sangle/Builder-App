@@ -17,6 +17,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {Provider} from 'react-redux';
+import {configureStore} from '@reduxjs/toolkit';
+import alreadyMemReducer from './app/redux-toolkit/reducers/alreadyMemScreenReducer';
+import menuScreenReducer from './app/redux-toolkit/reducers/menuScreenReducer';
 import MyEvents from './app/native/screens/myEventsScreen/myEvents';
 import ClientRegScreen from './app/native/screens/clientRegScreen/clientRegScreen';
 import MenuScreen from './app/native/screens/menuScreen/menuScreen';
@@ -24,6 +28,13 @@ import SorryScreen from './app/native/screens/SorryScreen/sorryScreen';
 import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
 import TeamPack from './app/native/screens/teamPackScreen/teamPack';
 import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemScreen';
+
+const store = configureStore({
+  reducer: {
+    alreadyMemScreen: alreadyMemReducer,
+    menuScreen: menuScreenReducer,
+  },
+});
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -37,7 +48,7 @@ const App = () => {
       {/* <MyClient /> */}
       {/* <MyEvents /> */}
       {/* <ClientRegScreen /> */}
-      {/* <MenuScreen /> */}
+      <MenuScreen />
       {/* <SorryScreen /> */}
       {/* <DeedDocScreen /> */}
       {/* <TeamPack /> */}
@@ -65,4 +76,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};

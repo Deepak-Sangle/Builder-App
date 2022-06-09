@@ -6,7 +6,7 @@ import SorryAlreadyMember from './sorryAlreadyMem';
 export default function AlreadyMember() {
   return (
     <ScrollView>
-      <SorryAlreadyMember name="RakeshKumar" company="Asset Advisor India" />
+      <SorryAlreadyMember />
     </ScrollView>
   );
 }

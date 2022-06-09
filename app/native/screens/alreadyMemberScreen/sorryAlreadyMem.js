@@ -1,8 +1,19 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import deviceWidth from '../../../Constants/projectConstants';
+import {useSelector, useDispatch} from 'react-redux';
+//import {updateCompany,updateName} from "../../../redux-toolkit/reducers/sampleReducer";
 
-export default function SorryAlreadyMember({name, company}) {
+export default function SorryAlreadyMember() {
+  const getDetails = useSelector(state => state);
+  // const dispatch = useDispatch();
+  // const changeName = (name) => {
+  //     dispatch(updateName(name)); //here updateName is the action type and the argument ie name here will become the payload
+  // }
+  // const changeAge = (age) => {
+  //    dispatch(updateAge(age));
+  // };
+  //console.log(getDetails.nameCompany.name);
   return (
     <View>
       <View style={styles.alreadyMemCont}>
@@ -10,16 +21,21 @@ export default function SorryAlreadyMember({name, company}) {
           <Text style={styles.sorryTxt}>Sorry!</Text>
         </View>
         <View style={styles.fellowTextCont}>
-          <Text style={styles.fellowTextName}>{name} </Text>
+          <Text style={styles.fellowTextName}>
+            {getDetails.alreadyMemScreen.name}
+          </Text>
           <Text style={styles.fellowText}>
             is already associated with company
           </Text>
-          <Text style={styles.fellowTextName}> {company}</Text>
+          <Text style={styles.fellowTextName}>
+            {' '}
+            {getDetails.alreadyMemScreen.company}
+          </Text>
         </View>
       </View>
       <View style={styles.part2ContentComp}>
         <Text style={styles.contentTxt}>Please contact admin of</Text>
-        <Text> {company} to be a part of </Text>
+        <Text> {getDetails.alreadyMemScreen.company} to be a part of </Text>
         <Text>its team</Text>
       </View>
       <View style={styles.backBtn}>
