@@ -1,8 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {MenuListData} from '../../native/screens/menuScreen/dummyData/MenuListData';
 
 const menuScreenInitialState = {
   name: 'Mr. Dhoni',
   location: 'Gurugram',
+  menuList: MenuListData,
 };
 
 const menuScreenReducer = createSlice({

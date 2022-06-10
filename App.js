@@ -21,6 +21,10 @@ import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
 import alreadyMemReducer from './app/redux-toolkit/reducers/alreadyMemScreenReducer';
 import menuScreenReducer from './app/redux-toolkit/reducers/menuScreenReducer';
+import clientRegScreenReducer from './app/redux-toolkit/reducers/clientRegScreenReducer';
+import deedDocScreenReducer from './app/redux-toolkit/reducers/deedDocScreenReducer';
+import myClientScreenReducer from './app/redux-toolkit/reducers/myClientScreenReducer';
+import eventScreenReducer from './app/redux-toolkit/reducers/eventScreenReducer';
 import MyEvents from './app/native/screens/myEventsScreen/myEvents';
 import ClientRegScreen from './app/native/screens/clientRegScreen/clientRegScreen';
 import MenuScreen from './app/native/screens/menuScreen/menuScreen';
@@ -33,6 +37,10 @@ const store = configureStore({
   reducer: {
     alreadyMemScreen: alreadyMemReducer,
     menuScreen: menuScreenReducer,
+    clientRegScreen: clientRegScreenReducer,
+    deedDocScreen: deedDocScreenReducer,
+    myClientScreen: myClientScreenReducer,
+    eventScreen: eventScreenReducer,
   },
 });
 
@@ -48,10 +56,10 @@ const App = () => {
       {/* <MyClient /> */}
       {/* <MyEvents /> */}
       {/* <ClientRegScreen /> */}
-      <MenuScreen />
+      {/* <MenuScreen /> */}
       {/* <SorryScreen /> */}
       {/* <DeedDocScreen /> */}
-      {/* <TeamPack /> */}
+      <TeamPack />
       {/* <AlreadyMember /> */}
     </View>
   );

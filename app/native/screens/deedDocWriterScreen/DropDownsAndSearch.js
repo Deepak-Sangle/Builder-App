@@ -1,27 +1,17 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  Image,
-  ScrollView,
-} from 'react-native';
-import {LocationData} from './dummyData/LocationData';
+import {StyleSheet, View} from 'react-native';
 import Dropdown from '../myClientScreen/Dropdown';
-import {AllCatData} from './dummyData/AllCatData';
-import Searchbar from '../myClientScreen/SearchBar';
 import deviceWidth from '../../../Constants/projectConstants';
 import SearchDeedAndDoc from './SearchDeedAndDoc';
 
-export default function DropAndSearch() {
+export default function DropAndSearch({loc, cards}) {
   return (
     <View style={styles.dropAndSearchComp}>
       <View>
-        <Dropdown data={LocationData} dropDownStyles={styles.dropDownSty} />
+        <Dropdown data={loc} dropDownStyles={styles.dropDownSty} />
       </View>
       <View>
-        <Dropdown data={AllCatData} dropDownStyles={styles.dropDownSty} />
+        <Dropdown data={cards} dropDownStyles={styles.dropDownSty} />
       </View>
       <View>
         <SearchDeedAndDoc />

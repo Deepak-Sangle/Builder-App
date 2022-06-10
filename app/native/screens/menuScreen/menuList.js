@@ -2,8 +2,10 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {MenuListData} from './dummyData/MenuListData';
 import {Badge} from 'react-native-paper';
+import {useSelector} from 'react-redux';
 
 export default function MenuList() {
+  const getDetails = useSelector(state => state);
   return (
     <View style={styles.menuList}>
       <Text style={styles.createYourTeamText}>Create Your Team</Text>
@@ -12,7 +14,7 @@ export default function MenuList() {
       </Badge>
 
       <View>
-        {MenuListData.map(item => {
+        {getDetails.menuScreen.menuList.map(item => {
           return (
             <View key={item.key} style={styles.menuListView}>
               <Text style={styles.menuListText}>{item.text}</Text>

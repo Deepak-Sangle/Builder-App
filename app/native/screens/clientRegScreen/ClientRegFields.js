@@ -1,18 +1,15 @@
 import React from 'react';
 import {StyleSheet, View, Dimensions, TextInput, Text} from 'react-native';
 import Dropdown from '../myClientScreen/Dropdown';
-import {PropertyData} from './dummyDataClientReg/PropertyData';
-import {ProjectData} from './dummyDataClientReg/ProjectData';
-import {RmData} from './dummyDataClientReg/RmData';
 import deviceWidth from '../../../Constants/projectConstants';
 
-export default function ClientRegFields() {
+export default function ClientRegFields({property, project, rmD}) {
   return (
     <View>
-      <Dropdown data={PropertyData} dropDownStyles={styles.dropDowns} />
-      <Dropdown data={ProjectData} dropDownStyles={styles.dropDowns} />
+      <Dropdown data={property} dropDownStyles={styles.dropDowns} />
+      <Dropdown data={project} dropDownStyles={styles.dropDowns} />
       <Text style={styles.regText}>Property spec(3 BHK - 3425 sqft)</Text>
-      <Dropdown data={RmData} dropDownStyles={styles.dropDowns} />
+      <Dropdown data={rmD} dropDownStyles={styles.dropDowns} />
     </View>
   );
 }

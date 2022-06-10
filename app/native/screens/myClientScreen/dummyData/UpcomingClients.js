@@ -1,7 +1,7 @@
 export const Clients = [
   {
     key: 1,
-    date: '08 JUN',
+    date: '10 JUN',
     day: 'Monday',
     time: '10:30 am',
     name: 'MR. MALIK',
