@@ -9,7 +9,7 @@ const deedDocScreenInitialState = {
   locData: LocationData,
 };
 
-const deedDocScreenReducer = createSlice({
+const deedDocSlice = createSlice({
   name: 'deedDocScreen',
   initialState: deedDocScreenInitialState,
   // reducers: {
@@ -23,4 +23,4 @@ const deedDocScreenReducer = createSlice({
 });
 
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default deedDocScreenReducer.reducer;
+export default deedDocSlice.reducer;

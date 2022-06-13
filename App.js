@@ -29,12 +29,13 @@ import {
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
-import alreadyMemReducer from './app/redux-toolkit/reducers/alreadyMemScreenReducer';
-import menuScreenReducer from './app/redux-toolkit/reducers/menuScreenReducer';
-import clientRegScreenReducer from './app/redux-toolkit/reducers/clientRegScreenReducer';
-import deedDocScreenReducer from './app/redux-toolkit/reducers/deedDocScreenReducer';
-import myClientScreenReducer from './app/redux-toolkit/reducers/myClientScreenReducer';
-import eventScreenReducer from './app/redux-toolkit/reducers/eventScreenReducer';
+import alreadyMemSlice from './app/redux-toolkit/slices/alreadyMemScreenSlice';
+import menuSlice from './app/redux-toolkit/slices/menuScreenSlice';
+import clientRegSlice from './app/redux-toolkit/slices/clientRegScreenSlice';
+import deedDocSlice from './app/redux-toolkit/slices/deedDocScreenSlice';
+import myClientSlice from './app/redux-toolkit/slices/myClientScreenSlice';
+import eventsScreenSlice from './app/redux-toolkit/slices/eventScreenSlice';
+import walkInScreensSlice from './app/redux-toolkit/slices/walkInScreensSlice';
 import SelectcityView from './app/native/screens/selectcityView';
 import SelectCompanyView from './app/native/screens/selectCompanyView';
 import OtpView from './app/native/screens/otpView';
@@ -66,12 +67,13 @@ import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemSc
 
 const store = configureStore({
   reducer: {
-    alreadyMemScreen: alreadyMemReducer,
-    menuScreen: menuScreenReducer,
-    clientRegScreen: clientRegScreenReducer,
-    deedDocScreen: deedDocScreenReducer,
-    myClientScreen: myClientScreenReducer,
-    eventScreen: eventScreenReducer,
+    alreadyMemScreen: alreadyMemSlice,
+    menuScreen: menuSlice,
+    clientRegScreen: clientRegSlice,
+    deedDocScreen: deedDocSlice,
+    myClientScreen: myClientSlice,
+    eventScreen: eventsScreenSlice,
+    walkInScreen: walkInScreensSlice,
   },
 });
 
@@ -89,27 +91,27 @@ const App = () => {
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen name="MyEvents" component={MyEvents} /> */}
-          {/* <Stack.Screen name="ClientRegScreen" component={ClientRegScreen} /> */}
-          {/* <Stack.Screen name="MenuScreen" component={MenuScreen} /> */}
-          {/* <Stack.Screen name="SorryScreen" component={SorryScreen} /> */}
-          {/* <Stack.Screen name="DeedDocScreen" component={DeedDocScreen} /> */}
-          {/* <Stack.Screen name="TeamPack" component={TeamPack} /> */}
-          {/* <Stack.Screen name="MyClient" component={MyClient} /> */}
+          {/* <Stack.Screen name="MyEvents" component={MyEvents} />
+          <Stack.Screen name="ClientRegScreen" component={ClientRegScreen} />
+          <Stack.Screen name="MenuScreen" component={MenuScreen} />
+          <Stack.Screen name="SorryScreen" component={SorryScreen} />
+          <Stack.Screen name="DeedDocScreen" component={DeedDocScreen} />
+          <Stack.Screen name="TeamPack" component={TeamPack} />
+          <Stack.Screen name="MyClient" component={MyClient} />
           <Stack.Screen name="AlreadyAMember" component={AlreadyMember} />
           <Stack.Screen name="SlideView" component={SlideView} />
-          <Stack.Screen name="RegisterView" component={RegisterView} />
-          <Stack.Screen name="OtpView" component={OtpView} />
-          <Stack.Screen name="SelectcityView" component={SelectcityView} />
-          <Stack.Screen name="DialogBox" component={DialogBox} />
-          <Stack.Screen
+          <Stack.Screen name="RegisterView" component={RegisterView} /> */}
+          {/* <Stack.Screen name="OtpView" component={OtpView} /> */}
+          {/* <Stack.Screen name="SelectcityView" component={SelectcityView} /> */}
+          {/* <Stack.Screen name="DialogBox" component={DialogBox} /> */}
+          {/* <Stack.Screen
             name="SelectCompanyView"
             component={SelectCompanyView}
-          />
-          <Stack.Screen name="WelcomeView" component={WelcomeView} />
-          <Stack.Screen name="PlansPricingView" component={PlansPricingView} />
-          <Stack.Screen name="BuilderPlanView" component={BuilderPlanView} />
-          <Stack.Screen name="PaymentView" component={PaymentView} />
+          /> */}
+          {/* <Stack.Screen name="WelcomeView" component={WelcomeView} /> */}
+          {/* <Stack.Screen name="PlansPricingView" component={PlansPricingView} /> */}
+          {/* <Stack.Screen name="BuilderPlanView" component={BuilderPlanView} /> */}
+          {/* <Stack.Screen name="PaymentView" component={PaymentView} /> */}
           <Stack.Screen
             name="CompleteProfileView"
             component={CompleteProfileView}

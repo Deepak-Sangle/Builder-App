@@ -5,7 +5,7 @@ const alreadyMemInitialState = {
   company: 'Asset Advisor India',
 };
 
-const alreadyMemReducer = createSlice({
+const alreadyMemSlice = createSlice({
   name: 'alreadyMemScreen',
   initialState: alreadyMemInitialState,
   // reducers: {
@@ -18,5 +18,5 @@ const alreadyMemReducer = createSlice({
   // },
 });
 
-//export const {updateName, updateCompany} = alreadyMemReducer.actions;
-export default alreadyMemReducer.reducer;
+//export const {updateName, updateCompany} = alreadyMemSlice.actions;
+export default alreadyMemSlice.reducer;

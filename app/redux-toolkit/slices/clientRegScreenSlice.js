@@ -11,7 +11,7 @@ const clientRegInitialState = {
   rmD: RmData,
 };
 
-const clientRegScreenReducer = createSlice({
+const clientRegSlice = createSlice({
   name: 'clientRegScreen',
   initialState: clientRegInitialState,
   // reducers: {
@@ -25,4 +25,4 @@ const clientRegScreenReducer = createSlice({
 });
 
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default clientRegScreenReducer.reducer;
+export default clientRegSlice.reducer;

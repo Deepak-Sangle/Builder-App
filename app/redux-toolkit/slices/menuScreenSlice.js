@@ -7,7 +7,7 @@ const menuScreenInitialState = {
   menuList: MenuListData,
 };
 
-const menuScreenReducer = createSlice({
+const menuSlice = createSlice({
   name: 'menuScreen',
   initialState: menuScreenInitialState,
   // reducers: {
@@ -21,4 +21,4 @@ const menuScreenReducer = createSlice({
 });
 
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default menuScreenReducer.reducer;
+export default menuSlice.reducer;
