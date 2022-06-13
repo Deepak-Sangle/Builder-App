@@ -7,7 +7,7 @@ const WelcomeView = ({navigation}) => {
 
     const name = "Deepak" ;         //Assuming you getting the user name from database
     const onStart = ()=> {
-        
+        navigation.navigate('DashBoardView')
     }
 
     const checkPlans = ()=> {

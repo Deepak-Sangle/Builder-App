@@ -13,15 +13,17 @@ const TeamDashboardView = () => {
     //Get this data from API 
     
     const [teamMembersData, setTeamMembersData] = useState([
-        {name : "Roshan", isAdmin : true, client_visits : 98, client_registration : 65, client_bookings : 42, id : 1},
-        {name : "Kunal Sarin", isAdmin : true, client_visits : 65, client_registration : 43, client_bookings : 24, id : 2},
-        {name : "Deepak Sangle", isAdmin : false, client_visits : 32, client_registration : 58, client_bookings : 63, id : 3},
-        {name : "Member 3", isAdmin : false, client_visits : 26, client_registration : 69, client_bookings : 420, id : 4},
+        {name : "Roshan", email : "roshan25@gmail.com", phone : 9856741230, isAdmin : true, client_visits : 98, client_registration : 65, client_bookings : 42, id : 0},
+        {name : "Kunal Sarin", email : "kunalsarin26@gmail.com",   phone : 9856265230,isAdmin : true, client_visits : 65, client_registration : 43, client_bookings : 24, id : 1},
+        {name : "Deepak Sangle", email : "deepaksangle68@gmail.com" , phone : 9986741230, isAdmin : false, client_visits : 32, client_registration : 58, client_bookings : 63, id : 2},
+        {name : "Member 3", email : "memberthree@gmail.com",  phone : 9857239230, isAdmin : false, client_visits : 26, client_registration : 69, client_bookings : 420, id : 3},
     ]);
 
     const userName = "Roshan";
+    const userID = 0;
 
-    const [selectedMemberID, setSelectedMemberID] = useState(1);
+    const [selectedMemberID, setSelectedMemberID] = useState(0);
+    const [selectedTab, setSelectedTab] = useState(0);
 
     const CircleInfo = (props)=> {
         const name = props.name;
@@ -122,6 +124,50 @@ const TeamDashboardView = () => {
         )
     }
 
+    const MeetingCard = (props) => {
+        const isNext = props.isNext ;
+        return(
+            <View style={[styles.meet, {backgroundColor : isNext ? "#429B38" : "#FFFFFF"}]}>
+                <View style={styles.cardView}>
+                    <View style={styles.buildernameView}>
+                        <Text style={[styles.textStyle, {color : isNext ? "#FFFFFF" : "#3E506D", fontFamily : "Nunito-Bold"},]}>{props.builderName.toUpperCase()}</Text>
+                        {isNext && <View style={styles.nextView}>
+                            <Text style={[styles.textStyle, styles.nextText]}>  NEXT  </Text>
+                        </View>}
+                    </View>
+                    <Text style={[styles.textStyle, {color : isNext ? "#FFFFFF" : "#4A4A4A",fontFamily : "Nunito-SemiBold"}]}>{props.startingTime} - {props.endingTime}</Text>
+                </View>
+                <View style={styles.cardView}>
+                    <Text style={[styles.textStyle, {color : isNext ? "#FFFFFF" : "#3E506D", fontFamily : "Nunito-Bold"}]}>{props.name.toUpperCase()}</Text>
+                    <View style={{flexDirection : "row"}}>
+                        <Text style={[styles.textStyle, {color : isNext ? "#FFFFFF" : "#4A4A4A", fontFamily : "Nunito-SemiBold"}]}>{props.bhk} BHK - </Text>
+                        <Text style={[styles.textStyle, {color : isNext ? "#FFFFFF" : "#4A4A4A", fontFamily : "Nunito-SemiBold"}]}>{props.area} sqft</Text>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
+    const EachDayMeetingCards = (props) => {
+        return (
+            <View style={styles.eachDayView}>
+                <View style={styles.dateView}>
+                    <Text style={[styles.textStyle, styles.date]}>{props.date}</Text>
+                    <Text style={[styles.textStyle, styles.date]}>{props.month}</Text>
+                    <Text style={[styles.textStyle, styles.day]}>{props.day}</Text>
+                </View>
+                <View style={styles.meetView}>
+                    <MeetingCard isNext={props.day=="Today"} builderName="M3M - GOLFESTATE" startingTime="10:30 am" endingTime="11:30 am" name="MR. MALIK" bhk="3" area="3452" />
+                    <MeetingCard isNext={false} builderName="M3M - GOLFESTATE" startingTime="10:30 am" endingTime="11:30 am" name="MR. MALIK" bhk="3" area="3452" />
+                </View>
+            </View>
+        )
+    }
+
+    const changeSelectedTab = (index)=> {
+        setSelectedTab(index);
+    }
+
     return (
         <View style={{flex : 1,}}>
             <ScrollView>
@@ -152,9 +198,9 @@ const TeamDashboardView = () => {
 
                 <View style={styles.nameView}>
                     <View style={styles.description}>
-                        <Text style={[styles.textStyle, styles.usernameText]}>{userName.toUpperCase()}</Text>
-                        <Text style={[styles.textStyle, styles.youAdmin]}>You are the admin</Text>
-                        <Text style={[styles.textStyle, styles.youAdmin]}>Only admin can view team dashboard</Text>
+                        <Text style={[styles.textStyle, styles.usernameText]}>{teamMembersData[selectedMemberID].name.toUpperCase()}</Text>
+                        <Text style={[styles.textStyle, styles.youAdmin]}>{selectedMemberID === userID ? "You are the admin" : teamMembersData[selectedMemberID].email }</Text>
+                        <Text style={[styles.textStyle, styles.youAdmin]}>{selectedMemberID === userID ? "Only admin can view team dashboard" : teamMembersData[selectedMemberID].phone }</Text>
                     </View>
                     <View>
                         <View style={styles.editView}>
@@ -163,11 +209,32 @@ const TeamDashboardView = () => {
                     </View>
                 </View>
 
-                <View style={styles.allClientsView}>
+                {selectedMemberID===0 && <View style={styles.allClientsView}>
                     <TotalClientsView text="TOTAL CLIENTS VISITS" index={1}  />
                     <TotalClientsView text="TOTAL CLIENTS REGISTRATION" index={2}  />
                     <TotalClientsView text="TOTAL CLIENTS BOOKING" index={3} />
-                </View>
+                </View>}
+
+                {selectedMemberID!==0 && <View>
+                    <View style={styles.topView}>
+                        <TouchableOpacity activeOpacity={0.7} onPressOut={() => changeSelectedTab(0)} style={styles.sectionView}>
+                            <Text style={[styles.textStyle, styles.headText]}>Visits ({teamMembersData[selectedMemberID].client_visits})</Text>
+                            <View style={[styles.botLine, {opacity : (selectedTab === 0) ? 1 : 0}]}></View>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.7} onPressOut={() => changeSelectedTab(1)} style={styles.sectionView}>
+                            <Text style={[styles.textStyle, styles.headText]}>Registrations ({teamMembersData[selectedMemberID].client_registration})</Text>
+                            <View style={[styles.botLine, {opacity : (selectedTab === 1) ? 1 : 0}]}></View>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.7} onPressOut={() => changeSelectedTab(2)} style={styles.sectionView}>
+                            <Text style={[styles.textStyle, styles.headText]}>Bookings ({teamMembersData[selectedMemberID].client_bookings})</Text>
+                            <View style={[styles.botLine, {opacity : (selectedTab === 2) ? 1 : 0}]}></View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.mainView}>
+                        <EachDayMeetingCards date="08" day="Today" month="Dec" />
+                        <EachDayMeetingCards date="12" day="Wed" month="Dec" />
+                    </View>
+                </View>}
 
             </ScrollView>
             <View>
@@ -296,8 +363,77 @@ const styles = StyleSheet.create({
         fontSize : 16,
         fontFamily : "Nunito-Bold",
     },
-    scrollInfo : {
+    topView : {
+        flexDirection : "row",
+        justifyContent : "space-between",
+        alignItems : "center",
+        padding : 20,
+        marginTop : 15,
+        paddingBottom : 0,
+    },
+    sectionView : {
         
+    },
+    headText : {
+        color : "#545454",
+        marginVertical : 5,
+    },
+    botLine : {
+        borderColor : "#0078E9",
+        backgroundColor : "#0078E9",
+        borderWidth : 2,
+        borderRadius : 20,
+        marginTop : 5,
+    },
+    mainView : {
+        backgroundColor : "#E0E7F1",
+        padding : 20,
+    },
+    eachDayView : {
+        flexDirection : "row",
+        justifyContent : "space-between",
+        marginVertical : 10,
+    },
+    dateView : {
+        marginHorizontal : 20,
+        marginRight : 30,
+        flex : 0.12,
+    },
+    meetView : {
+        flex : 1,
+        marginLeft : 5,
+    },
+    date : {
+        fontFamily : "Nunito-Bold",
+        fontSize : 15,
+    },
+    day : {
+        fontFamily : "Nunito=SemiBold",
+        color : "#429B38",
+    },
+    cardView : {
+        margin : 5,
+    },
+    meet : {
+        padding : 15,
+        borderRadius : 6,
+        marginBottom : 10,
+        backgroundColor : "#FFFFFF",
+    },
+    buildernameView : {
+        flexDirection : "row",
+        alignItems : "center",
+    },
+    nextView : {
+        marginHorizontal : 15,
+        backgroundColor : "#3E506D",
+        borderRadius : 2,
+    },
+    nextText : {
+        fontFamily : "Nunito-Bold",
+        color : "#FFFFFF",
+        fontSize : 11,
+        margin : 3,
     }
 });
  

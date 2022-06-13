@@ -54,6 +54,7 @@ import SorryScreen from './app/native/screens/SorryScreen/sorryScreen';
 import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
 import TeamPack from './app/native/screens/teamPackScreen/teamPack';
 import MyClient from './app/native/screens/myClientScreen/myClient';
+import LoginView from './app/native/screens/loginView';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,19 +70,20 @@ const App = () => {
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
-          <Stack.Screen name='MyEvents' component={MyEvents} />
+          {/* <Stack.Screen name='MyEvents' component={MyEvents} />
           <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
           <Stack.Screen name='MenuScreen' component={MenuScreen} />
           <Stack.Screen name='SorryScreen' component={SorryScreen} />
           <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />
           <Stack.Screen name='TeamPack' component={TeamPack} />
-          <Stack.Screen name='MyClient' component={MyClient} />
+          <Stack.Screen name='MyClient' component={MyClient} /> */}
           <Stack.Screen name='SlideView' component={SlideView} />
           <Stack.Screen name='RegisterView' component={RegisterView} />
           <Stack.Screen name='OtpView' component={OtpView} />
           <Stack.Screen name='SelectcityView' component={SelectcityView} />
           <Stack.Screen name='DialogBox' component={DialogBox} />
           <Stack.Screen name='SelectCompanyView' component={SelectCompanyView} />
+          <Stack.Screen name='LoginView' component={LoginView} />
           <Stack.Screen name='WelcomeView' component={WelcomeView} />
           <Stack.Screen name='PlansPricingView' component={PlansPricingView} />
           <Stack.Screen name='BuilderPlanView' component={BuilderPlanView} />
