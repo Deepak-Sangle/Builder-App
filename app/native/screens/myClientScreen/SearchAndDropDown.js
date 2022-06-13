@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
 import Dropdown from './Dropdown';
 import Searchbar from './SearchBar';
-import {local_data} from './dummyData/DropDownData';
 
-export default function SearchAndDropDown() {
+export default function SearchAndDropDown({data}) {
   const [value, setValue] = useState();
   function updateSearch(value) {
     //do your search logic or anything
@@ -21,7 +20,7 @@ export default function SearchAndDropDown() {
       </View>
       <View>
         <Dropdown
-          data={local_data}
+          data={data}
           dropDownStyles={{
             margin: 16,
             height: 50,

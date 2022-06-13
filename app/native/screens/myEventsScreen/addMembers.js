@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
   },
   eventsCC45Text: {
     color: '#0078e9',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
   },
 });

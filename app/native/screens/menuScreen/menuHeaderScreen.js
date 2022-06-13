@@ -3,8 +3,10 @@ import {StyleSheet, View, Text, Image, Dimensions} from 'react-native';
 import Cross from 'react-native-vector-icons/Entypo';
 import Location from 'react-native-vector-icons/FontAwesome5';
 import deviceWidth from '../../../Constants/projectConstants';
+import {useSelector} from 'react-redux';
 
 export default function MenuHeaderScreen() {
+  const getDetails = useSelector(state => state);
   return (
     <View style={styles.menuHeader}>
       <View style={styles.menuHeaderPart1}>
@@ -21,15 +23,18 @@ export default function MenuHeaderScreen() {
         </View>
         <View style={styles.menuHeaderPart22}>
           <Text style={styles.textMenu}>Welcome</Text>
-          <Text style={styles.textMenu}>Mr. Dhoni{'\n'}</Text>
-          <Text>Manage your account</Text>
+          <Text style={styles.textMenuName}>
+            {getDetails.menuScreen.name}
+            {'\n'}
+          </Text>
+          <Text style={styles.mangAcc}>Manage your account</Text>
         </View>
       </View>
       <View style={styles.menuHeaderPart3}>
         <View style={styles.locIcon}>
           <Location name="map-marker-alt" />
         </View>
-        <Text style={styles.locText}>Gurugram</Text>
+        <Text style={styles.locText}>{getDetails.menuScreen.location}</Text>
       </View>
     </View>
   );
@@ -81,10 +86,16 @@ const styles = StyleSheet.create({
   },
   locText: {
     marginLeft: 7,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     marginRight: 10,
   },
   textMenu: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
+  },
+  textMenuName: {
+    fontFamily: 'Nunito-SemiBold',
+  },
+  mangAcc: {
+    fontFamily: 'Nunito-Regular',
   },
 });

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   clientDetailsText: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   clientDetailsPart2: {
     backgroundColor: '#dbe5f3',
@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
   fourDigTxt: {
     marginTop: 10,
     color: '#768497',
+    fontFamily: 'Nunito-Regular',
   },
 });

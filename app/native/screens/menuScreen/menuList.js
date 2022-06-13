@@ -2,8 +2,10 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {MenuListData} from './dummyData/MenuListData';
 import {Badge} from 'react-native-paper';
+import {useSelector} from 'react-redux';
 
 export default function MenuList() {
+  const getDetails = useSelector(state => state);
   return (
     <View style={styles.menuList}>
       <Text style={styles.createYourTeamText}>Create Your Team</Text>
@@ -12,7 +14,7 @@ export default function MenuList() {
       </Badge>
 
       <View>
-        {MenuListData.map(item => {
+        {getDetails.menuScreen.menuList.map(item => {
           return (
             <View key={item.key} style={styles.menuListView}>
               <Text style={styles.menuListText}>{item.text}</Text>
@@ -44,19 +46,20 @@ const styles = StyleSheet.create({
   menuListText: {
     marginLeft: '6%',
     textTransform: 'uppercase',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
     color: '#4a4a4a',
   },
   createYourTeamText: {
     marginLeft: '5%',
     textTransform: 'uppercase',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
     padding: 15,
     color: '#4a4a4a',
   },
   signOutMenuItem: {
     marginLeft: '6%',
     color: '#4a4a4a',
+    fontFamily: 'Nunito-Regular',
   },
   menuListFooter: {
     padding: 15,
@@ -66,12 +69,13 @@ const styles = StyleSheet.create({
   },
   footerStyle: {
     color: '#4a4a4a',
+    fontFamily: 'Nunito-Regular',
   },
   badgeMenu: {
     position: 'absolute',
-    left: '42%',
+    left: '43%',
     backgroundColor: '#f5e350',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     color: '#4a4a4a',
     borderRadius: 5,
     top: '1%',

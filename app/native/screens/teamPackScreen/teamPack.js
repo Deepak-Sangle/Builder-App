@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  Image,
-  ScrollView,
-} from 'react-native';
-import deviceWidth from '../../../Constants/projectConstants';
+import {StyleSheet, ScrollView} from 'react-native';
 import CreateTeamForm from './createTeamForm';
 import TeamPackHeader from './teamPackHeader';
 

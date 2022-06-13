@@ -28,12 +28,13 @@ const styles = StyleSheet.create({
     paddingTop: 70,
   },
   congoText: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     color: '#ffffff',
     fontSize: 15,
   },
   fellowText: {
     color: '#ffffff',
+    fontFamily: 'Nunito-Regular',
   },
   fellowTextCont: {
     alignItems: 'center',

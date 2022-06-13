@@ -3,10 +3,11 @@ import {StyleSheet, View, Text, Dimensions, ScrollView} from 'react-native';
 import ClientCard from './ClientCard';
 import SearchAndDropDown from './SearchAndDropDown';
 import UpcomingVisits from './upcomingVisits';
-import {ClientData} from './dummyData/ClientData';
 import deviceWidth from '../../../Constants/projectConstants';
+import {useSelector} from 'react-redux';
 
 export default function MyClient() {
+  const getDetails = useSelector(state => state);
   return (
     <ScrollView>
       <View style={styles.clientsCont}>
@@ -15,10 +16,12 @@ export default function MyClient() {
           <Text style={styles.btn1}>SCHEDULE CLIENT VISIT</Text>
           <Text style={styles.btn2}>WALK-IN</Text>
         </View>
-        <UpcomingVisits />
-        <SearchAndDropDown />
+        <UpcomingVisits
+          clientData={getDetails.myClientScreen.upcomingClients}
+        />
+        <SearchAndDropDown data={getDetails.myClientScreen.dropDown} />
 
-        {ClientData.map(item => {
+        {getDetails.myClientScreen.client.map(item => {
           //const regStatus = item.status.reg == null;
           return (
             <View key={item.key}>
@@ -33,7 +36,7 @@ export default function MyClient() {
 
 const styles = StyleSheet.create({
   clientsCont: {
-    marginTop: 40, //for the back n sidebar btn
+    marginTop: 0,
     backgroundColor: '#f5f8fc',
   },
   cont: {
@@ -47,30 +50,31 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginLeft: '2%',
     padding: 15,
-    paddingLeft: 40,
-    paddingRight: 40,
+    textAlign: 'center',
     backgroundColor: '#0078e9',
     color: '#fff',
     borderRadius: 10,
     borderColor: '#0078e9',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
+    width: '61%',
   },
 
   btn2: {
     borderWidth: 1,
-    paddingLeft: 40,
-    paddingRight: 40,
     padding: 15,
-    fontWeight: 'bold',
+    textAlign: 'center',
+    width: '33%',
     backgroundColor: '#fff',
     color: '#0078e9',
     borderColor: '#0078e9',
     borderRadius: 10,
     marginRight: '2%',
+    fontFamily: 'Nunito-Bold',
   },
   header: {
-    fontWeight: 'bold',
     marginTop: 30,
     textAlign: 'center',
+    fontFamily: 'Nunito-Bold',
+    fontSize: 15,
   },
 });

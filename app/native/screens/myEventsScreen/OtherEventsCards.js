@@ -20,16 +20,18 @@ export default function OtherEventsCards() {
         </View>
       </View>
       <View style={styles.eventsCC2}>
-        <Text>Lorem ipsum dolor sit amet</Text>
+        <Text style={styles.cc2Text}>Lorem ipsum dolor sit amet</Text>
         <View style={styles.eventsCC2Comp}>
           <View>
             <Image source={require('../../assests/calanderImage.png')} />
           </View>
           <View style={styles.eventsCC2Right}>
-            <Text>5:00 PM onwards at</Text>
-            <Text style={{marginTop: 7}}>Radison Hotel</Text>
-            <Text>Ninex Mall, Sohna Road, Gurgaon{'\n'}</Text>
-            <Text>
+            <Text style={styles.cc2Text}>5:00 PM onwards at</Text>
+            <Text style={styles.cc2HotelText}>Radison Hotel</Text>
+            <Text style={styles.cc2Text}>
+              Ninex Mall, Sohna Road, Gurgaon{'\n'}
+            </Text>
+            <Text style={styles.cc2Text}>
               <Location name="map-marker-alt" />
               {'\t'}View on Map
             </Text>
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   eventsCC1HeaderLeft: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     color: '#000',
   },
   eventsCC1HeaderRight: {
@@ -88,7 +90,14 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   goingText: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     color: 'green',
+  },
+  cc2Text: {
+    fontFamily: 'Nunito-Regular',
+  },
+  cc2HotelText: {
+    marginTop: 7,
+    fontFamily: 'Nunito-Regular',
   },
 });

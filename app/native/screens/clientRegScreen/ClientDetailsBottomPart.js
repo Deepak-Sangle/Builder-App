@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
     width: deviceWidth - 30,
   },
   checkBoxText: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
   },
   checkBoxBtnText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     textAlign: 'center',
   },
   checkBoxSectionBtn: {

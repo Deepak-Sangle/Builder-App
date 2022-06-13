@@ -34,7 +34,9 @@ export default function ClientDetails() {
           />
           <View style={styles.chchkBxTxtComp}>
             <Text style={styles.checkBoxText}>Make admin</Text>
-            <Text>Admin can see team activity</Text>
+            <Text style={styles.checkBoxDescText}>
+              Admin can see team activity
+            </Text>
           </View>
         </View>
       </View>
@@ -54,7 +56,6 @@ export default function ClientDetails() {
 const styles = StyleSheet.create({
   teamPackComp: {
     alignSelf: 'center',
-    backgroundColor: '#f7fafe',
   },
   teamPackPart1: {
     marginTop: 40,
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   createTeamTxt: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   checkBoxSection: {
     flexDirection: 'row',
@@ -94,7 +95,10 @@ const styles = StyleSheet.create({
     marginLeft: '-2%',
   },
   checkBoxText: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
+  },
+  checkBoxDescText: {
+    fontFamily: 'Nunito-Regular',
   },
   chchkBxTxtComp: {
     flexDirection: 'column',
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
   },
   addText: {
     color: '#0078e9',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   createBtnComp: {
     marginTop: 50,
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 5,
     borderColor: '#0078e9',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     textAlign: 'center',
   },
 });

@@ -55,12 +55,12 @@ export default function UpcomingCard({data}) {
       <View style={styles.cc2}>
         <View style={styles.textCardComp}>
           <Text style={styles.cc2name}>{data.name}</Text>
-          <Text>
+          <Text style={styles.cc2buildingInfoAndRm}>
             {data.info}
             {'\n'}
           </Text>
           <Text style={styles.cc2name}>{data.type}</Text>
-          <Text>{data.rm}</Text>
+          <Text style={styles.cc2buildingInfoAndRm}>{data.rm}</Text>
           <Text style={styles.cc2approval}>{data.approvedOn}</Text>
         </View>
       </View>
@@ -109,19 +109,21 @@ const styles = StyleSheet.create({
   },
   cc1textYes: {
     color: '#fff',
+    fontFamily: 'Nunito-SemiBold',
   },
   cc1textNo: {
     color: '#000',
+    fontFamily: 'Nunito-SemiBold',
   },
   cc1dateYes: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   cc1dateNo: {
     color: '#000',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   textCardComp: {
     marginVertical: 8,
@@ -130,13 +132,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   cc2name: {
-    fontWeight: 'bold',
     color: '#000',
+    fontFamily: 'Nunito-Bold',
   },
   cc2approval: {
     color: '#C0C0C0',
+    fontFamily: 'Nunito-Regular',
   },
   cc3: {
     marginVertical: 45,
+  },
+  cc2buildingInfoAndRm: {
+    fontFamily: 'Nunito-SemiBold',
   },
 });

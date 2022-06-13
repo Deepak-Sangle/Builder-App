@@ -4,17 +4,23 @@ import ClientDetails from './ClientDetails';
 import CheckboxAndBtn from './ClientDetailsBottomPart';
 import ClientRegCarousel from './clientRegCarousel';
 import ClientRegFields from './ClientRegFields';
-import {CarouselData} from './dummyDataClientReg/CarouselData';
 import deviceWidth from '../../../Constants/projectConstants';
+import {useSelector} from 'react-redux';
 
 export default function ClientRegScreen() {
+  const getDetails = useSelector(state => state);
+
   return (
     <ScrollView>
       <View style={styles.eventsCont}>
         <Text style={styles.header}>REGISTER A WALK-IN CLIENT</Text>
         <Text style={styles.carouselHeader}>Select builder</Text>
-        <ClientRegCarousel data={CarouselData} />
-        <ClientRegFields />
+        <ClientRegCarousel data={getDetails.clientRegScreen.carousel} />
+        <ClientRegFields
+          property={getDetails.clientRegScreen.property}
+          project={getDetails.clientRegScreen.project}
+          rmD={getDetails.clientRegScreen.rmD}
+        />
         <ClientDetails />
         <CheckboxAndBtn />
       </View>
@@ -24,10 +30,9 @@ export default function ClientRegScreen() {
 
 const styles = StyleSheet.create({
   header: {
-    marginTop: 70,
+    marginTop: 50,
     textAlign: 'center',
-    fontWeight: 'bold',
-    //fontFamily: 'Ubuntu-Medium',
+    fontFamily: 'Nunito-Bold',
   },
   eventsCont: {
     flexDirection: 'column',
@@ -39,6 +44,6 @@ const styles = StyleSheet.create({
   carouselHeader: {
     marginTop: 40,
     marginBottom: 20,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
 });

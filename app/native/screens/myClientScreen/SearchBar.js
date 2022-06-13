@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   textInput: {
     // backgroundColor: 'green',
     flex: 1,
+    fontFamily: 'Nunito-SemiBold',
   },
 
   vwSearch: {

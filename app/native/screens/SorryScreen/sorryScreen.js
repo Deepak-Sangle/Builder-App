@@ -34,10 +34,12 @@ const styles = StyleSheet.create({
   },
   sorryText: {
     fontSize: 25,
+    fontFamily: 'Nunito-SemiBold',
   },
   noResultText: {
     fontSize: 18,
     marginTop: 10,
+    fontFamily: 'Nunito-Regular',
   },
   backBtnSorryScreen: {
     borderWidth: 1,
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 10,
     borderColor: '#0078e9',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     textAlign: 'center',
     paddingLeft: 130,
     paddingRight: 130,
@@ -54,5 +56,6 @@ const styles = StyleSheet.create({
   goToHome: {
     textAlign: 'center',
     marginTop: 30,
+    fontFamily: 'Nunito-Regular',
   },
 });

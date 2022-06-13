@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   selectedTextStyle: {
     fontSize: 16,
     marginLeft: 8,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
   },
   iconStyle: {
     width: 20,

@@ -7,7 +7,7 @@ export default function QRComp() {
     <View style={styles.qrCardComp}>
       <View style={styles.eventsCC3}>
         <View>
-          <Text style={{marginLeft: 15}}>
+          <Text style={styles.qrTextPart}>
             Please scan this code when you {'\n'}reach at the venue
           </Text>
         </View>
@@ -44,8 +44,12 @@ const styles = StyleSheet.create({
   qrImg: {
     height: 100,
     width: 100,
-    marginRight: 15,
+    marginRight: '5%',
     marginTop: 15,
     marginBottom: 15,
+  },
+  qrTextPart: {
+    marginLeft: '5%',
+    fontFamily: 'Nunito-Regular',
   },
 });
