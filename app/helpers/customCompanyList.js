@@ -13,6 +13,7 @@ const CustomCompanyList = (props) => {
     const setNumofSelection = props.setNumofSelection;
     const height = props.height ? props.height : 175;
     const isTouchable = props.isTouchable ? props.isTouchable : false;
+    const pressHandler = props.pressHandler;
 
     if(size%2){
         data.push({});
@@ -30,6 +31,7 @@ const CustomCompanyList = (props) => {
         }
 
         const onPressHandler = ()=>{
+            if(pressHandler!=undefined) pressHandler();
             if(!isTouchable) return ;
             if(item.isTag) return ;
             if(item.isSelected)

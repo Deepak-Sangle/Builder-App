@@ -1,24 +1,27 @@
 import React from 'react';
-import {StyleSheet, View, Text, Dimensions, ScrollView} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
 import ClientCard from './ClientCard';
 import SearchAndDropDown from './SearchAndDropDown';
 import UpcomingVisits from './upcomingVisits';
-import {ClientData} from './dummyData/ClientData';
 import deviceWidth from '../../../Constants/projectConstants';
+import {useSelector} from 'react-redux';
 
-export default function MyClient() {
+export default function MyClient({navigation}) {
+  const getDetails = useSelector(state => state);
   return (
     <ScrollView>
       <View style={styles.clientsCont}>
         <Text style={styles.header}>MY CLIENTS</Text>
         <View style={styles.cont}>
           <Text style={styles.btn1}>SCHEDULE CLIENT VISIT</Text>
-          <Text style={styles.btn2}>WALK-IN</Text>
+          <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigation.navigate('ClientRegScreen')}><Text style={styles.btn2}>WALK-IN</Text></TouchableOpacity>
         </View>
-        <UpcomingVisits />
-        <SearchAndDropDown />
+        <UpcomingVisits
+          clientData={getDetails.myClientScreen.upcomingClients}
+        />
+        <SearchAndDropDown data={getDetails.myClientScreen.dropDown} />
 
-        {ClientData.map(item => {
+        {getDetails.myClientScreen.client.map(item => {
           //const regStatus = item.status.reg == null;
           return (
             <View key={item.key}>

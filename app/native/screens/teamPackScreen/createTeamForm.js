@@ -3,9 +3,14 @@ import {StyleSheet, View, Text, TextInput} from 'react-native';
 import {Checkbox} from 'react-native-paper';
 import deviceWidth from '../../../Constants/projectConstants';
 import Plus from 'react-native-vector-icons/AntDesign';
+import CustomButtons from '../../../helpers/customButtons';
 
-export default function ClientDetails() {
+export default function ClientDetails({navigation}) {
   const [checked, setChecked] = useState(false);
+
+  const createTeam = () => {
+    navigation.navigate('AlreadyMember');
+  };
 
   return (
     <View style={styles.teamPackComp}>
@@ -44,8 +49,8 @@ export default function ClientDetails() {
           <Text style={styles.addText}>Add another team member</Text>
         </View>
       </View>
-      <View style={styles.createBtnComp}>
-        <Text style={styles.createBtn}>CREATE</Text>
+      <View style={{margin : 20,}}>
+        <CustomButtons text="CREATE" isDone={true} pressHandler={createTeam} />
       </View>
     </View>
   );

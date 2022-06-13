@@ -10,9 +10,12 @@ import HorizontalImageScroll from '../../helpers/horizontalImageScroll';
 import HorizontalDataScroll from '../../helpers/HorizontalDataScroll';
 import { Divider } from 'react-native-paper';
 import UpdateCard from '../../helpers/updateCard';
+import UpcomingEventsCard from '../../helpers/upcomingEventsCard';
 
-const DashBoardView = ({navigation}) => {
+const DashBoardView = ({navigation, route}) => {
 
+    const access = route.params!=undefined ? route.params : false;
+    
     const [searchQuery, setSearchQuery] = useState('');
 
     const [imageList, setImageList] = useState([
@@ -72,11 +75,16 @@ const DashBoardView = ({navigation}) => {
                     <CustomSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} text="Search for builder or properties" />
                 </View>
                 
+                {access && <View style={styles.allCardsView}>
+                    <UpcomingEventsCard textblack={false} arrowColor="#00B055" backgroundColor="#00B055" heading="UPCOMING EVENT" date="Dec 15, 2020 at 6 p.m" address="Radission, Sohna Road" description="Golf Estate Phase 2 Launch Party" />
+                    <UpcomingEventsCard textblack={true} arrowColor="#0078E9" backgroundColor="#F9D56B" heading="RUNNING POLL" date="Ends on: Dec 15, 2020" description="What should be the Pt should be the Pt should be the PLC charges" />
+                </View>}
+
                 <ImageCorousel imageList={imageList} heading="TOP OFFERS" />
 
                 <View style={{marginVertical : 20}}>
                     <Text style={[styles.textStyle, styles.headers, {marginBottom : 20}]}>BUILDERS ONBOARD</Text>
-                    <HorizontalImageScroll navigation={navigation} resizeMode="contain" data={buildersImage} size={100} />
+                    <HorizontalImageScroll access={access} navigation={navigation} resizeMode="contain" data={buildersImage} size={100} />
                 </View>
 
                 <Divider />
@@ -103,6 +111,9 @@ const styles = StyleSheet.create({
     },
     searchBar : {
         margin : 15,
+    },
+    allCardsView : {
+        paddingHorizontal : 15,
     },
     offersView : {
         marginVertical : 10,

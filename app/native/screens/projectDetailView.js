@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native'
 
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
-import CustomArrow from '../../helpers/customArrow';
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
 import UpdateCard from '../../helpers/updateCard';
@@ -16,6 +15,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import IonIcon from 'react-native-vector-icons/Ionicons'
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5'
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
+import UpcomingEventsCard from '../../helpers/upcomingEventsCard';
 
 const ProjectDetailView = () => {
 
@@ -113,30 +113,8 @@ const ProjectDetailView = () => {
                 <LogoHeader text={"RERA No. "+ rera_no} isBack={true} isThreeDot={true} source={source} size={75}   />
                 
                 <View style={styles.allCardsView}>
-
-                    <TouchableOpacity activeOpacity={0.5} style={[styles.cardView, {backgroundColor : "#00B055" }]}>
-                        <View style={{marginRight : 50, flex : 1}}>
-                            <Text style={[styles.textStyle, styles.heading]}>UPCOMING EVENT</Text>
-                            <View horizontal={true}>
-                                <Text numberOfLines={1} style={[styles.textStyle, styles.description]}>Golf Estate Phase 2 Launch Party</Text>
-                            </View>
-                            <Text style={[styles.textStyle, styles.line]}>Radission, Sohna Road</Text>
-                            <Text style={[styles.textStyle, styles.line]}>Dec 15, 2020 at 6 p.m</Text>
-                        </View>
-                        <CustomArrow color="#00B055" />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity activeOpacity={0.5} style={[styles.cardView, {backgroundColor : "#F9D56B" }]}>
-                        <View style={{marginRight : 50, flex : 1}}>
-                            <Text style={[styles.textStyle, styles.heading, {color : "#8B6B0F"}]}>RUNNING POLL</Text>
-                            <View horizontal={true}>
-                                <Text numberOfLines={1} style={[styles.textStyle, styles.description, {color : "#202020"}]}>What should be the Pt should be the Pt should be the PLC charges fo…</Text>
-                            </View>
-                            <Text style={[styles.textStyle, styles.line, {color : "#4A4A4A"}]}>Ends on: Dec 15, 2020</Text>
-                        </View>
-                        <CustomArrow color="#0078E9" />
-                    </TouchableOpacity>
-
+                    <UpcomingEventsCard textblack={false} arrowColor="#00B055" backgroundColor="#00B055" heading="UPCOMING EVENT" date="Dec 15, 2020 at 6 p.m" address="Radission, Sohna Road" description="Golf Estate Phase 2 Launch Party" />
+                    <UpcomingEventsCard textblack={true} arrowColor="#0078E9" backgroundColor="#F9D56B" heading="RUNNING POLL" date="Ends on: Dec 15, 2020" description="What should be the Pt should be the Pt should be the PLC charges" />
                 </View>
 
                 <HorizontalImageScroll size={350} data={imagesList}  />
@@ -235,32 +213,11 @@ const styles = StyleSheet.create({
     allCardsView : {
         paddingHorizontal : 15,
     },
-    cardView : {
-        padding : 25,
-        borderRadius : 8,
-        flexDirection : "row",
-        justifyContent : "space-between",
-        alignItems : "center",
-        marginBottom : 20,
-    },
     textStyle : {
         fontFamily : "Nunito",
         letterSpacing : 0.5,
         fontSize : 12,
         color : "#FFFFFF",
-    },
-    heading : {
-        fontFamily : "Nunito-Bold",
-        color : "#D4E8DE",
-        fontSize : 14,
-    },
-    description : {
-        fontFamily : "Nunito-Bold",
-        marginVertical : 5,
-        fontSize : 13,
-    },
-    line : {
-        fontFamily : "Nunito-SemiBold",
     },
     imgView : {
         marginHorizontal : 15,

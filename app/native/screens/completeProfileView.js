@@ -25,7 +25,7 @@ const CompleteProfileView = ({navigation}) => {
         data['state'] = state;
         data['company_type'] = company;
         console.log(data);
-        navigation.navigate('DashBoardView');
+        navigation.navigate('DashBoardView', {access : true});
     }
 
     const UploadPANRedirect = () => {
@@ -192,7 +192,8 @@ const CompleteProfileView = ({navigation}) => {
 
                 </View>
                 <View style={[styles.btnView, styles.container]}>
-                    <CustomButtons text="SUBMIT" isDone={true} pressHandler={handleSubmit(onSubmit)} />
+                    <CustomButtons text="SUBMIT" isDone={true} pressHandler={(onSubmit)} />
+                    {/* should be handleSubmit(onSubmit) */}
                 </View>
             </View>
         </ScrollView>

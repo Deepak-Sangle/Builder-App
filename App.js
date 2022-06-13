@@ -55,6 +55,27 @@ import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
 import TeamPack from './app/native/screens/teamPackScreen/teamPack';
 import MyClient from './app/native/screens/myClientScreen/myClient';
 import LoginView from './app/native/screens/loginView';
+import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemScreen';
+
+import {Provider} from 'react-redux';
+import {configureStore} from '@reduxjs/toolkit';
+import alreadyMemReducer from './app/redux-toolkit/reducers/alreadyMemScreenReducer';
+import menuScreenReducer from './app/redux-toolkit/reducers/menuScreenReducer';
+import clientRegScreenReducer from './app/redux-toolkit/reducers/clientRegScreenReducer';
+import deedDocScreenReducer from './app/redux-toolkit/reducers/deedDocScreenReducer';
+import myClientScreenReducer from './app/redux-toolkit/reducers/myClientScreenReducer';
+import eventScreenReducer from './app/redux-toolkit/reducers/eventScreenReducer';
+
+const store = configureStore({
+  reducer: {
+    alreadyMemScreen: alreadyMemReducer,
+    menuScreen: menuScreenReducer,
+    clientRegScreen: clientRegScreenReducer,
+    deedDocScreen: deedDocScreenReducer,
+    myClientScreen: myClientScreenReducer,
+    eventScreen: eventScreenReducer,
+  },
+});
 
 const Stack = createNativeStackNavigator();
 
@@ -70,21 +91,15 @@ const App = () => {
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
-          {/* <Stack.Screen name='MyEvents' component={MyEvents} />
-          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
-          <Stack.Screen name='MenuScreen' component={MenuScreen} />
-          <Stack.Screen name='SorryScreen' component={SorryScreen} />
-          <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />
-          <Stack.Screen name='TeamPack' component={TeamPack} />
-          <Stack.Screen name='MyClient' component={MyClient} /> */}
+          {/* <Stack.Screen name='MyEvents' component={MyEvents} /> */}
           <Stack.Screen name='SlideView' component={SlideView} />
           <Stack.Screen name='RegisterView' component={RegisterView} />
           <Stack.Screen name='OtpView' component={OtpView} />
           <Stack.Screen name='SelectcityView' component={SelectcityView} />
           <Stack.Screen name='DialogBox' component={DialogBox} />
           <Stack.Screen name='SelectCompanyView' component={SelectCompanyView} />
-          <Stack.Screen name='LoginView' component={LoginView} />
           <Stack.Screen name='WelcomeView' component={WelcomeView} />
+          <Stack.Screen name='LoginView' component={LoginView} />
           <Stack.Screen name='PlansPricingView' component={PlansPricingView} />
           <Stack.Screen name='BuilderPlanView' component={BuilderPlanView} />
           <Stack.Screen name='PaymentView' component={PaymentView} />
@@ -92,12 +107,20 @@ const App = () => {
           <Stack.Screen name='DashBoardView' component={DashBoardView} />
           <Stack.Screen name='PreAccessView' component={PreAccessView} />
           <Stack.Screen name='ProjectDetailView' component={ProjectDetailView} />
-          <Stack.Screen name='ManageAccount' component={ManageAccount} />
-          <Stack.Screen name='TeamDashboardView' component={TeamDashboardView} />
+          <Stack.Screen name='MenuScreen' component={MenuScreen}/>      
+          {/*  Right to left and vice versa animation is pending :( */}
+          <Stack.Screen name='SorryScreen' component={SorryScreen} />
           <Stack.Screen name='NewsView' component={NewsView} />
           <Stack.Screen name='CircleRateView' component={CircleRateView} />
           <Stack.Screen name='GovtPolicyView' component={GovtPolicyView} />
           <Stack.Screen name='SampleDocumentView' component={SampleDocumentView} />
+          <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />
+          <Stack.Screen name='ManageAccount' component={ManageAccount} />
+          <Stack.Screen name='MyClient' component={MyClient} />
+          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
+          <Stack.Screen name='TeamPack' component={TeamPack} />
+          <Stack.Screen name='AlreadyMember' component={AlreadyMember} />
+          <Stack.Screen name='TeamDashboardView' component={TeamDashboardView} />
         </Stack.Navigator>
         </NavigationContainer>
     </SafeAreaView>
@@ -123,4 +146,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};

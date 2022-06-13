@@ -1,21 +1,31 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {MenuListData} from './dummyData/MenuListData';
 import {Badge} from 'react-native-paper';
+import {useSelector} from 'react-redux';
 
-export default function MenuList() {
+export default function MenuList({navigation}) {
+  const getDetails = useSelector(state => state);
+
+  const navigate = (navigateTo)=> {
+    if(navigateTo!=undefined)
+      navigation.navigate(navigateTo);
+  }
+
   return (
     <View style={styles.menuList}>
-      <Text style={styles.createYourTeamText}>Create Your Team</Text>
+      <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigation.navigate('TeamPack')}><Text style={styles.createYourTeamText}>Create Your Team</Text></TouchableOpacity>
       <Badge size={20} style={styles.badgeMenu}>
         PRO
       </Badge>
 
       <View>
-        {MenuListData.map(item => {
+        {getDetails.menuScreen.menuList.map(item => {
           return (
             <View key={item.key} style={styles.menuListView}>
-              <Text style={styles.menuListText}>{item.text}</Text>
+              <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigate(item.navigateTo)}>
+                <Text style={styles.menuListText}>{item.text}</Text>
+              </TouchableOpacity>
             </View>
           );
         })}

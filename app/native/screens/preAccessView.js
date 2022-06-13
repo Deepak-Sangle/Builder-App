@@ -11,9 +11,11 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
 
-const PreAccessView = ({navigation}) => {
+const PreAccessView = ({navigation, route}) => {
     const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap.png');
     const icon = <MaterialIcon name="arrow-forward-ios" size={15} color="#FFFFFF" />
+
+    const {access} = route.params;
 
     const [projectTypeList, setprojectTypeList] = useState([
         {label : "Residential Projects", value : "residential_projects"},
@@ -40,32 +42,37 @@ const PreAccessView = ({navigation}) => {
         navigation.navigate('PlansPricingView');
     }
 
+    const selectedProject = ()=> {
+        if(access)
+            navigation.navigate('ProjectDetailView');
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView style={{flex : 1}} nestedScrollEnabled={true}>
                 <LogoHeader isBack={true} isThreeDot={true} source={source} size={75} topPadding={20}  />
-                <View>
+                {!access && <View>
                     <View style={styles.accessView}>
                         <Icon style={styles.minusStyle} name='minuscircle' color="#E84242" size={25} />
                         <Text style={[styles.textStyle,styles.accessText]}>You do not have access</Text>
                     </View>
-                </View>
+                </View>}
                 <View style={styles.projectView}>
                     <CustomFilterMenu  list={projectTypeList} item={projectType} setItem={setProjectType}  />
-                    <View style={styles.flatListView}>
-                        <CustomCompanyList height={125} text="New Launch" data={projectList} />
+                    <View style={[styles.flatListView, {height : access ? 625 : 500,}]}>
+                        <CustomCompanyList pressHandler={selectedProject} height={125} text="New Launch" data={projectList} />
                     </View>
                 </View>
-                <View style={styles.plansView}>
+                {!access && <View style={styles.plansView}>
                     <Text style={[styles.gainText, styles.textStyle]}>To gain access, check</Text>
                     <View style={styles.btnView}>
                         <CustomButtons right={true} icon={icon} margin={10} text="PLANS & PRICING" isDone={true} pressHandler={onClick}  />
                     </View>
-                </View>
-                <View style={styles.codeView}>
+                </View>}
+                {!access && <View style={styles.codeView}>
                     <Text style={styles.textStyle}>Or if you have access code from builder?</Text>
                     <TouchableOpacity><Text style={styles.clickText}> Click Here</Text></TouchableOpacity>
-                </View>
+                </View>}
             </ScrollView>
             <View>
                 <BottomNavigationTab />
@@ -112,7 +119,6 @@ const styles = StyleSheet.create({
     flatListView : {
         marginTop : 10,
         backgroundColor : "#FFFFFF",
-        height : 500,
     },
     plansView : {
         flexDirection : "row",

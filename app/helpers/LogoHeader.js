@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, Image} from 'react-native'
 import Icons from 'react-native-vector-icons/Octicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons' //arrow-back-ios
+import { useNavigation } from '@react-navigation/native';
 
 const LogoHeader = (props) => {
     const dimensions = props.size;
@@ -17,6 +18,8 @@ const LogoHeader = (props) => {
     const leftPadding = isHeader ? 50 : 0;
     const topPadding = props.topPadding ? props.topPadding : props.source ? 20 : 30;
 
+    const navigation = useNavigation();
+    
     const icon = {
         width : dimensions,
         height : dimensions,
@@ -28,10 +31,19 @@ const LogoHeader = (props) => {
         paddingTop : topPadding,
     }
 
+    const openSideBar = ()=> {
+        if(!isThreeDot) return;
+        navigation.navigate('MenuScreen');
+    }
+
+    const goBack = ()=> {
+        if(isBack) navigation.goBack();
+    }
+
     return (
         <View>
             <View style={[styles.container, headingStyle]}>
-                {!isHeader && <TouchableOpacity activeOpacity={isBack ? 0.5 : 0} style={[styles.backView, {opacity : isBack ? 1 : 0}]}>
+                {!isHeader && <TouchableOpacity onPressOut={goBack} activeOpacity={isBack ? 0.5 : 0} style={[styles.backView, {opacity : isBack ? 1 : 0}]}>
                     <MaterialIcons name="arrow-back-ios" size={20} color="#0078E9" />
                 </TouchableOpacity>}
 
@@ -48,7 +60,7 @@ const LogoHeader = (props) => {
                     {isDescription && <Text style={[styles.textStyle, styles.descriptionText]}>Real Estate Simplified</Text>}
                 </View>}
 
-                {!isHeader && <TouchableOpacity activeOpacity={isThreeDot ? 0.5 : 0} style={[styles.navigationView, {opacity : isThreeDot ? 1 : 0}]}>
+                {!isHeader && <TouchableOpacity onPressOut={openSideBar} activeOpacity={isThreeDot ? 0.5 : 0} style={[styles.navigationView, {opacity : isThreeDot ? 1 : 0}]}>
                     <Icons name='three-bars' size={25} color="#4A4A4A" />
                 </TouchableOpacity>}
             </View>

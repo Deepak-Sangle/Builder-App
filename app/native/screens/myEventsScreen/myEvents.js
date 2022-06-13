@@ -8,15 +8,17 @@ import ImageAndCal from './ImageAndCal';
 import OtherEventsCards from './OtherEventsCards';
 import QRComp from './qrComp';
 import deviceWidth from '../../../Constants/projectConstants';
+import {useSelector} from 'react-redux';
 
 export default function MyEvents() {
+  const getDetails = useSelector(state => state);
   return (
     <ScrollView>
       <View style={styles.eventsCont}>
         <Text style={styles.header}>EVENTS</Text>
         <View>
           <Dropdown
-            data={EventsDropDown}
+            data={getDetails.eventScreen.events}
             dropDownStyles={{
               width: deviceWidth - 30,
               marginTop: 15,

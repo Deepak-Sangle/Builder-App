@@ -1,15 +1,21 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image, Dimensions} from 'react-native';
+import {StyleSheet, View, Text, Image, Dimensions, TouchableOpacity} from 'react-native';
 import Cross from 'react-native-vector-icons/Entypo';
 import Location from 'react-native-vector-icons/FontAwesome5';
 import deviceWidth from '../../../Constants/projectConstants';
+import {useSelector} from 'react-redux';
 
-export default function MenuHeaderScreen() {
+export default function MenuHeaderScreen({navigation}) {
+  const getDetails = useSelector(state => state);
+
+  const goBack = ()=> {
+    navigation.goBack();
+  }
   return (
     <View style={styles.menuHeader}>
-      <View style={styles.menuHeaderPart1}>
+      <TouchableOpacity activeOpacity={0.5} onPressOut={goBack} style={styles.menuHeaderPart1}>
         <Cross name="cross" size={30} />
-      </View>
+      </TouchableOpacity>
       <View style={styles.menuHeaderPart2}>
         <View>
           <Image
@@ -21,15 +27,18 @@ export default function MenuHeaderScreen() {
         </View>
         <View style={styles.menuHeaderPart22}>
           <Text style={styles.textMenu}>Welcome</Text>
-          <Text style={styles.textMenu}>Mr. Dhoni{'\n'}</Text>
-          <Text>Manage your account</Text>
+          <Text style={styles.textMenu}>
+            {getDetails.menuScreen.name}
+            {'\n'}
+          </Text>
+          <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigation.navigate('ManageAccount')}><Text>Manage your account</Text></TouchableOpacity>
         </View>
       </View>
       <View style={styles.menuHeaderPart3}>
         <View style={styles.locIcon}>
           <Location name="map-marker-alt" />
         </View>
-        <Text style={styles.locText}>Gurugram</Text>
+        <Text style={styles.locText}>{getDetails.menuScreen.location}</Text>
       </View>
     </View>
   );

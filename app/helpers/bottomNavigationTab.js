@@ -6,30 +6,34 @@ import IonIcons from 'react-native-vector-icons/Ionicons'
 import AwesomeIcons from 'react-native-vector-icons/FontAwesome5'         
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons' 
 import EntypoIcons from 'react-native-vector-icons/Entypo' 
+import { useNavigation } from '@react-navigation/native';
 
 const BottomNavigationTab = () => {
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.navigationView}>
-            <View style={styles.iconView}>
+            <TouchableOpacity activeOpacity={0.7}  style={styles.iconView}  onPressOut={()=> navigation.navigate('DashBoardView', {access : true})}>
                 <CustomIcons name='home-mainnav-active'  color="#0078E9" size={30} />
                 <Text style={styles.textStyle}>Home</Text>
-            </View>
-            <View style={styles.iconView}>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
                 <CustomIcons name='broadcast-mainnav-active' color="#0078E9" size={30} />
                 <Text style={styles.textStyle}>Broadcast</Text>
-            </View>
-            <View style={styles.iconView}>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
                 <MaterialIcons name="apartment" style={styles.iconStyle} color="#0078E9" size={30} />
                 <Text style={styles.textStyle}>Builders</Text>
-            </View>
-            <View style={styles.iconView}>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7} style={styles.iconView} onPressOut={()=> navigation.navigate('MyClient')}>
                 <AwesomeIcons name="clipboard-list" style={styles.iconStyle} color="#0078E9" size={30} />
                 <Text style={styles.textStyle}>My clients</Text>
-            </View>
-            <View style={styles.iconView}>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
                 <EntypoIcons name="dots-three-horizontal" style={styles.iconStyle} color="#0078E9" size={25} />
                 <Text style={styles.textStyle}>more</Text>
-            </View>
+            </TouchableOpacity>
         </View>
     );
 }

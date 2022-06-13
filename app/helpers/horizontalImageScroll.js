@@ -7,6 +7,7 @@ const HorizontalImageScroll = (props) => {
     const resizeMode = props.resizeMode ? props.resizeMode : 'cover'; 
     const navigation = props.navigation;
     const opacity = (navigation==undefined) ? 1 : 0.5;
+    const access = props.access;
 
     const setDimesnions = {
         width : dimensions,
@@ -15,7 +16,8 @@ const HorizontalImageScroll = (props) => {
 
     const pressedImage = () => {
         if(navigation!=undefined)
-            navigation.navigate('PreAccessView');    
+            navigation.navigate('PreAccessView', {access});    
+            
     }
 
     return (

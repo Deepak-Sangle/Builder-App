@@ -4,13 +4,13 @@ import MenuHeaderScreen from './menuHeaderScreen';
 import MenuList from './menuList';
 import deviceWidth from '../../../Constants/projectConstants';
 
-export default function MenuScreen() {
+export default function MenuScreen({navigation}) {
   return (
     <ScrollView>
       <View style={styles.eventsCont}>
-        <MenuHeaderScreen />
+        <MenuHeaderScreen navigation={navigation} />
       </View>
-      <MenuList />
+      <MenuList navigation={navigation} />
     </ScrollView>
   );
 }
