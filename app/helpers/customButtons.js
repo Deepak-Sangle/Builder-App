@@ -15,7 +15,6 @@ const CustomButtons = (props) => {
     const secondary_color = isDone ? "#FFFFFF" : "#0078E9";
     const pressHandler = props.pressHandler;
     const width = props.width ? props.width + "%" : "100%";
-    const isArrow = props.isArrow ? props.isArrow : false;
     const backbgcolor = {
         backgroundColor: primary_color,
         width : width,

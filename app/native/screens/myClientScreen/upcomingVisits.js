@@ -4,11 +4,12 @@ import UpcomingCard from './upcomingCard';
 import deviceWidth from '../../../Constants/projectConstants';
 
 export default function UpcmoingVisitSection({clientData}) {
+  const leng = clientData.length;
   return (
     <View>
       <View style={styles.visitCont}>
         <Text style={styles.txt1}>UPCOMING VISIT</Text>
-        <Text style={styles.txt2}>View all 5</Text>
+        <Text style={styles.txt2}>View all {leng}</Text>
       </View>
       {clientData.map(item => {
         return (
@@ -31,14 +32,12 @@ const styles = StyleSheet.create({
   },
   txt1: {
     color: '#429b38',
-    fontWeight: 'bold',
-    fontSize: 15,
     marginLeft: '5%',
+    fontFamily: 'Nunito-Bold',
   },
   txt2: {
     color: '#0078e9',
-    fontWeight: 'bold',
-    fontSize: 15,
     marginRight: '5%',
+    fontFamily: 'Nunito-Bold',
   },
 });

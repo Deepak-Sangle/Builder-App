@@ -13,7 +13,9 @@ const LogoHeader = (props) => {
     const isBack = (props.isBack!=undefined) ? props.isBack : false;
     const isImage = (props.isImage!=undefined) ? props.isImage : true; 
     const isDescription = (props.isDescription!=undefined) ? props.isDescription : false;
-    
+    const textTop = (props.textTop!=undefined) ? props.textTop : false;
+    const textColor = props.textColor ;
+
     const alignLogo = isHeader ? "flex-start" : "space-between" ;
     const leftPadding = isHeader ? 50 : 0;
     const topPadding = props.topPadding ? props.topPadding : props.source ? 20 : 30;
@@ -44,16 +46,18 @@ const LogoHeader = (props) => {
         <View>
             <View style={[styles.container, headingStyle]}>
                 {!isHeader && <TouchableOpacity onPressOut={goBack} activeOpacity={isBack ? 0.5 : 0} style={[styles.backView, {opacity : isBack ? 1 : 0}]}>
-                    <MaterialIcons name="arrow-back-ios" size={20} color="#0078E9" />
+                    <MaterialIcons name="arrow-back-ios" size={20} color={textColor!=undefined ? "#FFFFFF" : "#0078E9"} />
                 </TouchableOpacity>}
 
-                <View >
+                {!textTop && <View >
                     <Image 
                         source={source}
                         style={[icon, {opacity : isImage ? 1 : 0}]}
                         resizeMode="contain"
                     />
-                </View>
+                </View>}
+
+                {textTop && <Text style={[styles.title]}>{text}</Text>}
 
                 {isHeader && <View style={styles.companyView}>
                     <Text style={[styles.companyText, styles.textStyle]}>Builders{"\n"}Broadcast</Text>
@@ -61,10 +65,11 @@ const LogoHeader = (props) => {
                 </View>}
 
                 {!isHeader && <TouchableOpacity onPressOut={openSideBar} activeOpacity={isThreeDot ? 0.5 : 0} style={[styles.navigationView, {opacity : isThreeDot ? 1 : 0}]}>
-                    <Icons name='three-bars' size={25} color="#4A4A4A" />
+                    <Icons name='three-bars' size={25} color={textColor!=undefined ? "#FFFFFF" : "#757575"} />
                 </TouchableOpacity>}
+
             </View>
-            {text && <Text style={styles.title}>{text}</Text>}
+            {text && !textTop && <Text style={[styles.title, {color : textColor!=undefined ? textColor : "#757575"}]}>{text}</Text>}
         </View>
     );
 }

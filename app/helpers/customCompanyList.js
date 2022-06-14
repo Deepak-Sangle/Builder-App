@@ -41,7 +41,7 @@ const CustomCompanyList = (props) => {
             item.isSelected = !item.isSelected;
             setData(data);
         }
-
+        
         return (
             <TouchableOpacity activeOpacity={isTouchable ? 0.5 : 1} onPress={onPressHandler} style={[styles.touchableView, borderStyle]}>
                 <View style={styles.isNewTag}>

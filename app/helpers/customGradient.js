@@ -5,7 +5,8 @@ import LinearGradient from 'react-native-linear-gradient';
 const CustomGradient = (props) => {
     const text=props.text;
     const isSmall = props.isSmall ? props.isSmall : false;
-    
+    const fontSize = props.fontSize!==undefined ? props.fontSize : 12;    
+
     const textStyle = {
         padding : isSmall ? 3 : 7,
         paddingHorizontal : isSmall ? 5 : 20,
@@ -14,7 +15,7 @@ const CustomGradient = (props) => {
     return (
         <View>
             {text!='' && <View style={styles.tagView}>
-                <LinearGradient colors={["#F0DC57", "#DDB62C"]} style={styles.tagGradient} ><Text style={[styles.tagText, textStyle]}>{text}</Text></LinearGradient>
+                <LinearGradient colors={["#F0DC57", "#DDB62C"]} style={styles.tagGradient} ><Text style={[styles.tagText, textStyle, {fontSize : fontSize}]}>{text}</Text></LinearGradient>
             </View>}
         </View>
     );
@@ -33,7 +34,6 @@ const styles = StyleSheet.create({
     tagGradient :{
         borderTopLeftRadius : 8,
         borderBottomRightRadius : 8,
-
     },
 })
  

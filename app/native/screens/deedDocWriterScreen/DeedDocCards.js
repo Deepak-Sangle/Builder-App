@@ -78,17 +78,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   deedDocWritters: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
   },
   deedDocPart2No: {
     backgroundColor: '#fff',
     padding: 20,
-    width: deviceWidth - 30,
-    borderRadius: 10,
-    margin: 15,
-    marginTop: 5,
+    // width: deviceWidth - 30,
+    borderRadius: 6,
+    marginHorizontal: 20,
+    marginVertical : 10,
     flexDirection: 'row',
-    elevation: 3,
+    elevation: 2,
     shadowOffset: {width: 1, height: 1},
     shadowColor: '#333',
     shadowOpacity: 0.3,
@@ -97,12 +97,11 @@ const styles = StyleSheet.create({
   deedDocPart2Yes: {
     backgroundColor: '#429b38',
     padding: 20,
-    width: deviceWidth - 30,
-    borderRadius: 10,
-    margin: 15,
-    marginTop: 5,
+    borderRadius: 6,
+    margin: 20,
+    marginVertical: 10,
     flexDirection: 'row',
-    elevation: 3,
+    elevation: 2,
     shadowOffset: {width: 1, height: 1},
     shadowColor: '#333',
     shadowOpacity: 0.3,
@@ -137,11 +136,13 @@ const styles = StyleSheet.create({
     marginLeft: 7,
     fontSize: 15,
     color: '#ffffff',
+    fontFamily: 'Nunito-SemiBold',
   },
   conCompNo: {
     marginLeft: 7,
     fontSize: 15,
     color: '#000',
+    fontFamily: 'Nunito-SemiBold',
   },
   deedDocCardCompYes: {
     borderTopWidth: 1,
@@ -165,9 +166,13 @@ const styles = StyleSheet.create({
   },
   deedDocCardsTextWhite: {
     color: '#ffffff',
+    fontFamily: 'Nunito-Regular',
+    marginVertical : 3,
   },
   deedDocCardsTextBlack: {
     color: '#000',
+    fontFamily: 'Nunito-Regular',
+    marginVertical : 3,
   },
   roundCardThingYes: {
     borderRadius: 35,
@@ -192,11 +197,13 @@ const styles = StyleSheet.create({
   },
   nameStylesYes: {
     color: '#ffffff',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
+    marginVertical : 5
   },
   nameStylesNo: {
     color: '#000',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
+    marginVertical : 5
   },
   veriPngYes: {
     justifyContent: 'center',

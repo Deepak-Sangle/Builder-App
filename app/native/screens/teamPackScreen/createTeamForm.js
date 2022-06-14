@@ -49,7 +49,7 @@ export default function ClientDetails({navigation}) {
           <Text style={styles.addText}>Add another team member</Text>
         </View>
       </View>
-      <View style={{margin : 20,}}>
+      <View style={{marginTop : 20,}}>
         <CustomButtons text="CREATE" isDone={true} pressHandler={createTeam} />
       </View>
     </View>
@@ -59,7 +59,6 @@ export default function ClientDetails({navigation}) {
 const styles = StyleSheet.create({
   teamPackComp: {
     alignSelf: 'center',
-    backgroundColor: '#f7fafe',
   },
   teamPackPart1: {
     marginTop: 40,
@@ -70,9 +69,9 @@ const styles = StyleSheet.create({
   teamPackPart2: {
     backgroundColor: '#ffffff',
     padding: 20,
-    width: deviceWidth - 40,
-    borderRadius: 10,
-    elevation: 3,
+    width : deviceWidth - 90,
+    borderRadius: 6,
+    elevation: 2,
     shadowOffset: {width: 1, height: 1},
     shadowColor: '#333',
     shadowOpacity: 0.3,
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   createTeamTxt: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   checkBoxSection: {
     flexDirection: 'row',
@@ -99,13 +98,17 @@ const styles = StyleSheet.create({
     marginLeft: '-2%',
   },
   checkBoxText: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
+  },
+  checkBoxDescText: {
+    fontFamily: 'Nunito-Regular',
   },
   chchkBxTxtComp: {
     flexDirection: 'column',
   },
   addMemComp: {
     flexDirection: 'row',
+    marginVertical : 20,
   },
   addMemTxt: {
     alignItems: 'center',
@@ -114,20 +117,6 @@ const styles = StyleSheet.create({
   },
   addText: {
     color: '#0078e9',
-    fontWeight: 'bold',
-  },
-  createBtnComp: {
-    marginTop: 50,
-    marginBottom: 40,
-  },
-  createBtn: {
-    borderWidth: 1,
-    padding: 15,
-    backgroundColor: '#0078e9',
-    color: '#fff',
-    borderRadius: 5,
-    borderColor: '#0078e9',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontFamily: 'Nunito-Bold',
   },
 });

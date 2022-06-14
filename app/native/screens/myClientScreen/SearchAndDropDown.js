@@ -26,7 +26,7 @@ export default function SearchAndDropDown({data}) {
             height: 50,
             width: 150,
             backgroundColor: '#d8e5f3',
-            borderRadius: 10,
+            borderRadius: 6,
             paddingHorizontal: 8,
           }}
           title="All Clients"

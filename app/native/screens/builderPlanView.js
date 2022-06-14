@@ -43,7 +43,7 @@ const BuilderPlanView = ({navigation}) => {
     }
 
     return (
-        <ScrollView>
+        // <ScrollView>
             <View style={styles.container}>
                 <LogoHeader size={55}/>
                 <View style={styles.searchBar}>
@@ -63,7 +63,7 @@ const BuilderPlanView = ({navigation}) => {
                     <CustomButtons text="PAY" isDone={true} pressHandler={onPay} />
                 </View>
             </View>
-        </ScrollView>
+        // </ScrollView>
     )
 }
 
@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
     },
     companylist : {
         backgroundColor : "white",
-        height : 525,
+        // height : 525,
+        flex : 1,
     },
     payBtnView : {
         marginBottom : 20,

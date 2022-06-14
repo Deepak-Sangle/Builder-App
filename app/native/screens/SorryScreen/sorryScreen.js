@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, View, Text, Dimensions, ScrollView} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
 import deviceWidth from '../../../Constants/projectConstants';
+import CustomButtons from '../../../helpers/customButtons';
 
-export default function SorryScreen() {
+export default function SorryScreen({navigation}) {
   return (
     <ScrollView>
       <View style={styles.sorryScreenCont}>
@@ -11,8 +12,12 @@ export default function SorryScreen() {
           <Text style={styles.noResultText}>No results found</Text>
         </View>
         <View style={styles.sorryScreenPart2}>
-          <Text style={styles.backBtnSorryScreen}>BACK</Text>
-          <Text style={styles.goToHome}>Go to home</Text>
+          <View>
+            <CustomButtons text="BACK" isDone = {true} pressHandler={() => navigation.goBack()} />
+          </View>
+          <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigation.navigate('DashBoardView')}>
+            <Text style={styles.goToHome}>Go to home</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -34,10 +39,14 @@ const styles = StyleSheet.create({
   },
   sorryText: {
     fontSize: 25,
+    fontFamily: 'Nunito-SemiBold',
+    color : "#8CA1C1",
   },
   noResultText: {
     fontSize: 18,
     marginTop: 10,
+    color : "#1E1E1E",
+    fontFamily: 'Nunito-Regular',
   },
   backBtnSorryScreen: {
     borderWidth: 1,
@@ -46,7 +55,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 10,
     borderColor: '#0078e9',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     textAlign: 'center',
     paddingLeft: 130,
     paddingRight: 130,
@@ -54,5 +63,8 @@ const styles = StyleSheet.create({
   goToHome: {
     textAlign: 'center',
     marginTop: 30,
+    color : "#0078E9",
+    textDecorationLine : "underline",
+    fontFamily: 'Nunito-Regular',
   },
 });

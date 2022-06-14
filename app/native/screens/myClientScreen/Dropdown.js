@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: 24,
     height: 24,
-    borderRadius: 12,
+    borderRadius: 6,
   },
   placeholderStyle: {
     fontSize: 16,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   selectedTextStyle: {
     fontSize: 16,
     marginLeft: 8,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
   },
   iconStyle: {
     width: 20,

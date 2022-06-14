@@ -27,7 +27,7 @@ export default function ClientCard({data}) {
             {data.info}
             {'\n'}
           </Text>
-          <Text>{data.moreInfo}</Text>
+          <Text style={styles.clientCardBuildInfo}>{data.moreInfo}</Text>
         </View>
         <View style={styles.clientDot}>
           <Dot name="dots-three-vertical" size={20} />
@@ -39,7 +39,11 @@ export default function ClientCard({data}) {
           circleSize={10}
           circleColor="#0078e9"
           style={styles.part22}
-          titleStyle={{marginTop: -15, fontSize: 14}}
+          titleStyle={{
+            marginTop: -15,
+            fontSize: 14,
+            fontFamily: 'Nunito-SemiBold',
+          }}
         />
       </View>
     </View>
@@ -48,9 +52,9 @@ export default function ClientCard({data}) {
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 10,
+    borderRadius: 6,
     backgroundColor: '#fff',
-    elevation: 3,
+    elevation: 2,
     shadowOffset: {width: 1, height: 1},
     shadowColor: '#333',
     shadowOpacity: 0.3,
@@ -62,7 +66,8 @@ const styles = StyleSheet.create({
   part1: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    paddingHorizontal: 25,
+    paddingVertical : 15,
   },
   part2: {
     backgroundColor: '#e7e7e7',
@@ -77,7 +82,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   clientCardName: {
-    fontWeight: 'bold',
     color: '#000',
+    fontFamily: 'Nunito-Bold',
+  },
+  clientCardBuildInfo: {
+    fontFamily: 'Nunito-Regular',
   },
 });

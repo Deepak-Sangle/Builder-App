@@ -44,8 +44,12 @@ const styles = StyleSheet.create({
   qrImg: {
     height: 100,
     width: 100,
-    marginRight: 15,
+    marginRight: '5%',
     marginTop: 15,
     marginBottom: 15,
+  },
+  qrTextPart: {
+    marginLeft: '5%',
+    fontFamily: 'Nunito-Regular',
   },
 });

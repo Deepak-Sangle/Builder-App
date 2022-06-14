@@ -42,9 +42,8 @@ export default function MyEvents() {
 
 const styles = StyleSheet.create({
   header: {
-    fontWeight: 'bold',
-    marginTop: 30,
     textAlign: 'center',
+    fontFamily: 'Nunito-Bold',
   },
   eventsCont: {
     flexDirection: 'column',

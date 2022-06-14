@@ -90,10 +90,16 @@ const styles = StyleSheet.create({
   },
   locText: {
     marginLeft: 7,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     marginRight: 10,
   },
   textMenu: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
+  },
+  textMenuName: {
+    fontFamily: 'Nunito-SemiBold',
+  },
+  mangAcc: {
+    fontFamily: 'Nunito-Regular',
   },
 });

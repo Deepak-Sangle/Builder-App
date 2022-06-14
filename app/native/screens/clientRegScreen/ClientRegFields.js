@@ -5,7 +5,7 @@ import deviceWidth from '../../../Constants/projectConstants';
 
 export default function ClientRegFields({property, project, rmD}) {
   return (
-    <View>
+    <View style={{marginHorizontal : 20,}}>
       <Dropdown data={property} dropDownStyles={styles.dropDowns} />
       <Dropdown data={project} dropDownStyles={styles.dropDowns} />
       <Text style={styles.regText}>Property spec(3 BHK - 3425 sqft)</Text>
@@ -16,7 +16,6 @@ export default function ClientRegFields({property, project, rmD}) {
 
 const styles = StyleSheet.create({
   dropDowns: {
-    width: deviceWidth - 30,
     marginTop: 15,
     backgroundColor: '#dbe5f3',
     borderRadius: 5,
@@ -24,13 +23,12 @@ const styles = StyleSheet.create({
     height: 50,
   },
   regText: {
-    width: deviceWidth - 30,
     marginTop: 15,
     backgroundColor: '#dbe5f3',
     borderRadius: 5,
     paddingHorizontal: 8,
     height: 50,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
     padding: 15,
     fontSize: 16,
   },

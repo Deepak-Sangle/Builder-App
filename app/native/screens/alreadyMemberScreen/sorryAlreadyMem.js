@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import deviceWidth from '../../../Constants/projectConstants';
 import {useSelector, useDispatch} from 'react-redux';
+import LogoHeader from '../../../helpers/LogoHeader';
 //import {updateCompany,updateName} from "../../../redux-toolkit/reducers/sampleReducer";
 import CustomButtons from '../../../helpers/customButtons';
 
@@ -16,16 +17,10 @@ export default function SorryAlreadyMember({navigation}) {
   // };
   //console.log(getDetails.nameCompany.name);
 
-  const teampage = ()=> {
-    navigation.navigate('TeamDashboardView');
-  }
-
   return (
     <View>
       <View style={styles.alreadyMemCont}>
-        <View>
-          <Text style={styles.sorryTxt}>Sorry!</Text>
-        </View>
+        <LogoHeader size={55} text="SORRY!" textColor="#FFFFFF" isThreeDot={true} isBack={true} isImage={false} />
         <View style={styles.fellowTextCont}>
           <Text style={styles.fellowTextName}>
             {getDetails.alreadyMemScreen.name}
@@ -40,12 +35,7 @@ export default function SorryAlreadyMember({navigation}) {
         </View>
       </View>
       <View style={styles.part2ContentComp}>
-        <Text style={styles.contentTxt}>Please contact admin of</Text>
-        <Text> {getDetails.alreadyMemScreen.company} to be a part of </Text>
-        <Text>its team</Text>
-      </View>
-      <View style={{margin : 20,}}>
-        <CustomButtons text="BACK TO TEAM PAGE" isDone={true} pressHandler={teampage} />
+        <Text style={styles.contentTxt}>Please contact admin of {getDetails.alreadyMemScreen.company} to be a part of its team</Text>
       </View>
     </View>
   );
@@ -53,23 +43,21 @@ export default function SorryAlreadyMember({navigation}) {
 
 const styles = StyleSheet.create({
   alreadyMemCont: {
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#c64343',
-    paddingTop: 70,
   },
   sorryTxt: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     color: '#ffffff',
     fontSize: 15,
     textTransform: 'uppercase',
   },
   fellowText: {
     color: '#ffffff',
+    fontFamily: 'Nunito-Regular',
   },
   fellowTextName: {
     color: '#ffffff',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   fellowTextCont: {
     alignItems: 'center',
@@ -93,8 +81,13 @@ const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 5,
     borderColor: '#0078e9',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     width: deviceWidth - 30,
     textTransform: 'uppercase',
+  },
+  contentTxt: {
+    fontFamily: 'Nunito-Regular',
+    textAlign : "center",
+    marginHorizontal : 100,
   },
 });

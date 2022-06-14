@@ -25,10 +25,12 @@ export default function ImageAndCal() {
             <Image source={require('../../assests/calanderImage.png')} />
           </View>
           <View style={styles.cc22Right}>
-            <Text>5:00 PM onwards at</Text>
-            <Text style={{marginTop: 7}}>Radison Hotel</Text>
-            <Text>Ninex Mall, Sohna Road, Gurgaon{'\n'}</Text>
-            <Text>
+            <Text style={styles.cc22Text}>5:00 PM onwards at</Text>
+            <Text style={styles.cc22HotelText}>Radison Hotel</Text>
+            <Text style={styles.cc22Text}>
+              Ninex Mall, Sohna Road, Gurgaon{'\n'}
+            </Text>
+            <Text style={styles.cc22Text}>
               <Location name="map-marker-alt" />
               {'\t'}View on Map
             </Text>
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   cc2Header: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     color: '#000',
     fontSize: 15,
     textTransform: 'uppercase',
@@ -80,6 +82,7 @@ const styles = StyleSheet.create({
     color: '#000',
     marginTop: 7,
     fontSize: 12,
+    fontFamily: 'Nunito-Regular',
   },
   cc22: {
     flexDirection: 'row',
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
     color: '#44c345',
     borderRadius: 5,
     borderColor: '#58c465',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     marginTop: 10,
     marginLeft: 20,
   },
@@ -118,8 +121,9 @@ const styles = StyleSheet.create({
     color: '#dd3e26',
     borderRadius: 5,
     borderColor: '#ca4e3b',
-    fontWeight: 'bold',
+
     marginTop: 10,
+    fontFamily: 'Nunito-Bold',
   },
   notSure: {
     borderWidth: 1,
@@ -130,8 +134,15 @@ const styles = StyleSheet.create({
     color: '#4a4a4a',
     borderRadius: 5,
     borderColor: '#d9d9d9',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     marginTop: 10,
     marginRight: 20,
+  },
+  cc22Text: {
+    fontFamily: 'Nunito-Regular',
+  },
+  cc22HotelText: {
+    marginTop: 7,
+    fontFamily: 'Nunito-Regular',
   },
 });

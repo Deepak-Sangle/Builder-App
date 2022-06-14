@@ -22,7 +22,7 @@ const BottomNavigationTab = () => {
                 <CustomIcons name='broadcast-mainnav-active' color="#0078E9" size={30} />
                 <Text style={styles.textStyle}>Broadcast</Text>
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.iconView} onPressOut={()=> navigation.navigate('BuildersView')}>
                 <MaterialIcons name="apartment" style={styles.iconStyle} color="#0078E9" size={30} />
                 <Text style={styles.textStyle}>Builders</Text>
             </TouchableOpacity>
@@ -30,7 +30,7 @@ const BottomNavigationTab = () => {
                 <AwesomeIcons name="clipboard-list" style={styles.iconStyle} color="#0078E9" size={30} />
                 <Text style={styles.textStyle}>My clients</Text>
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.iconView} onPressOut={()=> navigation.navigate('MenuScreen')}>
                 <EntypoIcons name="dots-three-horizontal" style={styles.iconStyle} color="#0078E9" size={25} />
                 <Text style={styles.textStyle}>more</Text>
             </TouchableOpacity>

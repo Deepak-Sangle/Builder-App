@@ -54,19 +54,20 @@ const styles = StyleSheet.create({
   menuListText: {
     marginLeft: '6%',
     textTransform: 'uppercase',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
     color: '#4a4a4a',
   },
   createYourTeamText: {
     marginLeft: '5%',
     textTransform: 'uppercase',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-SemiBold',
     padding: 15,
     color: '#4a4a4a',
   },
   signOutMenuItem: {
     marginLeft: '6%',
     color: '#4a4a4a',
+    fontFamily: 'Nunito-Regular',
   },
   menuListFooter: {
     padding: 15,
@@ -76,12 +77,13 @@ const styles = StyleSheet.create({
   },
   footerStyle: {
     color: '#4a4a4a',
+    fontFamily: 'Nunito-Regular',
   },
   badgeMenu: {
     position: 'absolute',
-    left: '42%',
+    left: '43%',
     backgroundColor: '#f5e350',
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     color: '#4a4a4a',
     borderRadius: 5,
     top: '1%',

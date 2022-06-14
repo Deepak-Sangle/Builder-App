@@ -1,20 +1,15 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
+import LogoHeader from '../../../helpers/LogoHeader';
 
 export default function TeamPackHeader() {
   return (
     <View style={styles.teamPackHeader}>
-      <View>
-        <Text style={styles.congoText}>CONGRATULATIONS</Text>
-      </View>
+      <LogoHeader textColor="#FFFFFF" size={55} text="CONGRATULATIONS" isThreeDot={true} isBack={true} isImage={false} />
+
       <View style={styles.fellowTextCont}>
         <Text style={styles.fellowText}>
-          Your payment was successful. You can now start{' '}
-        </Text>
-        <Text style={styles.fellowText}>
-          adding your team members and share all your
-        </Text>
-        <Text style={styles.fellowText}> builders access.</Text>
+          Your payment was successful. You can now start adding your team members and share all your builders access.</Text>
       </View>
     </View>
   );
@@ -23,17 +18,20 @@ export default function TeamPackHeader() {
 const styles = StyleSheet.create({
   teamPackHeader: {
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     backgroundColor: '#429b38',
-    paddingTop: 70,
+    // paddingTop: 70,
   },
   congoText: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
     color: '#ffffff',
     fontSize: 15,
   },
   fellowText: {
     color: '#ffffff',
+    marginHorizontal : 60,
+    textAlign : "center",
+    fontFamily: 'Nunito-Regular',
   },
   fellowTextCont: {
     alignItems: 'center',

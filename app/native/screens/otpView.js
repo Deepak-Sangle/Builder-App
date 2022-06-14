@@ -55,7 +55,7 @@ const OtpView = ({navigation}) => {
     };
     
     useEffect(() => {
-        if(resendTime <= 0) onSubmit();
+        // if(resendTime <= 0) onSubmit();
         const resendOtpTimer = setInterval(() => {
             if (resendTime > 0) {
                 setResendTime(resendTime - 1);

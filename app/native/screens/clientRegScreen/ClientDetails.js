@@ -9,7 +9,7 @@ export default function ClientDetails() {
     otpInput.current.setValue(e);
   };
   return (
-    <View>
+    <View style={{marginHorizontal : 20,}}>
       <View style={styles.clientDetailsPart1}>
         <Text style={styles.clientDetailsText}>CLIENT DETAILS</Text>
       </View>
@@ -38,13 +38,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   clientDetailsText: {
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   clientDetailsPart2: {
     backgroundColor: '#dbe5f3',
     padding: 20,
-    width: deviceWidth - 30,
-    borderRadius: 10,
+    // width: deviceWidth - 30,
+    borderRadius: 6,
   },
   clientDetailsTextInput1: {
     padding: 0,
@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
   fourDigTxt: {
     marginTop: 10,
     color: '#768497',
+    fontFamily: 'Nunito-Regular',
   },
 });
