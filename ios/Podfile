@@ -19,6 +19,10 @@ target 'builderApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'ReactNativeART', :path => '../node_modules/@react-native-community/art'
+
   target 'builderAppTests' do
     inherit! :complete
     # Pods for testing
