@@ -3,6 +3,9 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 const EachDayMeetingCards = (props) => {
 
+    const data = props.data;
+    let count = props.count;
+    
     const MeetingCard = (props) => {
         const isNext = props.isNext ;
         return(
@@ -35,8 +38,21 @@ const EachDayMeetingCards = (props) => {
                 <Text style={[styles.textStyle, styles.day]}>{props.day}</Text>
             </View>
             <View style={styles.meetView}>
-                <MeetingCard isNext={props.day=="Today"} builderName="M3M - GOLFESTATE" startingTime="10:30 am" endingTime="11:30 am" name="MR. MALIK" bhk="3" area="3452" />
-                <MeetingCard isNext={false} builderName="M3M - GOLFESTATE" startingTime="10:30 am" endingTime="11:30 am" name="MR. MALIK" bhk="3" area="3452" />
+                {data.map((meet,i)=> {
+                    return (
+                        <MeetingCard 
+                            isNext={count===0} 
+                            key={i}
+                            builderName={meet.organizer.name} 
+                            startingTime={meet.startTime.substring(11,16)} 
+                            endingTime={meet.endTime.substring(11,16)} 
+                            name={meet.client ? meet.client.name : "client-0"} 
+                            //meeting data should also contain bhk and area values
+                            bhk="3"         
+                            area="3452" 
+                        />
+                    )
+                })}
             </View>
         </View>
     )

@@ -34,6 +34,9 @@ import deedDocSlice from './app/redux-toolkit/slices/deedDocScreenSlice';
 import myClientSlice from './app/redux-toolkit/slices/myClientScreenSlice';
 import eventsScreenSlice from './app/redux-toolkit/slices/eventScreenSlice';
 import walkInScreensSlice from './app/redux-toolkit/slices/walkInScreensSlice';
+import buildersScreenSlice from './app/redux-toolkit/slices/buildersScreenSlice';
+import meetingsSlice from './app/redux-toolkit/slices/meetingsSlice';
+
 import SelectcityView from './app/native/screens/selectcityView';
 import SelectCompanyView from './app/native/screens/selectCompanyView';
 import OtpView from './app/native/screens/otpView';
@@ -65,6 +68,7 @@ import LoginView from './app/native/screens/loginView';
 import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemScreen';
 import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
+import BuilderScreen from './app/native/screens/builderScreen/BuilderScreen';
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
@@ -78,6 +82,8 @@ const store = configureStore({
     myClientScreen: myClientSlice,
     eventScreen: eventsScreenSlice,
     walkInScreen: walkInScreensSlice,
+    builderScreen: buildersScreenSlice,
+    meetingsScreen : meetingsSlice,
   },
 });
 
@@ -95,6 +101,8 @@ const App = () => {
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
+          {/* <Stack.Screen name='BuilderScreen' component={BuilderScreen} /> */}
+          <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} />
           <Stack.Screen name='SlideView' component={SlideView} />
           <Stack.Screen name='RegisterView' component={RegisterView} />
           <Stack.Screen name='OtpView' component={OtpView} />
@@ -117,7 +125,7 @@ const App = () => {
           <Stack.Screen name='SampleDocumentView' component={SampleDocumentView} />
           <Stack.Screen name='ManageAccount' component={ManageAccount} />
           <Stack.Screen name='TeamDashboardView' component={TeamDashboardView} />
-          <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} />
+          {/* <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} /> */}
           
           {/* <Stack.Screen name='MyEvents' component={MyEvents} /> */}
           <Stack.Screen name='MenuScreen' component={MenuScreen}/>      
