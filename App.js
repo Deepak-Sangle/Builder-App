@@ -29,6 +29,7 @@ import {
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
+//import logger from 'redux-logger';
 import alreadyMemSlice from './app/redux-toolkit/slices/alreadyMemScreenSlice';
 import menuSlice from './app/redux-toolkit/slices/menuScreenSlice';
 import clientRegSlice from './app/redux-toolkit/slices/clientRegScreenSlice';
@@ -36,6 +37,7 @@ import deedDocSlice from './app/redux-toolkit/slices/deedDocScreenSlice';
 import myClientSlice from './app/redux-toolkit/slices/myClientScreenSlice';
 import eventsScreenSlice from './app/redux-toolkit/slices/eventScreenSlice';
 import walkInScreensSlice from './app/redux-toolkit/slices/walkInScreensSlice';
+import buildersScreenSlice from './app/redux-toolkit/slices/buildersScreenSlice';
 import SelectcityView from './app/native/screens/selectcityView';
 import SelectCompanyView from './app/native/screens/selectCompanyView';
 import OtpView from './app/native/screens/otpView';
@@ -64,6 +66,7 @@ import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
 import TeamPack from './app/native/screens/teamPackScreen/teamPack';
 import MyClient from './app/native/screens/myClientScreen/myClient';
 import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemScreen';
+import BuilderScreen from './app/native/screens/builderScreen/BuilderScreen';
 
 const store = configureStore({
   reducer: {
@@ -74,6 +77,8 @@ const store = configureStore({
     myClientScreen: myClientSlice,
     eventScreen: eventsScreenSlice,
     walkInScreen: walkInScreensSlice,
+    builderScreen: buildersScreenSlice,
+    // middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
   },
 });
 
@@ -112,7 +117,7 @@ const App = () => {
           {/* <Stack.Screen name="PlansPricingView" component={PlansPricingView} /> */}
           {/* <Stack.Screen name="BuilderPlanView" component={BuilderPlanView} /> */}
           {/* <Stack.Screen name="PaymentView" component={PaymentView} /> */}
-          <Stack.Screen
+          {/* <Stack.Screen
             name="CompleteProfileView"
             component={CompleteProfileView}
           />
@@ -121,9 +126,9 @@ const App = () => {
           <Stack.Screen
             name="ProjectDetailView"
             component={ProjectDetailView}
-          />
-          <Stack.Screen name="ManageAccount" component={ManageAccount} />
-          <Stack.Screen
+          /> */}
+          {/* <Stack.Screen name="ManageAccount" component={ManageAccount} /> */}
+          {/* <Stack.Screen
             name="TeamDashboardView"
             component={TeamDashboardView}
           />
@@ -133,7 +138,8 @@ const App = () => {
           <Stack.Screen
             name="SampleDocumentView"
             component={SampleDocumentView}
-          />
+          /> */}
+          <Stack.Screen name="BuilderScreen" component={BuilderScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

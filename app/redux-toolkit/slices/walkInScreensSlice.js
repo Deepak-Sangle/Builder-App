@@ -67,7 +67,6 @@ const stateDD = [
 ];
 
 const walkInScreensInitialState = {
-  otp: 1234,
   cities,
   companies,
   name: 'Deepak',
