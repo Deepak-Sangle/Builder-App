@@ -39,7 +39,9 @@ export default function ClientDetails({navigation}) {
           />
           <View style={styles.chchkBxTxtComp}>
             <Text style={styles.checkBoxText}>Make admin</Text>
-            <Text>Admin can see team activity</Text>
+            <Text style={styles.checkBoxDescText}>
+              Admin can see team activity
+            </Text>
           </View>
         </View>
       </View>

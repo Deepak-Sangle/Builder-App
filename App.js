@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {Node} from 'react';
 import {
   SafeAreaView,
@@ -17,8 +17,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
   Colors,
@@ -27,8 +27,15 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import SelectcityView from './app/native/screens/selectcityView'
-import SelectCompanyView from './app/native/screens/selectCompanyView'
+import alreadyMemSlice from './app/redux-toolkit/slices/alreadyMemScreenSlice';
+import menuSlice from './app/redux-toolkit/slices/menuScreenSlice';
+import clientRegSlice from './app/redux-toolkit/slices/clientRegScreenSlice';
+import deedDocSlice from './app/redux-toolkit/slices/deedDocScreenSlice';
+import myClientSlice from './app/redux-toolkit/slices/myClientScreenSlice';
+import eventsScreenSlice from './app/redux-toolkit/slices/eventScreenSlice';
+import walkInScreensSlice from './app/redux-toolkit/slices/walkInScreensSlice';
+import SelectcityView from './app/native/screens/selectcityView';
+import SelectCompanyView from './app/native/screens/selectCompanyView';
 import OtpView from './app/native/screens/otpView';
 import RegisterView from './app/native/screens/registerView';
 import CompleteProfileView from './app/native/screens/completeProfileView';
@@ -61,21 +68,16 @@ import VisitsPlannedView from './app/native/screens/visitsPlannedView';
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
-import alreadyMemReducer from './app/redux-toolkit/reducers/alreadyMemScreenReducer';
-import menuScreenReducer from './app/redux-toolkit/reducers/menuScreenReducer';
-import clientRegScreenReducer from './app/redux-toolkit/reducers/clientRegScreenReducer';
-import deedDocScreenReducer from './app/redux-toolkit/reducers/deedDocScreenReducer';
-import myClientScreenReducer from './app/redux-toolkit/reducers/myClientScreenReducer';
-import eventScreenReducer from './app/redux-toolkit/reducers/eventScreenReducer';
 
 const store = configureStore({
   reducer: {
-    alreadyMemScreen: alreadyMemReducer,
-    menuScreen: menuScreenReducer,
-    clientRegScreen: clientRegScreenReducer,
-    deedDocScreen: deedDocScreenReducer,
-    myClientScreen: myClientScreenReducer,
-    eventScreen: eventScreenReducer,
+    alreadyMemScreen: alreadyMemSlice,
+    menuScreen: menuSlice,
+    clientRegScreen: clientRegSlice,
+    deedDocScreen: deedDocSlice,
+    myClientScreen: myClientSlice,
+    eventScreen: eventsScreenSlice,
+    walkInScreen: walkInScreensSlice,
   },
 });
 
@@ -85,11 +87,11 @@ const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: "#F5F8FC",
+    backgroundColor: '#F5F8FC',
   };
 
   return (
-    <SafeAreaView style={[backgroundStyle, {flex: 1} ]}>
+    <SafeAreaView style={[backgroundStyle, {flex: 1}]}>
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
@@ -126,7 +128,7 @@ const App = () => {
           <Stack.Screen name='TeamPack' component={TeamPack} />
           <Stack.Screen name='AlreadyMember' component={AlreadyMember} />
         </Stack.Navigator>
-        </NavigationContainer>
+      </NavigationContainer>
     </SafeAreaView>
   );
 };

@@ -7,7 +7,7 @@ export default function QRComp() {
     <View style={styles.qrCardComp}>
       <View style={styles.eventsCC3}>
         <View>
-          <Text style={{marginLeft: 15}}>
+          <Text style={styles.qrTextPart}>
             Please scan this code when you {'\n'}reach at the venue
           </Text>
         </View>

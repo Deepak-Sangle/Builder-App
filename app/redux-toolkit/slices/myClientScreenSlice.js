@@ -9,7 +9,7 @@ const myClientScreenInitialState = {
   dropDown: local_data,
 };
 
-const myClientScreenReducer = createSlice({
+const myClientSlice = createSlice({
   name: 'myClientRegScreen',
   initialState: myClientScreenInitialState,
   // reducers: {
@@ -23,4 +23,4 @@ const myClientScreenReducer = createSlice({
 });
 
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default myClientScreenReducer.reducer;
+export default myClientSlice.reducer;

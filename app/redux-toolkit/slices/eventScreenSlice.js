@@ -5,7 +5,7 @@ const eventsInitialState = {
   events: EventsDropDown,
 };
 
-const eventsScreenReducer = createSlice({
+const eventsScreenSlice = createSlice({
   name: 'eventsScreen',
   initialState: eventsInitialState,
   // reducers: {
@@ -19,4 +19,4 @@ const eventsScreenReducer = createSlice({
 });
 
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default eventsScreenReducer.reducer;
+export default eventsScreenSlice.reducer;
