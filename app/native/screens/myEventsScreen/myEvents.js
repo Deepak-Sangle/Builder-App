@@ -1,42 +1,59 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, Text, Dimensions, ScrollView} from 'react-native';
 import Dropdown from '../myClientScreen/Dropdown';
-import AddCalanderComp from './addCalander';
-import AddTeamMemberComp from './addMembers';
 import {EventsDropDown} from './dummyDataEvents/EventsDropdown';
 import ImageAndCal from './ImageAndCal';
 import OtherEventsCards from './OtherEventsCards';
-import QRComp from './qrComp';
 import deviceWidth from '../../../Constants/projectConstants';
-import {useSelector} from 'react-redux';
+import LogoHeader from '../../../helpers/LogoHeader';
+import {useDispatch, useSelector} from 'react-redux';
+import {addEventData} from '../../../redux-toolkit/slices/eventScreenSlice';
+import BottomNavigationTab from '../../../helpers/bottomNavigationTab';
 
 export default function MyEvents() {
-  const getDetails = useSelector(state => state);
-  return (
-    <ScrollView>
-      <View style={styles.eventsCont}>
-        <Text style={styles.header}>EVENTS</Text>
-        <View>
-          <Dropdown
-            data={getDetails.eventScreen.events}
-            dropDownStyles={{
-              width: deviceWidth - 30,
-              marginTop: 15,
-              backgroundColor: '#EEEEEE',
-              borderRadius: 5,
-              paddingHorizontal: 8,
-              height: 50,
-            }}
-          />
-        </View>
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addEventData());
+  }, []);
 
-        <ImageAndCal />
-        <OtherEventsCards />
-        <QRComp />
-        <AddTeamMemberComp />
-        <AddCalanderComp />
+  let eventData = [];
+  eventData = useSelector(state => state.eventScreen.data);
+
+  //console.log(eventData);
+
+  return (
+    <View style={{flex: 1}}>
+      <ScrollView style={{flex: 1}}>
+        <View>
+          <LogoHeader
+            size={55}
+            text="EVENTS"
+            isThreeDot={true}
+            isBack={true}
+            isImage={false}
+          />
+          <View style={styles.eventItemsView}>
+            <Dropdown
+              data={EventsDropDown}
+              dropDownStyles={{
+                width: deviceWidth - 30,
+                marginTop: 15,
+                backgroundColor: '#EEEEEE',
+                borderRadius: 5,
+                paddingHorizontal: 8,
+                height: 50,
+                backgroundColor: '#e7e7e7',
+              }}
+            />
+            <ImageAndCal data={eventData} />
+            <OtherEventsCards data={eventData} />
+          </View>
+        </View>
+      </ScrollView>
+      <View>
+        <BottomNavigationTab />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -45,11 +62,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Nunito-Bold',
   },
-  eventsCont: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 40,
-    width: deviceWidth,
+  eventItemsView: {
+    alignSelf: 'center',
   },
 });
