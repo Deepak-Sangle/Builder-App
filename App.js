@@ -69,6 +69,7 @@ import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemSc
 import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
 import BuilderScreen from './app/native/screens/builderScreen/BuilderScreen';
+import PlanNewVisit from './app/native/screens/planNewVisit';
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
@@ -101,8 +102,9 @@ const App = () => {
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
-          {/* <Stack.Screen name='BuilderScreen' component={BuilderScreen} /> */}
-          <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} />
+          <Stack.Screen name='PlanNewVisit' component={PlanNewVisit} />
+          {/* <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} /> */}
+          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
           <Stack.Screen name='SlideView' component={SlideView} />
           <Stack.Screen name='RegisterView' component={RegisterView} />
           <Stack.Screen name='OtpView' component={OtpView} />
@@ -126,13 +128,14 @@ const App = () => {
           <Stack.Screen name='ManageAccount' component={ManageAccount} />
           <Stack.Screen name='TeamDashboardView' component={TeamDashboardView} />
           {/* <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} /> */}
+          <Stack.Screen name='BuilderScreen' component={BuilderScreen} />
           
           {/* <Stack.Screen name='MyEvents' component={MyEvents} /> */}
           <Stack.Screen name='MenuScreen' component={MenuScreen}/>      
           <Stack.Screen name='SorryScreen' component={SorryScreen} />
           <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />
           <Stack.Screen name='MyClient' component={MyClient} />
-          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
+          {/* <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} /> */}
           <Stack.Screen name='TeamPack' component={TeamPack} />
           <Stack.Screen name='AlreadyMember' component={AlreadyMember} />
         </Stack.Navigator>

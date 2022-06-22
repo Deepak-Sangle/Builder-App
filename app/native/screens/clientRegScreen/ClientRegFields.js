@@ -1,15 +1,20 @@
 import React from 'react';
+import { useState } from 'react';
 import {StyleSheet, View, Dimensions, TextInput, Text} from 'react-native';
+import CustomFilterMenu from '../../../helpers/customFilterMenu';
 import Dropdown from '../myClientScreen/Dropdown';
-import deviceWidth from '../../../Constants/projectConstants';
 
-export default function ClientRegFields({property, project, rmD}) {
+export default function ClientRegFields({property, project, rmD, projectId, setProjectId}) {
+
+  const [propertyId, setPropertyId] = useState();
+  const [rmd, setRmd] = useState();
+
   return (
     <View style={{marginHorizontal : 20,}}>
-      <Dropdown data={property} dropDownStyles={styles.dropDowns} />
-      <Dropdown data={project} dropDownStyles={styles.dropDowns} />
+      <CustomFilterMenu item={propertyId} setItem={setPropertyId} list={property}  />
+      <CustomFilterMenu item={projectId} setItem={setProjectId} list={project}  />
       <Text style={styles.regText}>Property spec(3 BHK - 3425 sqft)</Text>
-      <Dropdown data={rmD} dropDownStyles={styles.dropDowns} />
+      <CustomFilterMenu item={rmd} setItem={setRmd} list={rmD}  />
     </View>
   );
 }

@@ -1,28 +1,59 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {CarouselData} from '../../native/screens/clientRegScreen/dummyDataClientReg/CarouselData';
+import {builderData} from '../../native/screens/clientRegScreen/dummyDataClientReg/CarouselData';
 import {PropertyData} from '../../native/screens/clientRegScreen/dummyDataClientReg/PropertyData';
-import {ProjectData} from '../../native/screens/clientRegScreen/dummyDataClientReg/ProjectData';
 import {RmData} from '../../native/screens/clientRegScreen/dummyDataClientReg/RmData';
 
+import axiosInstance from '../../Api/AxiosApiInstance';
+import axiosAPIInstanceProject from '../../Api/axiosInstanceProject';
+
 const clientRegInitialState = {
-  carousel: CarouselData,
+  builder: [],
   property: PropertyData,
-  project: ProjectData,
-  rmD: RmData,
+  project: {},
+  rm: RmData,
+  loading : true,
+  status : 200,
 };
 
 const clientRegSlice = createSlice({
   name: 'clientRegScreen',
   initialState: clientRegInitialState,
-  // reducers: {
-  //   updateName(state, action) {
-  //     state.name = action.payload;
-  //   },
-  //   updateCompany(state, action) {
-  //     state.location = action.payload;
-  //   },
-  // },
+  reducers : {
+    registerClient(state,action) {
+      state.status = action.payload;
+    },
+    registerClientVisit(state,action) {
+      state.status = action.payload;
+    },
+    addProjects(state, action){
+      state.project = action.payload;
+    },
+    addBuilders(state,action){
+      state.builder = action.payload;
+      state.loading = false;
+    }
+  }
 });
 
-//export const {updateName, updateCompany} = nameCompanyReducer.actions;
+export const registerClient = (data) => async dispatch => {
+  const response = await axiosInstance.post('/clientVisits', data);
+  dispatch(clientRegSlice.actions.registerClient(response.status));
+};
+
+export const registerClientVisit = (data) => async dispatch => {
+  const response = await axiosInstance.post('/clientVisits/newVisit', data);
+  dispatch(clientRegSlice.actions.registerClientVisit(response.status));
+};
+
+export const addProjects = (setProjectList) => async dispatch => {
+  const response = await axiosInstance.get('/project?skip=0&limit=10');
+  setProjectList(response.data.residential);
+  dispatch(clientRegSlice.actions.addProjects(response.data));
+};
+
+export const addBuilders = () => async dispatch => {
+  const response = await axiosAPIInstanceProject.get('/groups');
+  dispatch(clientRegSlice.actions.addBuilders(response.data.data));
+};
+
 export default clientRegSlice.reducer;

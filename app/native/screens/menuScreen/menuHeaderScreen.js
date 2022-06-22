@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text, Image, Dimensions, TouchableOpacity} from 'react-native';
 import Cross from 'react-native-vector-icons/Entypo';
 import Location from 'react-native-vector-icons/FontAwesome5';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 import {useSelector} from 'react-redux';
 
 export default function MenuHeaderScreen({navigation}) {

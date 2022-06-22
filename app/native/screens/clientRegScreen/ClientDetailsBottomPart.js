@@ -1,15 +1,11 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Checkbox} from 'react-native-paper';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 import CustomButtons from '../../../helpers/customButtons';
 
-export default function CheckboxAndBtn({navigation}) {
+export default function CheckboxAndBtn({pressHandler,navigation, text, btnText}) {
   const [checked, setChecked] = useState(false);
-
-  const sendRequest = () => {
-    navigation.navigate('MyClient');
-  }
 
   return (
     <View style={styles.checkBoxAndBtnSection}>
@@ -23,9 +19,9 @@ export default function CheckboxAndBtn({navigation}) {
             color="#0078e9"
           />
 
-          <Text style={styles.checkBoxText}>Another broker is involved</Text>
+          <Text style={styles.checkBoxText}>{text}</Text>
         </View>
-        <CustomButtons text="SEND REGISTER REQUEST" isDone={true} pressHandler={sendRequest}  />
+        <CustomButtons text={btnText} isDone={true} pressHandler={pressHandler}  />
       </View>
     </View>
   );
@@ -43,5 +39,6 @@ const styles = StyleSheet.create({
   },
   checkBoxText: {
     fontFamily: 'Nunito-SemiBold',
+    color : "#466989"
   },
 });

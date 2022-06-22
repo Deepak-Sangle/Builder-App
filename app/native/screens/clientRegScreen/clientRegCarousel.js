@@ -1,23 +1,31 @@
 import React from 'react';
-import {StyleSheet, View, Image, ScrollView} from 'react-native';
+import { useEffect } from 'react';
+import {StyleSheet, View, Image, ScrollView, TouchableOpacity} from 'react-native';
 import {RadioButton} from 'react-native-paper';
 
-export default function ClientRegCarousel({data}) {
-  const [checked, setChecked] = React.useState('first');
+export default function ClientRegCarousel({data, builder, setBuilder}) {
+  
+  useEffect(()=> {
+    if(data!==undefined && data.length){
+      setBuilder(data[0].id);
+    }
+  },[]);
+
   return (
     <ScrollView horizontal={true}>
       <View style={styles.externalCarouselCont}>
-        {data.map(item => {
+        {data.map((item, i) => {
           return (
-            <View style={styles.carouselCont} key={item.key}>
-              <Image style={styles.imageCompCarousel} source={item.image} />
+            <TouchableOpacity activeOpacity={0.7} onPress={()=> setBuilder(item.id)} style={styles.carouselCont} key={i}>
+              <Image style={styles.imageCompCarousel} source={{uri : item.logo}} />
               <RadioButton
-                value={item.value}
-                status={checked === `${item.value}` ? 'checked' : 'unchecked'}
-                onPress={() => setChecked(`${item.value}`)}
+                
+                value={item.id}
+                status={builder === item.id ? 'checked' : 'unchecked'}
+                onPress={() => setBuilder(item.id)}
                 color="#0078e9"
               />
-            </View>
+            </TouchableOpacity>
           );
         })}
       </View>
@@ -28,7 +36,9 @@ export default function ClientRegCarousel({data}) {
 const styles = StyleSheet.create({
   externalCarouselCont: {
     flexDirection: 'row',
-    marginBottom: 45,
+    borderBottomWidth : 1,
+    borderColor : "#CEE2F5",
+    paddingBottom : 20,
   },
   carouselCont: {
     justifyContent: 'flex-start',

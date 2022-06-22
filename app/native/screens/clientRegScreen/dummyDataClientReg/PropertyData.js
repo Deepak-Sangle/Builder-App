@@ -1,14 +1,14 @@
 export const PropertyData = [
   {
     value: '1',
-    lable: 'Residential Property',
+    label: 'Residential Property',
   },
   {
     value: '2',
-    lable: 'Non-residential Property',
+    label: 'Commercial',
   },
   {
     value: '3',
-    lable: 'Farm Houses',
+    label: 'Institutional',
   },
 ];

@@ -3,7 +3,7 @@ import {StyleSheet, View, Text, Dimensions, ScrollView, TouchableOpacity} from '
 import ClientCard from './ClientCard';
 import SearchAndDropDown from './SearchAndDropDown';
 import UpcomingVisits from './upcomingVisits';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 import {useSelector} from 'react-redux';
 import LogoHeader from '../../../helpers/LogoHeader';
 import BottomNavigationTab from '../../../helpers/bottomNavigationTab';

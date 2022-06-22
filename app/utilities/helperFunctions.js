@@ -40,9 +40,80 @@ const compareDates = (date) => {
     return result === 1 ? 1 : 0;
 }
 
+const getMaxDate = (month, year) => {
+    const d = new Date();
+    const newDate = new Date(year, month+1, 0);
+    return newDate.getDate();
+}
+
+const getDateArray = (month, year) => {
+    let date = [];
+    for(let i=1;i<=getMaxDate(month, year);i++){
+        const day = {label : String(i).padStart(2,'0'), value : i};
+        date.push(day);
+    }
+    return date;
+}
+
+const getHoursArray = () => {
+    let hours = [];
+    for(let i=1;i<=12;i++){
+        const hr = {label : String(i).padStart(2,'0'), value : i};
+        hours.push(hr);
+    }
+    return hours;
+}
+
+const getMinutesArray = () => {
+    let minutes = [];
+    for(let i=0;i<=59;i++){
+        const mm = {label : String(i).padStart(2,'0'), value : i};
+        minutes.push(mm);
+    }
+    return minutes;
+}
+
+const getYearsArray = () => {
+    let years = [];
+    const d = new Date();
+    for(let i=d.getFullYear();i<=d.getFullYear()+25;i++){
+        const yyyy = {label : String(i), value : i};
+        years.push(yyyy);
+    }
+    return years;
+}
+
+const getAmArray = () => {
+    const Am = [
+        {label : "AM", value : 0},
+        {label : "PM", value : 1},
+    ];
+    return Am;
+}
+
+const getProjectArray = (data) => {
+    if(data==undefined) {
+        return [];
+    }
+    else{
+        let result = [];
+        data.map((prj, i)=> {
+            const project = {value : prj._id, label : prj.name, };
+            result.push(project);
+        })
+        return result;
+    }
+}
+
 module.exports = {
     getDate, 
     getMonth,
     getDay,
+    getDateArray,
+    getMinutesArray,
+    getProjectArray,
+    getHoursArray,
+    getAmArray,
+    getYearsArray,
     compareDates
 };

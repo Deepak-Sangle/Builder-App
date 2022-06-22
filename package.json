@@ -21,7 +21,6 @@
     "@reduxjs/toolkit": "^1.8.2",
     "axios": "^0.27.2",
     "lodash.filter": "^4.6.0",
-    "redux-logger": "^3.0.6",
     "node-sass": "^7.0.1",
     "rainbowvis.js": "^1.0.1",
     "react": "17.0.2",
@@ -41,6 +40,7 @@
     "react-native-vector-icons": "^9.1.0",
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
