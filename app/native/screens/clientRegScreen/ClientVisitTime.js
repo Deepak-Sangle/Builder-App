@@ -2,8 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import { useState } from 'react';
 import {StyleSheet, View, Text, TextInput, Dimensions} from 'react-native';
 import CustomFilterMenu from '../../../helpers/customFilterMenu';
-import {months} from '../../../Constants/projectConstants';
-import { getDateArray, getYearsArray, getHoursArray, getMinutesArray, getAmArray } from '../../../utilities/helperFunctions';
+import { getDateArray, getMonthArray, getYearsArray, getHoursArray, getMinutesArray, getAmArray } from '../../../utilities/helperFunctions';
 
 export default function ClientVisitTime(props) {
 
@@ -17,12 +16,15 @@ export default function ClientVisitTime(props) {
   const [date, setDate] = useState(d.getDate());
   const [hours, setHours] = useState(d.getHours() > 12 ? d.getHours()-12 : d.getHours());
   const [minutes, setMinutes] = useState(d.getMinutes());
-  const [am, setAm] = useState(d.getHours()>12 ? 1 : 0);
+  const [am, setAm] = useState(d.getHours()>=12 ? 1 : 0);
 
   const dateList = getDateArray(month, year);
 
   useEffect(()=> {
-    if(date > dateList.length) setDate(dateList.length);
+    console.log(date, dateList[0].value);
+    if(date < dateList[0].value) setDate(dateList[0].value);
+    else if(date > dateList[dateList.length-1].value) setDate(dateList[0].value);
+    if(month < getMonthArray(year)[0].value) setMonth(getMonthArray(year)[0].value);
   }, [month, year]);
 
   useEffect(()=> {
@@ -30,7 +32,7 @@ export default function ClientVisitTime(props) {
     const d = new Date(year, month, date+1, hh-18, minutes-30, 0);
     const isoDate = d.toISOString();
     setStartTime(isoDate);
-  });
+  }, [month, year, date, hours, minutes, am]);
 
   return (
     <View>
@@ -44,7 +46,7 @@ export default function ClientVisitTime(props) {
             <CustomFilterMenu list={getYearsArray()} item={year} setItem={setYear} backgroundColor={"#FFFFFF"} />
           </View>
           <View style={styles.setTime}>
-            <CustomFilterMenu list={months} item={month} setItem={setMonth} backgroundColor={"#FFFFFF"} />
+            <CustomFilterMenu list={getMonthArray(year)} item={month} setItem={setMonth} backgroundColor={"#FFFFFF"} />
           </View>
           <View style={styles.setTime}>
             <CustomFilterMenu list={dateList} item={date} setItem={setDate} backgroundColor={"#FFFFFF"} />
@@ -54,13 +56,13 @@ export default function ClientVisitTime(props) {
         <Text style={[styles.clientDetailsText, {color : "#3E506D"}]}>Select Time</Text>
         <View style={{flexDirection : "row"}}>
           <View style={styles.setTime}>
-            <CustomFilterMenu down={true} list={getHoursArray()} item={hours} setItem={setHours} backgroundColor={"#FFFFFF"} />
+            <CustomFilterMenu placeholder="HH" down={true} list={getHoursArray(date, month, year)} item={hours} setItem={setHours} backgroundColor={"#FFFFFF"} />
           </View>
           <View style={styles.setTime}>
-            <CustomFilterMenu down={true} list={getMinutesArray()} item={minutes} setItem={setMinutes} backgroundColor={"#FFFFFF"} />
+            <CustomFilterMenu placeholder="MM" down={true} list={getMinutesArray(date, month, year)} item={minutes} setItem={setMinutes} backgroundColor={"#FFFFFF"} />
           </View>
           <View style={styles.setTime}>
-            <CustomFilterMenu down={true} list={getAmArray()} item={am} setItem={setAm} backgroundColor={"#FFFFFF"} />
+            <CustomFilterMenu down={true} list={getAmArray(date, month, year)} item={am} setItem={setAm} backgroundColor={"#FFFFFF"} />
           </View>
         </View>
       </View>
@@ -80,6 +82,8 @@ const styles = StyleSheet.create({
   },
   clientDetailsPart2: {
     backgroundColor: '#dbe5f3',
+    borderColor : "#BECCE0",
+    borderWidth : 1,
     padding: 20,
     borderRadius: 6,
   },
@@ -101,6 +105,6 @@ const styles = StyleSheet.create({
   },
   setTime :{
     flex : 1,
-    marginRight : 5
+    marginRight : 4,
   },
 });

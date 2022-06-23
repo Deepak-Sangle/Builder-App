@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {Checkbox} from 'react-native-paper';
 import {deviceWidth} from '../../../Constants/projectConstants';
 import CustomButtons from '../../../helpers/customButtons';
 
-export default function CheckboxAndBtn({pressHandler,navigation, text, btnText}) {
-  const [checked, setChecked] = useState(false);
+export default function CheckboxAndBtn({pressHandler, text, btnText, checked, setChecked}) {
 
   return (
     <View style={styles.checkBoxAndBtnSection}>
@@ -18,8 +17,9 @@ export default function CheckboxAndBtn({pressHandler,navigation, text, btnText})
             }}
             color="#0078e9"
           />
-
-          <Text style={styles.checkBoxText}>{text}</Text>
+          <TouchableOpacity activeOpacity={0.6} onPressOut={() => setChecked(!checked)}>
+            <Text style={styles.checkBoxText}>{text}</Text>
+          </TouchableOpacity>
         </View>
         <CustomButtons text={btnText} isDone={true} pressHandler={pressHandler}  />
       </View>

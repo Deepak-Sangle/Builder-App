@@ -7,9 +7,7 @@ export default function ClientDetails(props) {
 
   const name = props.name;
   const setName = props.setName;
-  const contactNumber = props.contactNumber;
   const setContactNumber = props.setContactNumber;
-  const actualNumber = props.actualNumber;
 
   const otpInput = useRef('');
   const setText = e => {
@@ -33,7 +31,7 @@ export default function ClientDetails(props) {
           <OTPTextInput
             inputCount={6}
             tintColor="#DCDCDC"
-            defaultValue={actualNumber}
+            defaultValue={"******"}
             keyboardType={'phone-pad'}
             editable={false}
             textInputStyle={styles.contactNoClientDetails}
@@ -72,6 +70,8 @@ const styles = StyleSheet.create({
   },
   clientDetailsPart2: {
     backgroundColor: '#dbe5f3',
+    borderColor : "#BECCE0",
+    borderWidth : 1,
     padding: 20,
     borderRadius: 6,
   },

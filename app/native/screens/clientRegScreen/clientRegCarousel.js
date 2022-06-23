@@ -7,7 +7,7 @@ export default function ClientRegCarousel({data, builder, setBuilder}) {
   
   useEffect(()=> {
     if(data!==undefined && data.length){
-      setBuilder(data[0].id);
+      setBuilder(data[0].groupId);
     }
   },[]);
 
@@ -16,13 +16,12 @@ export default function ClientRegCarousel({data, builder, setBuilder}) {
       <View style={styles.externalCarouselCont}>
         {data.map((item, i) => {
           return (
-            <TouchableOpacity activeOpacity={0.7} onPress={()=> setBuilder(item.id)} style={styles.carouselCont} key={i}>
-              <Image style={styles.imageCompCarousel} source={{uri : item.logo}} />
+            <TouchableOpacity activeOpacity={0.7} onPress={()=> setBuilder(item.groupId)} style={styles.carouselCont} key={i}>
+              <Image style={styles.imageCompCarousel} source={{uri : item.groupLogo}} />
               <RadioButton
-                
-                value={item.id}
-                status={builder === item.id ? 'checked' : 'unchecked'}
-                onPress={() => setBuilder(item.id)}
+                value={item.groupId}
+                status={builder === item.groupId ? 'checked' : 'unchecked'}
+                onPress={() => setBuilder(item.groupId)}
                 color="#0078e9"
               />
             </TouchableOpacity>

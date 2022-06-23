@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {builderData} from '../../native/screens/clientRegScreen/dummyDataClientReg/CarouselData';
 import {PropertyData} from '../../native/screens/clientRegScreen/dummyDataClientReg/PropertyData';
 import {RmData} from '../../native/screens/clientRegScreen/dummyDataClientReg/RmData';
+import PropertySubTypeData from '../../native/screens/clientRegScreen/dummyDataClientReg/propertySubTypeData';
 
 import axiosInstance from '../../Api/AxiosApiInstance';
 import axiosAPIInstanceProject from '../../Api/axiosInstanceProject';
@@ -11,8 +11,9 @@ const clientRegInitialState = {
   property: PropertyData,
   project: {},
   rm: RmData,
+  propertySubType : PropertySubTypeData,
   loading : true,
-  status : 200,
+  status : null,
 };
 
 const clientRegSlice = createSlice({
@@ -31,7 +32,7 @@ const clientRegSlice = createSlice({
     addBuilders(state,action){
       state.builder = action.payload;
       state.loading = false;
-    }
+    } 
   }
 });
 
@@ -42,6 +43,7 @@ export const registerClient = (data) => async dispatch => {
 
 export const registerClientVisit = (data) => async dispatch => {
   const response = await axiosInstance.post('/clientVisits/newVisit', data);
+  console.log(response.status);
   dispatch(clientRegSlice.actions.registerClientVisit(response.status));
 };
 
@@ -52,7 +54,7 @@ export const addProjects = (setProjectList) => async dispatch => {
 };
 
 export const addBuilders = () => async dispatch => {
-  const response = await axiosAPIInstanceProject.get('/groups');
+  const response = await axiosAPIInstanceProject.get('/groups/getMyGroups');
   dispatch(clientRegSlice.actions.addBuilders(response.data.data));
 };
 

@@ -3,7 +3,7 @@ import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import ClientDetails from './ClientDetails';
 import CheckboxAndBtn from './ClientDetailsBottomPart';
 import ClientRegCarousel from './clientRegCarousel';
-import {deviceWidth} from '../../../Constants/projectConstants';
+import {deviceWidth, token, projectTypes} from '../../../Constants/projectConstants';
 import {useSelector, useDispatch} from 'react-redux';
 import LogoHeader from '../../../helpers/LogoHeader';
 import BottomNavigationTab from '../../../helpers/bottomNavigationTab';
@@ -13,6 +13,7 @@ import CustomFilterMenu from '../../../helpers/customFilterMenu';
 import { useEffect } from 'react';
 import { getProjectArray } from '../../../utilities/helperFunctions';
 import Loader from '../../../helpers/Loader';
+import jwt_decode from "jwt-decode";
 
 export default function ClientRegScreen({navigation}) {
   
@@ -20,8 +21,7 @@ export default function ClientRegScreen({navigation}) {
 
   const getDetails = useSelector(state => state.clientRegScreen);
 
-  const [broker, setBroker] = useState();
-  const [propertyId, setPropertyId] = useState('1');
+  const [propertyId, setPropertyId] = useState(projectTypes[0]);
   const [propertySpec, setPropertySpec] = useState(`Select a Property`);
   const [builder, setBuilder] = useState();
   const [rm, setRm] = useState();
@@ -30,43 +30,62 @@ export default function ClientRegScreen({navigation}) {
   const [contactNumber, setContactNumber] = useState();
   const [showDialog, setShowDialog] = useState(false);
   const [projectList, setProjectList] = useState()
-
-  const numb = "9146361134";
+  const [checked, setChecked] = useState(false);
+  const [user, setUser] = useState(null);
 
   const sendRequest = () => {
-    const newNumber = numb.slice(0,6) + contactNumber;
+    const newNumber = user.phone.slice(3,9) + contactNumber;
+    //If youu want the validation in frontend keep it
+    if(newNumber!==user.phone){
+        setErr(`Phone number is incorrect`);
+        setHeading(`Could not Register`);
+        setShowDialog(true);
+        return;
+    }
     const data = {
-      builder,
-      broker,
+      builderId : builder,
+      broker : user.userId,
       projectId,
       name,
       contactNumber : newNumber,
-      relationManager : rm
     }
+    for(const key in data) {
+      if(data[key]===undefined){
+        setErr(`Please enter the correct ${key}`);
+        setHeading(`Invalid ${key}`);
+        setShowDialog(true);
+        return;
+      }
+    }
+
     dispatch(registerClient(data));
-    const status = getDetails!==undefined ? getDetails.status : null;
+    const status = getDetails.status;
     console.log(data);
-    
     if(status===200 || status===201){
-      navigation.navigate('SlideView');
+      navigation.navigate('MyClient');
     }
     else{
       setShowDialog(true);
+      setHeading(`Could not Register`);
+      setErr(`Something went wrong`);
     }
   }
 
   useEffect(()=> {
     dispatch(addProjects(setProjectList));
     dispatch(addBuilders());
+    setUser(jwt_decode(token));
   },[]);
 
-  let loading = true;
-  loading = getDetails.loading;
+  let loading = true && user!==null;
+  loading = getDetails.loading && user!==null;
 
   const changeProperty = () => {
-    if(propertyId==='1') setProjectList(getDetails.project.residential);
-    else if(propertyId==='2') setProjectList(getDetails.project.commercial);
-    else setProjectList(getDetails.project.institutional);
+    for(let i=0;i<projectTypes.length;i++){
+      if(propertyId===projectTypes[i]){
+        setProjectList(getDetails.project[projectTypes[i]]);
+      }
+    }
   }
 
   const changeProject = () => {
@@ -80,6 +99,12 @@ export default function ClientRegScreen({navigation}) {
     }
   }
 
+  useEffect(()=> {
+    setPropertyId(projectTypes[0]);
+    setProjectId();
+    setRm();
+  }, [builder])
+
   return (
     <View style={{flex : 1,}}>
       {!loading && <ScrollView style={{flex : 1,}}>
@@ -92,17 +117,26 @@ export default function ClientRegScreen({navigation}) {
               <CustomFilterMenu placeholder={"Select Property"} onPress={changeProperty} item={propertyId} setItem={setPropertyId} list={getDetails.property}  />
             </View>
             <View style={{marginVertical : -5}}>
-              <CustomFilterMenu placeholder={"Select Project"} onPress={changeProject} item={projectId} setItem={setProjectId} list={getProjectArray(projectList)}  />
+              <CustomFilterMenu placeholder={"Select Project"} onPress={changeProject} item={projectId} setItem={setProjectId} list={getProjectArray(projectList, builder)}  />
             </View>
             <View style={[{marginVertical : 15}, styles.specView]}>
               <Text style={[styles.textStyle]}>{propertySpec}</Text>
             </View>
             <View style={{marginVertical : -5}}>
-              <CustomFilterMenu placeholder={"Select RM"} item={rm} setItem={setRm} list={getDetails.rm}  />
+              <CustomFilterMenu disabled={projectId ? false : true} placeholder={"Select RM"} item={rm} setItem={setRm} list={getDetails.rm}  />
             </View>
-            <ClientDetails name={name} setName={setName} actualNumber={numb.slice(0,6)} contactNumber={contactNumber} setContactNumber={setContactNumber} />
+            <ClientDetails 
+              name={name} 
+              setName={setName} 
+              setContactNumber={setContactNumber} />
           </View>
-          <CheckboxAndBtn text="Another broker is involved" btnText="SEND REGISTER REQUEST" pressHandler={sendRequest} navigation={navigation} />
+          <CheckboxAndBtn 
+            checked={checked} 
+            setChecked={setChecked} 
+            text="Another broker is involved" 
+            btnText="SEND REGISTER REQUEST" 
+            pressHandler={sendRequest} 
+          />
         </View>
       </ScrollView>}
       {!loading && <BottomNavigationTab />}
@@ -134,6 +168,8 @@ const styles = StyleSheet.create({
     paddingHorizontal : 60, 
     backgroundColor : "#FFFFFF",
     paddingVertical : 20,
+    borderTopWidth : 1,
+    borderColor : "#CEE2F5"
   },
   specView : {
     borderColor: "#BECCE0",

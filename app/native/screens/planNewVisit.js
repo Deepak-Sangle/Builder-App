@@ -7,12 +7,13 @@ import {useSelector, useDispatch} from 'react-redux';
 import LogoHeader from '../../helpers/LogoHeader';
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
 import ErrorDialog from '../../helpers/dialogBox';
-import { registerClientVisit } from '../../redux-toolkit/slices/clientRegScreenSlice';
 import CustomFilterMenu from '../../helpers/customFilterMenu';
 import ClientVisitTime from './clientRegScreen/ClientVisitTime';
 import { getDay, getProjectArray } from '../../utilities/helperFunctions';
-import { addBuilders, addProjects } from '../../redux-toolkit/slices/clientRegScreenSlice';
+import { addBuilders,registerClientVisit, addProjects } from '../../redux-toolkit/slices/clientRegScreenSlice';
 import Loader from '../../helpers/Loader';
+import jwt_decode from "jwt-decode";
+import {token, projectTypes} from '../../Constants/projectConstants';
 
 const PlanNewVisit = ({navigation}) => {
 
@@ -20,71 +21,102 @@ const PlanNewVisit = ({navigation}) => {
 
     const getDetails = useSelector(state => state.clientRegScreen);
     
-    const [broker, setBroker] = useState();
     const [builder, setBuilder] = useState();
-    const [propertyId, setPropertyId] = useState("1");
+    const [propertyId, setPropertyId] = useState(projectTypes[0]);
     const [projectId, setProjectId] = useState();
     const [name, setName] = useState();
     const [contactNumber, setContactNumber] = useState();
+    const [propertySubType, setPropertySubType ] = useState();
     const [showDialog, setShowDialog] = useState(false);
     const [startTime, setStartTime] = useState();
     const [endTime, setEndTime] = useState();
     const [projectList, setProjectList] = useState()
+    const [checked, setChecked] = useState(false);
+    const [user, setUser] = useState(null);
+
+    const [heading, setHeading] = useState();
+    const [err, setErr] = useState();
 
     const sendRequest = () => {
-      const newNumber = numb.slice(0,6) + contactNumber;
-      const dayOfWeek = getDay(startTime);
+        const newNumber = user.phone.slice(0,9) + contactNumber;
+        const dayOfWeek = getDay(startTime);
+        //If youu want the validation in frontend keep it
+        if(newNumber!==user.phone){
+            setErr(`Phone number is incorrect`);
+            setHeading(`Could not Register`);
+            setShowDialog(true);
+            return;
+        }
+        else {
+          setShowDialog(false);
+        }
         const data = {
-          builder,
-          broker,
+          builderId : builder,
+          broker : user.userId,
           projectId,
           name,
           startTime,
-          endTime,
+          meetingDate : startTime,
+          // endTime,
           contactNumber : newNumber,
           meetingType:"CLIENTVISIT",
           dayOfWeek,
         }
+        for(const key in data) {
+          if(data[key]===undefined){
+            setErr(`Please enter the correct ${key}`);
+            setHeading(`Invalid ${key}`);
+            setShowDialog(true);
+            return;
+          }
+        }
+        if(checked){
+          addToCalendar();
+        }
         console.log(data);
         dispatch(registerClientVisit(data));
-        const status = getDetails!==undefined ? getDetails.status : null;
+        const status = getDetails.status;
     
         if(status===200 || status===201){
-          // navigation.navigate('MyClient');
+          navigation.navigate('MyClient');
         }
         else{
           setShowDialog(true);
+          setHeading(`Could not Register`);
+          setErr(`Something went wrong`);
         }
       }
       
     useEffect(()=> {
       dispatch(addProjects(setProjectList));
       dispatch(addBuilders());
+      setUser(jwt_decode(token));
     },[]);
+
+    useEffect(()=> {
+      setPropertyId(projectTypes[0]);
+      setProjectId();
+    }, [builder])
     
     let loading = true;
     loading = getDetails.loading;
 
-    
-  const changeProperty = () => {
-    if(propertyId==='1') setProjectList(getDetails.project.residential);
-    else if(propertyId==='2') setProjectList(getDetails.project.commercial);
-    else setProjectList(getDetails.project.institutional);
-  }
-
-  const changeProject = () => {
-    if(projectList===undefined) {
-      
+    const changeProperty = () => {
+      for(let i=0;i<projectTypes.length;i++){
+        if(propertyId===projectTypes[i]){
+          setProjectList(getDetails.project[projectTypes[i]]);
+        }
+      }
     }
-    else {
-      const project = projectList.find((prj)=> {
-        return projectId === prj._id;
-      });
+
+    const addToCalendar = () => {
 
     }
-  }
 
-  const numb = "9146361134";
+    useEffect(()=> {
+      setProjectId();
+      setPropertySubType();
+    }, [builder])
 
     return (
       <View style={{flex : 1,}}>
@@ -99,17 +131,33 @@ const PlanNewVisit = ({navigation}) => {
                 <CustomFilterMenu placeholder={"Select Property"} onPress={changeProperty} item={propertyId} setItem={setPropertyId} list={getDetails.property}  />
               </View>
               <View style={{marginVertical : -5}}>
-                <CustomFilterMenu placeholder={"Select Project"} onPress={changeProject} item={projectId} setItem={setProjectId} list={getProjectArray(projectList)}  />
+                <CustomFilterMenu placeholder={"Select Project"}  item={projectId} setItem={setProjectId} list={getProjectArray(projectList, builder)}  />
               </View>
-              <ClientDetails name={name} setName={setName} actualNumber={numb.slice(0,6)}  contactNumber={contactNumber} setContactNumber={setContactNumber} />
-              <ClientVisitTime setStartTime={setStartTime} setEndTime={setEndTime}  />
+              <View style={{marginVertical : -5}}>
+                <CustomFilterMenu placeholder={"Select Property Type"} disabled={projectId ? false : true} item={propertySubType} setItem={setPropertySubType} list={getDetails.propertySubType}  />
+              </View>
+              <ClientDetails 
+                name={name} 
+                setName={setName} 
+                setContactNumber={setContactNumber} 
+              />
+              <ClientVisitTime 
+                setStartTime={setStartTime} 
+                setEndTime={setEndTime}  
+              />
               </View>
             </View>
-            <CheckboxAndBtn text="Add to Google Calendar" btnText="SEND VISIT REQUEST" pressHandler={sendRequest} navigation={navigation} />
+            <CheckboxAndBtn 
+              checked={checked} 
+              setChecked={setChecked} 
+              text="Add to Google Calendar" 
+              btnText="SEND VISIT REQUEST" 
+              pressHandler={sendRequest}
+           />
           </View>
         </ScrollView>}
         {!loading && <BottomNavigationTab />}
-        {!loading && showDialog && <ErrorDialog visible={showDialog} setVisible={setShowDialog} heading="Could not Register" err="Something went wrong" />}
+        {!loading && showDialog && <ErrorDialog visible={showDialog} setVisible={setShowDialog} heading={heading} err={err} />}
         {loading && <Loader />}
       </View>
     );

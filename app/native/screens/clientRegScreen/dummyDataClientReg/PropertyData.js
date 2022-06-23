@@ -1,14 +1,23 @@
 export const PropertyData = [
   {
-    value: '1',
+    value: 'residential',
     label: 'Residential Property',
   },
   {
-    value: '2',
+    value: 'commercial',
     label: 'Commercial',
   },
   {
-    value: '3',
+    value: 'farmHouse',
+    label: 'Farmhouse',
+  },
+  {
+    value: 'industrial',
+    label: 'Industrial',
+  },
+  {
+    value: 'institutional',
     label: 'Institutional',
   },
+
 ];

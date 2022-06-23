@@ -12,12 +12,19 @@ const CustomFilterMenu = (props) => {
     const placeholder = props.placeholder? props.placeholder : "Select an item";
     const isIcon = props.isIcon ? props.isIcon : false;
     const borderRadius = props.radius ? props.radius : 5;
+    const disabled = props.disabled ? true : false;
     const downDirection = props.down ? true : false;
     const onPress = props.onPress !== undefined ? props.onPress : () => {};
     const leftPadding = isIcon ? 50 : 20;
     const backgroundColor = props.backgroundColor ? props.backgroundColor : "#DFE7F2" ;
     
     const dropDownRef = useRef();
+
+    const disableStyle = {
+        paddingLeft: leftPadding,
+        fontFamily: disabled ? 'Nunito' : 'Nunito-SemiBold',
+        color: disabled ? '#4A4A4A' : '#3E506D',
+    };
 
     return (
         <View style={styles.inputView}>
@@ -27,6 +34,8 @@ const CustomFilterMenu = (props) => {
                     <DropDownPicker
                         listMode='SCROLLVIEW'
                         // loading={item ? false : true}
+                        disabled={disabled}
+                        showArrowIcon={!disabled}
                         showTickIcon={false}
                         placeholder={placeholder}
                         open={open}
@@ -39,7 +48,7 @@ const CustomFilterMenu = (props) => {
                         selectedItemContainerStyle={styles.selected}
                         setValue={setItem}
                         style={[styles.dropmenu, {borderRadius: borderRadius, backgroundColor: backgroundColor}]}
-                        textStyle={[styles.droptext, styles.dropdownAdjust, {paddingLeft : leftPadding }]}
+                        textStyle={[styles.droptext, styles.dropdownAdjust, disableStyle]}
                         listItemLabelStyle={styles.listtext}
                         dropDownContainerStyle={[styles.dropdown, {backgroundColor: backgroundColor}]}
                     />
@@ -65,11 +74,6 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: "Nunito-Medium",
     },
-    textStyle: {
-        fontFamily: "Nunito",
-        letterSpacing: 0.6,
-        color: "#4A4A4A",
-    },
     dropmenu: {
         borderColor: "#BECCE0",
         borderWidth : 1,
@@ -82,9 +86,7 @@ const styles = StyleSheet.create({
         borderTopWidth : 0,
     },
     droptext: {
-        fontFamily: "Nunito-SemiBold",
         letterSpacing: 0.6,
-        color: "#3E506D",
     },
     listtext: {
         borderColor: "#BECCE0",
