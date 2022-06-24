@@ -68,7 +68,6 @@ import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
 import BroadcastView from './app/native/screens/broadCastView';
 import LoginScreenView from './app/native/screens/loginScreenView';
-import PasswordScreenView from './app/native/screens/PasswordScreenView';
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
