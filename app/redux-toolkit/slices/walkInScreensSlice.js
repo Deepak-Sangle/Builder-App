@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import axiosInstance from '../../Api/AxiosApiInstance';
 
 const cities = [
   {name: 'Gurugram', id: 1},
@@ -67,6 +68,7 @@ const walkInScreensInitialState = {
   builderViewLoc,
   companyTypeDD,
   stateDD,
+  data: [],
   // selectBuilders,
   // completeProfile,
 };
@@ -74,15 +76,14 @@ const walkInScreensInitialState = {
 const walkInSlice = createSlice({
   name: 'walkInScreens',
   initialState: walkInScreensInitialState,
-  // reducers: {
-  //   updateName(state, action) {
-  //     state.name = action.payload;
-  //   },
-  //   updateCompany(state, action) {
-  //     state.location = action.payload;
-  //   },
-  // },
+  reducers: {
+    registerAccount(state, action) {},
+  },
 });
 
-//export const {updateName, updateCompany} = nameCompanyReducer.actions;
 export default walkInSlice.reducer;
+
+export const registerAccount = async payload => {
+  const response = await axiosInstance.post('auth/register', payload);
+  return response.status;
+};

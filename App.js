@@ -27,6 +27,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import broadCastScreenSlice from './app/redux-toolkit/slices/broadCastScreenSlice';
 import alreadyMemSlice from './app/redux-toolkit/slices/alreadyMemScreenSlice';
 import menuSlice from './app/redux-toolkit/slices/menuScreenSlice';
 import clientRegSlice from './app/redux-toolkit/slices/clientRegScreenSlice';
@@ -65,6 +66,9 @@ import LoginView from './app/native/screens/loginView';
 import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemScreen';
 import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
+import BroadcastView from './app/native/screens/broadCastView';
+import LoginScreenView from './app/native/screens/loginScreenView';
+import PasswordScreenView from './app/native/screens/PasswordScreenView';
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
@@ -78,6 +82,7 @@ const store = configureStore({
     myClientScreen: myClientSlice,
     eventScreen: eventsScreenSlice,
     walkInScreen: walkInScreensSlice,
+    broadCastScreen: broadCastScreenSlice,
   },
 });
 
@@ -94,39 +99,63 @@ const App = () => {
     <SafeAreaView style={[backgroundStyle, {flex: 1}]}>
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown : false}}>
-          <Stack.Screen name='SlideView' component={SlideView} />
-          <Stack.Screen name='RegisterView' component={RegisterView} />
-          <Stack.Screen name='OtpView' component={OtpView} />
-          <Stack.Screen name='SelectcityView' component={SelectcityView} />
-          <Stack.Screen name='DialogBox' component={DialogBox} />
-          <Stack.Screen name='SelectCompanyView' component={SelectCompanyView} />
-          <Stack.Screen name='WelcomeView' component={WelcomeView} />
-          <Stack.Screen name='LoginView' component={LoginView} />
-          <Stack.Screen name='PlansPricingView' component={PlansPricingView} />
-          <Stack.Screen name='BuilderPlanView' component={BuilderPlanView} />
-          <Stack.Screen name='PaymentView' component={PaymentView} />
-          <Stack.Screen name='CompleteProfileView' component={CompleteProfileView} />
-          <Stack.Screen name='DashBoardView' component={DashBoardView} />
-          <Stack.Screen name='PreAccessView' component={PreAccessView} />
-          <Stack.Screen name='ProjectDetailView' component={ProjectDetailView} />
-          <Stack.Screen name='BuildersView' component={BuildersView} />
-          <Stack.Screen name='NewsView' component={NewsView} />
-          <Stack.Screen name='CircleRateView' component={CircleRateView} />
-          <Stack.Screen name='GovtPolicyView' component={GovtPolicyView} />
-          <Stack.Screen name='SampleDocumentView' component={SampleDocumentView} />
-          <Stack.Screen name='ManageAccount' component={ManageAccount} />
-          <Stack.Screen name='TeamDashboardView' component={TeamDashboardView} />
-          <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} />
-          
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          {/* <Stack.Screen name="SlideView" component={SlideView} /> */}
+          {/* <Stack.Screen name="RegisterView" component={RegisterView} />
+          <Stack.Screen name="OtpView" component={OtpView} />
+       
+          {/*<Stack.Screen name="SelectcityView" component={SelectcityView} />
+          <Stack.Screen name="DialogBox" component={DialogBox} />
+          <Stack.Screen
+            name="SelectCompanyView"
+            component={SelectCompanyView}
+          />
+          <Stack.Screen name="WelcomeView" component={WelcomeView} />  */}
+          {/* <Stack.Screen name="LoginView" component={LoginView} /> */}
+
+          {/* <Stack.Screen name="PlansPricingView" component={PlansPricingView} />
+          <Stack.Screen name="BuilderPlanView" component={BuilderPlanView} />
+          <Stack.Screen name="PaymentView" component={PaymentView} />
+          <Stack.Screen
+            name="CompleteProfileView"
+            component={CompleteProfileView}
+          /> */}
+          {/* <Stack.Screen name="LoginScreenView" component={LoginScreenView} /> */}
+
+          <Stack.Screen name="DashBoardView" component={DashBoardView} />
+          <Stack.Screen name="BroadcastView" component={BroadcastView} />
+
+          <Stack.Screen name="PreAccessView" component={PreAccessView} />
+          <Stack.Screen
+            name="ProjectDetailView"
+            component={ProjectDetailView}
+          />
+          <Stack.Screen name="BuildersView" component={BuildersView} />
+          <Stack.Screen name="NewsView" component={NewsView} />
+          <Stack.Screen name="CircleRateView" component={CircleRateView} />
+          <Stack.Screen name="GovtPolicyView" component={GovtPolicyView} />
+          <Stack.Screen
+            name="SampleDocumentView"
+            component={SampleDocumentView}
+          />
+          <Stack.Screen name="ManageAccount" component={ManageAccount} />
+          <Stack.Screen
+            name="TeamDashboardView"
+            component={TeamDashboardView}
+          />
+          <Stack.Screen
+            name="VisitsPlannedView"
+            component={VisitsPlannedView}
+          />
+
           {/* <Stack.Screen name='MyEvents' component={MyEvents} /> */}
-          <Stack.Screen name='MenuScreen' component={MenuScreen}/>      
-          <Stack.Screen name='SorryScreen' component={SorryScreen} />
-          <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />
-          <Stack.Screen name='MyClient' component={MyClient} />
-          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
-          <Stack.Screen name='TeamPack' component={TeamPack} />
-          <Stack.Screen name='AlreadyMember' component={AlreadyMember} />
+          <Stack.Screen name="MenuScreen" component={MenuScreen} />
+          <Stack.Screen name="SorryScreen" component={SorryScreen} />
+          <Stack.Screen name="DeedDocScreen" component={DeedDocScreen} />
+          <Stack.Screen name="MyClient" component={MyClient} />
+          <Stack.Screen name="ClientRegScreen" component={ClientRegScreen} />
+          <Stack.Screen name="TeamPack" component={TeamPack} />
+          <Stack.Screen name="AlreadyMember" component={AlreadyMember} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
