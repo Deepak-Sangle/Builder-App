@@ -1,25 +1,22 @@
 import {createSlice} from '@reduxjs/toolkit';
-import axiosAPIInstanceProject from '../../Api/axiosInstanceProject';
+import {EventsDropDown} from '../../native/screens/myEventsScreen/dummyDataEvents/EventsDropdown';
 
-const eventScreenInitialState = {
-  data: [],
+const eventsInitialState = {
+  events: EventsDropDown,
 };
 
 const eventsScreenSlice = createSlice({
-  name: 'eventScreen',
-  initialState: eventScreenInitialState,
-  reducers: {
-    addEventData(state, action) {
-      state.data = action.payload;
-    },
-  },
+  name: 'eventsScreen',
+  initialState: eventsInitialState,
+  // reducers: {
+  //   updateName(state, action) {
+  //     state.name = action.payload;
+  //   },
+  //   updateCompany(state, action) {
+  //     state.location = action.payload;
+  //   },
+  // },
 });
 
+//export const {updateName, updateCompany} = nameCompanyReducer.actions;
 export default eventsScreenSlice.reducer;
-
-export const addEventData = () => async dispatch => {
-  const response = await axiosAPIInstanceProject.get(
-    'events/broker/99a7a4c8-422e-4a7e-8a65-b9c5727e6af4',
-  );
-  dispatch(eventsScreenSlice.actions.addEventData(response.data));
-};

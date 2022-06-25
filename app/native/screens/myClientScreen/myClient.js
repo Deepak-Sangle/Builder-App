@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
 import ClientCard from './ClientCard';
 import SearchAndDropDown from './SearchAndDropDown';
 import UpcomingVisits from './upcomingVisits';
@@ -18,22 +11,13 @@ import BottomNavigationTab from '../../../helpers/bottomNavigationTab';
 export default function MyClient({navigation}) {
   const getDetails = useSelector(state => state);
   return (
-    <View style={{flex: 1}}>
-      <ScrollView style={{flex: 1}}>
+    <View style={{flex : 1,}}>
+      <ScrollView style={{flex : 1,}}>
         <View style={styles.clientsCont}>
-          <LogoHeader
-            size={55}
-            text="MY CLIENTS"
-            isThreeDot={true}
-            isBack={true}
-            isImage={false}
-          />
+          <LogoHeader size={55} text="MY CLIENTS" isThreeDot={true} isBack={true} isImage={false} />
           <View style={styles.cont}>
             <Text style={styles.btn1}>SCHEDULE CLIENT VISIT</Text>
-            <TouchableOpacity
-              style={{marginHorizontal: 20}}
-              activeOpacity={0.7}
-              onPressOut={() => navigation.navigate('ClientRegScreen')}>
+            <TouchableOpacity style={{marginHorizontal : 20,}} activeOpacity={0.7} onPressOut={()=> navigation.navigate('ClientRegScreen')}>
               <Text style={styles.btn2}>WALK-IN</Text>
             </TouchableOpacity>
           </View>
