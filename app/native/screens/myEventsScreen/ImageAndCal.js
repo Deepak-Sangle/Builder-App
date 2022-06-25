@@ -1,47 +1,76 @@
 import React from 'react';
-import {StyleSheet, View, Text, Dimensions, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import Location from 'react-native-vector-icons/FontAwesome5';
 import deviceWidth from '../../../Constants/projectConstants';
 
-export default function ImageAndCal() {
+export default function ImageAndCal({data}) {
   return (
-    <View style={styles.imageAndCalCont}>
-      <View style={styles.eventImg}>
-        <Image
-          style={styles.imageComp}
-          source={{
-            uri: 'https://st2.depositphotos.com/1494778/9997/v/950/depositphotos_99971414-stock-illustration-grand-opening-invitation-card-with.jpg',
-          }}
-        />
-      </View>
-      <View style={styles.cc2}>
-        <Text style={styles.cc2Header}>Elegant Ornament</Text>
-        <Text style={styles.cc2Content}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem
-          rcitationem ipsa.
-        </Text>
-        <View style={styles.cc22}>
-          <View>
-            <Image source={require('../../assests/calanderImage.png')} />
+    <View>
+      {data.map(item => {
+        const uri = item.eventInviteDoc;
+        const time = item.eventTime.startTime.substring(11, 16);
+        const date = item.eventTime.startTime.substring(0, 10);
+        const ddmmyyFormat =
+          date.substring(8, 10) +
+          date.substring(4, 7) +
+          '-' +
+          date.substring(0, 4);
+
+        return (
+          <View style={styles.imageAndCalCont} key={item.eventId}>
+            <View style={styles.eventImg}>
+              <Image
+                style={styles.imageComp}
+                source={{
+                  uri,
+                }}
+              />
+            </View>
+            <View style={styles.cc2}>
+              <Text style={styles.cc2Header}>{item.title}</Text>
+              <Text style={styles.cc2Content}>{item.description}</Text>
+              <View style={styles.cc22}>
+                <View>
+                  <Image source={require('../../assests/calanderImage.png')} />
+                </View>
+                <View style={styles.cc22Right}>
+                  <Text style={styles.cc22Text}>
+                    {time} onwards on {ddmmyyFormat} at
+                  </Text>
+                  <Text style={styles.cc22HotelText}>
+                    {item.venue.address}
+                    {'\n'}
+                  </Text>
+                  <TouchableOpacity>
+                    <Text style={styles.cc22Text}>
+                      <Location name="map-marker-alt" />
+                      {'\t'}View on Map
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <View style={styles.cc3}>
+              <TouchableOpacity>
+                <Text style={styles.accept}>Accept</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={styles.reject}>Reject</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={styles.notSure}>Not sure</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.cc22Right}>
-            <Text style={styles.cc22Text}>5:00 PM onwards at</Text>
-            <Text style={styles.cc22HotelText}>Radison Hotel</Text>
-            <Text style={styles.cc22Text}>
-              Ninex Mall, Sohna Road, Gurgaon{'\n'}
-            </Text>
-            <Text style={styles.cc22Text}>
-              <Location name="map-marker-alt" />
-              {'\t'}View on Map
-            </Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.cc3}>
-        <Text style={styles.accept}>Accept</Text>
-        <Text style={styles.reject}>Reject</Text>
-        <Text style={styles.notSure}>Not sure</Text>
-      </View>
+        );
+      })}
     </View>
   );
 }
@@ -57,6 +86,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2,
     width: deviceWidth - 30,
+    marginBottom: 10,
   },
   eventImg: {
     resizeMode: 'cover',

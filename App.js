@@ -28,6 +28,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import broadCastScreenSlice from './app/redux-toolkit/slices/broadCastScreenSlice';
+import createTeamMemSlice from './app/redux-toolkit/slices/createTeamMemSlice';
 import alreadyMemSlice from './app/redux-toolkit/slices/alreadyMemScreenSlice';
 import menuSlice from './app/redux-toolkit/slices/menuScreenSlice';
 import clientRegSlice from './app/redux-toolkit/slices/clientRegScreenSlice';
@@ -68,6 +69,7 @@ import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
 import BroadcastView from './app/native/screens/broadCastView';
 import LoginScreenView from './app/native/screens/loginScreenView';
+import CreateTeamMem from './app/native/screens/createTeamMemberScreen/createTeamMem';
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
@@ -82,6 +84,7 @@ const store = configureStore({
     eventScreen: eventsScreenSlice,
     walkInScreen: walkInScreensSlice,
     broadCastScreen: broadCastScreenSlice,
+    createMemScreen: createTeamMemSlice,
   },
 });
 
@@ -155,6 +158,7 @@ const App = () => {
           <Stack.Screen name="ClientRegScreen" component={ClientRegScreen} />
           <Stack.Screen name="TeamPack" component={TeamPack} />
           <Stack.Screen name="AlreadyMember" component={AlreadyMember} />
+          <Stack.Screen name="CreateTeamMem" component={CreateTeamMem} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
