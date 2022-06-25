@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import axios from 'axios';
 import axiosInstance from '../../Api/AxiosApiInstance';
 
 const cities = [
@@ -63,14 +64,12 @@ const walkInScreensInitialState = {
   otp: 1234,
   cities,
   companies,
-  name: 'Deepak',
+  name: 'Arnav',
   planAndPrice,
   builderViewLoc,
   companyTypeDD,
   stateDD,
   data: [],
-  // selectBuilders,
-  // completeProfile,
 };
 
 const walkInSlice = createSlice({
@@ -78,6 +77,10 @@ const walkInSlice = createSlice({
   initialState: walkInScreensInitialState,
   reducers: {
     registerAccount(state, action) {},
+    loginUser(state, action) {},
+    loggedInUser(state, action) {
+      state.data = action.payload;
+    },
   },
 });
 
@@ -86,4 +89,14 @@ export default walkInSlice.reducer;
 export const registerAccount = async payload => {
   const response = await axiosInstance.post('auth/register', payload);
   return response.status;
+};
+
+export const loginUser = async payload => {
+  const response = await axiosInstance.post('auth/login', payload);
+  console.log({response});
+  return response;
+};
+
+export const loggedInUser = response => async dispatch => {
+  dispatch(walkInSlice.actions.loggedInUser(response));
 };
