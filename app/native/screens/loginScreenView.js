@@ -4,31 +4,24 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  TextInput,
   TouchableOpacity,
 } from 'react-native';
 import LogoHeader from '../../helpers/LogoHeader';
 import CustomIcons from '../../helpers/CustomIcons';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import deviceWidth from '../../Constants/projectConstants';
 
-const LoginView = ({navigation}) => {
+const LoginScreenView = ({navigation}) => {
   const [isScanning, setIsScanning] = useState(false);
   const [isScanned, setIsScanned] = useState(false);
 
-  const changeSlide = () => {
-    if (isScanning == false && isScanned == false) setIsScanning(true);
-    else if (isScanning == true && isScanned == false) {
-      setIsScanned(true);
-      setIsScanning(false);
-    } else if (isScanning == false && isScanned == true) {
-      navigation.navigate('DashBoardView');
-    }
+  const signUpNow = () => {
+    navigation.navigate('RegisterView');
   };
 
-  const signUpNow = () => {
-    if (!isScanning && !isScanned) {
-      navigation.navigate('RegisterView');
-    }
-  };
+  const [user, setUser] = useState('');
+  const [pass, setPass] = useState('');
 
   return (
     <View style={styles.container}>
@@ -38,43 +31,26 @@ const LoginView = ({navigation}) => {
         <Text style={[styles.textStyle, styles.please]}>
           Please login to continue
         </Text>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPressOut={changeSlide}
-          style={styles.faceView}>
-          <View style={styles.leftView}>
-            <View style={styles.logoView}>
-              {/* <CustomIcons name="face-scan" size={30} color="#0078E9" /> */}
-              <Icons name="face-recognition" size={45} color="#0078E9" />
-            </View>
-            {!isScanning && !isScanned && (
-              <Text style={[styles.textStyle, styles.useFace]}>
-                USE FACE ID
-              </Text>
-            )}
-            {isScanning && !isScanned && (
-              <Text style={[styles.textStyle, styles.useFace]}>
-                SCANNING...
-              </Text>
-            )}
-            {!isScanning && isScanned && (
-              <Text
-                style={[styles.textStyle, styles.useFace, {color: '#429B38'}]}>
-                SUCCESFULL!
-              </Text>
-            )}
-          </View>
-          {!isScanning && isScanned && (
-            <View>
-              <Icons name="check" size={40} color="#429B38"></Icons>
-            </View>
-          )}
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('LoginScreenView')}>
+        <View style={styles.createMemCont}>
+          <Text style={styles.createMemText}>Email or Phone Number</Text>
+          <TextInput
+            style={styles.createMemTextInput1}
+            onChangeText={val => setUser(val)}
+          />
+          <Text style={styles.createMemText}>Password</Text>
+          <TextInput
+            style={styles.createMemTextInput1}
+            onChangeText={val => setPass(val)}
+          />
+        </View>
+
+        <TouchableOpacity onPress={() => navigation.navigate('LoginView')}>
           <Text style={[styles.textStyle, styles.password]}>
-            Use password to login
+            Use Face Id to login
           </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('DashBoardView')}>
+          <Text style={styles.loginBtn}>LOGIN</Text>
         </TouchableOpacity>
       </View>
       <View
@@ -94,6 +70,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+  },
+  loginBtn: {
+    marginTop: 10,
+    padding: 15,
+    alignSelf: 'center',
+    textAlign: 'center',
+    backgroundColor: '#0078e9',
+    color: '#fff',
+    borderRadius: 5,
+    borderColor: '#0078e9',
+    fontFamily: 'Nunito-Bold',
+    width: deviceWidth - 60,
   },
   textStyle: {
     color: '#757575',
@@ -148,6 +136,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#E0E7F1',
     padding: 35,
   },
+  createMemCont: {
+    padding: 20,
+    borderRadius: 6,
+    marginBottom: 10,
+    marginTop: 20,
+    alignSelf: 'center',
+    width: deviceWidth - 60,
+  },
+  createMemTextInput1: {
+    borderBottomWidth: 1,
+    borderColor: '#BECCE0',
+    paddingHorizontal: 0,
+    paddingVertical: 2,
+    color: '#3E506D',
+    fontFamily: 'Nunito-SemiBold',
+    letterSpacing: 0.6,
+    fontSize: 15,
+  },
+  createMemText: {
+    fontFamily: 'Nunito-Bold',
+    color: '#696969',
+    marginTop: 15,
+  },
 });
 
-export default LoginView;
+export default LoginScreenView;
