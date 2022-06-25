@@ -103,9 +103,8 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           {/* <Stack.Screen name="SlideView" component={SlideView} /> */}
-          {/* <Stack.Screen name="RegisterView" component={RegisterView} />
-          <Stack.Screen name="OtpView" component={OtpView} />
-       
+          {/* <Stack.Screen name="RegisterView" component={RegisterView} /> */}
+
           {/*<Stack.Screen name="SelectcityView" component={SelectcityView} />
           <Stack.Screen name="DialogBox" component={DialogBox} />
           <Stack.Screen
@@ -113,7 +112,8 @@ const App = () => {
             component={SelectCompanyView}
           />
           <Stack.Screen name="WelcomeView" component={WelcomeView} />  */}
-          {/* <Stack.Screen name="LoginView" component={LoginView} /> */}
+          <Stack.Screen name="LoginScreenView" component={LoginScreenView} />
+          <Stack.Screen name="OtpView" component={OtpView} />
 
           {/* <Stack.Screen name="PlansPricingView" component={PlansPricingView} />
           <Stack.Screen name="BuilderPlanView" component={BuilderPlanView} />

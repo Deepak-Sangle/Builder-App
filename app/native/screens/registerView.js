@@ -7,8 +7,6 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
-import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
 import {registerAccount} from '../../redux-toolkit/slices/walkInScreensSlice';
 import {useState} from 'react';
@@ -19,7 +17,7 @@ import Dialog from 'react-native-dialog';
 const RegisterView = ({navigation}) => {
   function termspage() {}
 
-  const [fullName, setFullName] = useState('');
+  const [user, setUser] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,37 +25,46 @@ const RegisterView = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [warning, setWarning] = useState(false);
   const [error, setError] = useState(false);
+  const [mandatory, setMandatory] = useState(false);
 
   const handleRegister = async () => {
-    let payload = {
-      fullName: fullName,
-      companyName: company,
-      email: email,
-      password: password,
-      phoneNumber: mobile,
-      userType: 'broker',
-    };
     setIsLoading(true);
-    const response = await registerAccount(payload);
-    console.log(response);
-    if (response === 200 || response === 201) {
-      console.log('success');
-      setIsLoading(false);
-      navigation.navigate('OtpView');
-    } else if (response === 400) {
-      console.log('warning');
-      setIsLoading(false);
-      setWarning(true);
+    if (user && email && password && mobile && company) {
+      let payload = {
+        fullName: user,
+        companyName: company,
+        email: email,
+        phoneNumber: mobile,
+        password: password,
+        userType: 'broker',
+      };
+
+      const response = await registerAccount(payload);
+      console.log(response);
+      if (response === 200 || response === 201) {
+        console.log('success');
+        setIsLoading(false);
+        navigation.navigate('LoginScreenView');
+      } else if (response === 400) {
+        console.log('warning');
+        setIsLoading(false);
+        setWarning(true);
+      } else {
+        console.log('error');
+        setIsLoading(false);
+        setError(true);
+      }
     } else {
-      console.log('error');
+      console.log('All fields are needed');
       setIsLoading(false);
-      setError(true);
+      setMandatory(true);
     }
   };
 
   const handleCancel = () => {
     setWarning(false);
     setError(false);
+    setMandatory(false);
   };
 
   return (
@@ -77,7 +84,7 @@ const RegisterView = ({navigation}) => {
 
             <TextInput
               style={styles.textBox}
-              onChangeText={val => setFullName(val)}
+              onChangeText={val => setUser(val)}
             />
             <Text style={[styles.label, styles.textStyle, styles.textMargin]}>
               Company Name
@@ -170,6 +177,13 @@ const RegisterView = ({navigation}) => {
           <Dialog.Title>Error</Dialog.Title>
           <Dialog.Description>Something went wrong</Dialog.Description>
           <Dialog.Button label="Try Again" onPress={handleCancel} />
+        </Dialog.Container>
+      </View>
+      <View>
+        <Dialog.Container visible={mandatory}>
+          <Dialog.Title>Error</Dialog.Title>
+          <Dialog.Description>All fields are required</Dialog.Description>
+          <Dialog.Button label="Cancel" onPress={handleCancel} />
         </Dialog.Container>
       </View>
     </ScrollView>
