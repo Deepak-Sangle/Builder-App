@@ -21,6 +21,5 @@ const deedDocSlice = createSlice({
   //   },
   // },
 });
-
+export const deedDocReducer = deedDocSlice.reducer;
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default deedDocSlice.reducer;

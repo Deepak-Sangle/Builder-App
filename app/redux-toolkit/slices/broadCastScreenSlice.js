@@ -14,12 +14,12 @@ const broadcastScreenSlice = createSlice({
     },
   },
 });
-
-export default broadcastScreenSlice.reducer;
+export const broadcastReducer = broadcastScreenSlice.reducer;
 
 export const addBroadcastData = () => async dispatch => {
   const response = await axiosAPIInstanceProject.get(
     'broadcasts/getAll/broadcast',
   );
+  console.log({response});
   dispatch(broadcastScreenSlice.actions.addBroadcastData(response.data));
 };

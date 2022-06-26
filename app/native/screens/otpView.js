@@ -78,7 +78,7 @@ const OtpView = ({navigation}) => {
       newArr.push(parseInt(otp));
     });
     console.log(newArr);
-    navigation.navigate('PasswordScreenView');
+    navigation.navigate('SelectcityView');
   }
 
   function resendOtp() {

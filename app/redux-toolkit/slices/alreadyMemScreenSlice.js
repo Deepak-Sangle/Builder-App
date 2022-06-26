@@ -17,6 +17,6 @@ const alreadyMemSlice = createSlice({
   //   },
   // },
 });
-
+export const alreadyMemReducer = alreadyMemSlice.reducer;
 //export const {updateName, updateCompany} = alreadyMemSlice.actions;
-export default alreadyMemSlice.reducer;
+export default alreadyMemSlice;

@@ -84,7 +84,7 @@ const walkInSlice = createSlice({
   },
 });
 
-export default walkInSlice.reducer;
+export const walkInReducer = walkInSlice.reducer;
 
 export const registerAccount = async payload => {
   const response = await axiosInstance.post('auth/register', payload);

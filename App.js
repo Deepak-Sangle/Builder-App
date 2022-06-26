@@ -26,16 +26,6 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-import broadCastScreenSlice from './app/redux-toolkit/slices/broadCastScreenSlice';
-import createTeamMemSlice from './app/redux-toolkit/slices/createTeamMemSlice';
-import alreadyMemSlice from './app/redux-toolkit/slices/alreadyMemScreenSlice';
-import menuSlice from './app/redux-toolkit/slices/menuScreenSlice';
-import clientRegSlice from './app/redux-toolkit/slices/clientRegScreenSlice';
-import deedDocSlice from './app/redux-toolkit/slices/deedDocScreenSlice';
-import myClientSlice from './app/redux-toolkit/slices/myClientScreenSlice';
-import eventsScreenSlice from './app/redux-toolkit/slices/eventScreenSlice';
-import walkInScreensSlice from './app/redux-toolkit/slices/walkInScreensSlice';
 import SelectcityView from './app/native/screens/selectcityView';
 import SelectCompanyView from './app/native/screens/selectCompanyView';
 import OtpView from './app/native/screens/otpView';
@@ -63,30 +53,16 @@ import SorryScreen from './app/native/screens/SorryScreen/sorryScreen';
 import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
 import TeamPack from './app/native/screens/teamPackScreen/teamPack';
 import MyClient from './app/native/screens/myClientScreen/myClient';
-import LoginView from './app/native/screens/loginView';
+// import LoginView from './app/native/screens/loginView';
 import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemScreen';
 import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
 import BroadcastView from './app/native/screens/broadCastView';
-import LoginScreenView from './app/native/screens/loginScreenView';
+// import LoginScreenView from './app/native/screens/loginScreenView';
 import CreateTeamMem from './app/native/screens/createTeamMemberScreen/createTeamMem';
+import store from './app/redux-toolkit/stores/index';
 
 import {Provider} from 'react-redux';
-import {configureStore} from '@reduxjs/toolkit';
-
-const store = configureStore({
-  reducer: {
-    alreadyMemScreen: alreadyMemSlice,
-    menuScreen: menuSlice,
-    clientRegScreen: clientRegSlice,
-    deedDocScreen: deedDocSlice,
-    myClientScreen: myClientSlice,
-    eventScreen: eventsScreenSlice,
-    walkInScreen: walkInScreensSlice,
-    broadCastScreen: broadCastScreenSlice,
-    createMemScreen: createTeamMemSlice,
-  },
-});
 
 const Stack = createNativeStackNavigator();
 
@@ -99,29 +75,29 @@ const App = () => {
 
   return (
     <SafeAreaView style={[backgroundStyle, {flex: 1}]}>
-      {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen name="SlideView" component={SlideView} /> */}
-          {/* <Stack.Screen name="RegisterView" component={RegisterView} /> */}
+          <Stack.Screen name="SlideView" component={SlideView} />
+          <Stack.Screen name="RegisterView" component={RegisterView} />
 
-          {/*<Stack.Screen name="SelectcityView" component={SelectcityView} />
+          <Stack.Screen name="SelectcityView" component={SelectcityView} />
           <Stack.Screen name="DialogBox" component={DialogBox} />
           <Stack.Screen
             name="SelectCompanyView"
             component={SelectCompanyView}
           />
-          <Stack.Screen name="WelcomeView" component={WelcomeView} />  */}
-          <Stack.Screen name="LoginScreenView" component={LoginScreenView} />
+          <Stack.Screen name="WelcomeView" component={WelcomeView} />
+          {/* <Stack.Screen name="LoginScreenView" component={LoginScreenView} /> */}
           <Stack.Screen name="OtpView" component={OtpView} />
 
-          {/* <Stack.Screen name="PlansPricingView" component={PlansPricingView} />
+          <Stack.Screen name="PlansPricingView" component={PlansPricingView} />
           <Stack.Screen name="BuilderPlanView" component={BuilderPlanView} />
           <Stack.Screen name="PaymentView" component={PaymentView} />
           <Stack.Screen
             name="CompleteProfileView"
             component={CompleteProfileView}
-          /> */}
+          />
           {/* <Stack.Screen name="LoginScreenView" component={LoginScreenView} /> */}
 
           <Stack.Screen name="DashBoardView" component={DashBoardView} />
@@ -150,7 +126,7 @@ const App = () => {
             component={VisitsPlannedView}
           />
 
-          {/* <Stack.Screen name='MyEvents' component={MyEvents} /> */}
+          <Stack.Screen name="MyEvents" component={MyEvents} />
           <Stack.Screen name="MenuScreen" component={MenuScreen} />
           <Stack.Screen name="SorryScreen" component={SorryScreen} />
           <Stack.Screen name="DeedDocScreen" component={DeedDocScreen} />

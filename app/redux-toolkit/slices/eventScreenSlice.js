@@ -14,8 +14,7 @@ const eventsScreenSlice = createSlice({
     },
   },
 });
-
-export default eventsScreenSlice.reducer;
+export const eventScreenReducer = eventsScreenSlice.reducer;
 
 export const addEventData = () => async dispatch => {
   const response = await axiosAPIInstanceProject.get(

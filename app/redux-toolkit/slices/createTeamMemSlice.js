@@ -14,7 +14,7 @@ const createTeamMemScreenSlice = createSlice({
   },
 });
 
-export default createTeamMemScreenSlice.reducer;
+export const createTeamMemberReducer = createTeamMemScreenSlice.reducer;
 
 export const addTeamMem = async payload => {
   const response = await axiosInstance.post('teams/createTeamMember', payload);

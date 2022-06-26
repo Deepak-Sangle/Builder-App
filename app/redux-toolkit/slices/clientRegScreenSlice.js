@@ -23,6 +23,5 @@ const clientRegSlice = createSlice({
   //   },
   // },
 });
-
+export const clientRegistrationReducer = clientRegSlice.reducer;
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default clientRegSlice.reducer;

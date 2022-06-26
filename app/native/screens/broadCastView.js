@@ -18,7 +18,7 @@ export default function BroadcastView({bottomNav}) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addBroadcastData());
-  }, []);
+  });
 
   var broadCast = [];
   broadCast = useSelector(state => state.broadCastScreen.data);
@@ -53,7 +53,7 @@ export default function BroadcastView({bottomNav}) {
           )}
         </View>
       </ScrollView>
-      {bottomNav == false ? (
+      {bottomNav === false ? (
         <></>
       ) : (
         <View>

@@ -44,7 +44,7 @@ const RegisterView = ({navigation}) => {
       if (response === 200 || response === 201) {
         console.log('success');
         setIsLoading(false);
-        navigation.navigate('LoginScreenView');
+        navigation.navigate('OtpView');
       } else if (response === 400) {
         console.log('warning');
         setIsLoading(false);
