@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
 import {Checkbox} from 'react-native-paper';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 import Plus from 'react-native-vector-icons/AntDesign';
 import CustomButtons from '../../../helpers/customButtons';
 

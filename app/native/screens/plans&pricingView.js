@@ -11,6 +11,7 @@ import LogoHeader from '../../helpers/LogoHeader';
 import CustomArrow from '../../helpers/customArrow';
 import CustomGradient from '../../helpers/customGradient';
 import {useSelector} from 'react-redux';
+import CreateTeamCard from '../../helpers/createTeamCard';
 
 const PlansPricingView = ({navigation}) => {
   const priceNPlan = useSelector(state => state.walkInScreen.planAndPrice);
@@ -98,36 +99,7 @@ const PlansPricingView = ({navigation}) => {
                         <BuilderplanCard pressHandler={onPress_allAccess} tag="Best seller" heading="All Access Plan" price="19990" price_durn="year" description={text_2}/>
                     </View> */}
         </View>
-
-        <View style={styles.bottomView}>
-          <View style={styles.proPlanView}>
-            <View style={styles.proView}>
-              <Text style={[styles.textStyle, styles.proText]}> PRO </Text>
-            </View>
-            <Text style={[styles.textStyle, styles.addText]}>
-              Add team members to any of the plan
-            </Text>
-            <Text style={[styles.textStyle, styles.priceText]}>
-              Rs. 2399/<Text style={styles.peryearText}>year/member</Text>
-            </Text>
-          </View>
-          <Divider />
-          <View style={styles.descriptionView}>
-            <View style={styles.bulletView}>
-              <Text style={styles.textStyle}>- </Text>
-              <Text style={styles.textStyle}>
-                Your team members can access all builders you have access to.
-              </Text>
-            </View>
-
-            <View style={styles.bulletView}>
-              <Text style={styles.textStyle}>- </Text>
-              <Text style={styles.textStyle}>
-                Track your team’s site visits, registrations and bookings.
-              </Text>
-            </View>
-          </View>
-        </View>
+          <CreateTeamCard backgroundColor="#EAEDF1" />
       </View>
     </ScrollView>
   );
@@ -199,46 +171,6 @@ const styles = StyleSheet.create({
   },
   descriptionStyle: {
     marginHorizontal: 10,
-  },
-  bottomView: {
-    backgroundColor: '#EAEDF1',
-    padding: 40,
-    paddingBottom: 20,
-  },
-  proPlanView: {
-    marginBottom: 20,
-  },
-  proView: {
-    marginVertical: 5,
-    flexDirection: 'row',
-  },
-  proText: {
-    padding: 3,
-    fontFamily: 'Nunito-Bold',
-    backgroundColor: '#F5E350',
-    fontSize: 8,
-    borderRadius: 6,
-  },
-  addText: {
-    fontWeight: 'bold',
-    fontSize: 12,
-  },
-  priceText: {
-    marginVertical: 5,
-    color: '#3E506D',
-    fontFamily: 'Nunito-Bold',
-    fontSize: 14,
-  },
-  peryearText: {
-    fontSize: 12,
-    fontFamily: 'Nunito-Regular',
-  },
-  descriptionView: {
-    marginVertical: 10,
-  },
-  bulletView: {
-    flexDirection: 'row',
-    marginTop: 15,
   },
 });
 

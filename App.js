@@ -70,6 +70,7 @@ import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
 import BuilderScreen from './app/native/screens/builderScreen/BuilderScreen';
 import PlanNewVisit from './app/native/screens/planNewVisit';
+import CreateTeamView from './app/native/screens/createTeamView';
 
 import {Provider} from 'react-redux';
 import {configureStore} from '@reduxjs/toolkit';
@@ -102,9 +103,8 @@ const App = () => {
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
-          <Stack.Screen name='PlanNewVisit' component={PlanNewVisit} />
-          {/* <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} /> */}
-          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
+          <Stack.Screen name='CreateTeamView' component={CreateTeamView} />
+          <Stack.Screen name='DashBoardView' component={DashBoardView} />
           <Stack.Screen name='SlideView' component={SlideView} />
           <Stack.Screen name='RegisterView' component={RegisterView} />
           <Stack.Screen name='OtpView' component={OtpView} />
@@ -117,7 +117,6 @@ const App = () => {
           <Stack.Screen name='BuilderPlanView' component={BuilderPlanView} />
           <Stack.Screen name='PaymentView' component={PaymentView} />
           <Stack.Screen name='CompleteProfileView' component={CompleteProfileView} />
-          <Stack.Screen name='DashBoardView' component={DashBoardView} />
           <Stack.Screen name='PreAccessView' component={PreAccessView} />
           <Stack.Screen name='ProjectDetailView' component={ProjectDetailView} />
           <Stack.Screen name='BuildersView' component={BuildersView} />
@@ -127,7 +126,9 @@ const App = () => {
           <Stack.Screen name='SampleDocumentView' component={SampleDocumentView} />
           <Stack.Screen name='ManageAccount' component={ManageAccount} />
           <Stack.Screen name='TeamDashboardView' component={TeamDashboardView} />
-          {/* <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} /> */}
+          <Stack.Screen name='PlanNewVisit' component={PlanNewVisit} />
+          <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} />
+          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
           <Stack.Screen name='BuilderScreen' component={BuilderScreen} />
           
           {/* <Stack.Screen name='MyEvents' component={MyEvents} /> */}
@@ -135,7 +136,6 @@ const App = () => {
           <Stack.Screen name='SorryScreen' component={SorryScreen} />
           <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />
           <Stack.Screen name='MyClient' component={MyClient} />
-          {/* <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} /> */}
           <Stack.Screen name='TeamPack' component={TeamPack} />
           <Stack.Screen name='AlreadyMember' component={AlreadyMember} />
         </Stack.Navigator>
