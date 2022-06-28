@@ -4,10 +4,11 @@ import {token} from '../Constants/projectConstants';
 const BASE_URI = 'https://service.buildersbroadcast.com:444/';
 
 const axiosInstance = axios.create({
-  baseURL: BASE_URI
+  baseURL: BASE_URI,
 });
 
 axiosInstance.interceptors.request.use(config => {
+  // const token = localStorage.getItem('accessToken') || null;
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });

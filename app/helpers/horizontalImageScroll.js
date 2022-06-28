@@ -8,25 +8,25 @@ const HorizontalImageScroll = (props) => {
     const navigation = props.navigation;
     const opacity = (navigation==undefined) ? 1 : 0.5;
     const access = props.access;
+    const sourceKey = props.sourceKey;
 
     const setDimesnions = {
         width : dimensions,
-        height : dimensions,
+        aspectRatio : 1,
     }
 
-    const pressedImage = () => {
+    const pressedImage = (builder) => {
         if(navigation!=undefined)
-            navigation.navigate('PreAccessView', {access});    
-            
+            navigation.navigate('PreAccessView', {builder});    
     }
 
     return (
         <ScrollView horizontal={true}>
-            {imagesList.map((img)=>{
+            {imagesList.map((img, index)=>{
                 return (
-                    <TouchableOpacity onPressOut={pressedImage} activeOpacity={opacity} key={img.id} style={[styles.imgView, setDimesnions]}>
+                    <TouchableOpacity onPress={() => pressedImage(img)} activeOpacity={opacity} key={index} style={[styles.imgView, setDimesnions]}>
                         <Image 
-                            source={img.source}
+                            source={{uri : img[sourceKey]}}
                             resizeMode={resizeMode}
                             style={[styles.imgStyle, setDimesnions]}    
                         />

@@ -10,6 +10,7 @@ const CustomButtons = props => {
   const left = props.left;
   const right = props.right;
   const radius = props.radius ? props.radius : 7;
+  const borderColor = props.borderColor;
 
   const primary_color = isDone ? '#0078E9' : '#FFFFFF';
   const secondary_color = isDone ? '#FFFFFF' : '#0078E9';
@@ -31,7 +32,7 @@ const CustomButtons = props => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      style={[styles.btn, backbgcolor]}
+      style={[styles.btn, backbgcolor, borderColor!=undefined ? {borderColor : borderColor} : {}]}
       onPress={pressHandler}>
       {left && icon}
       <Text style={[styles.btntext_2, textcolor]}>

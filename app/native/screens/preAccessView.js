@@ -5,47 +5,59 @@ import CustomButtons from '../../helpers/customButtons';
 import CustomCompanyList from '../../helpers/customCompanyList';
 import LogoHeader from '../../helpers/LogoHeader';
 import CustomFilterMenu from '../../helpers/customFilterMenu';
-
 import Icon from 'react-native-vector-icons/AntDesign';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
+import jwt_decode from "jwt-decode";
+import { token} from '../../Constants/projectConstants';
 import BottomNavigationTab from '../../helpers/bottomNavigationTab';
+import { useDispatch, useSelector } from '../../redux-toolkit/stores';
+import { PropertyData } from './clientRegScreen/dummyDataClientReg/PropertyData';
+import {createProjectList} from '../../utilities/helperFunctions';
+import axiosInstance from '../../Api/AxiosApiInstance';
+import Loader from '../../helpers/Loader';
 
 const PreAccessView = ({navigation, route}) => {
-    const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap.png');
+    const {builder} = route.params;
+    
+    const source = {uri : builder.groupLogo};
     const icon = <MaterialIcon name="arrow-forward-ios" size={15} color="#FFFFFF" />
 
-    const {access} = route.params;
+    const dispatch = useDispatch();
 
-    const [projectTypeList, setprojectTypeList] = useState([
-        {label : "Residential Projects", value : "residential_projects"},
-        {label : "Management Projects", value : "management_projects"},
-        {label : "Construction Projects", value : "construction_projects"},
-        {label : "Design Projects", value : "design_projects"},
-    ]);
+    const [projectType, setProjectType] = useState(PropertyData[0].value);
+    const [user, setUser] = useState(null);
+    const [projectData, setProjectData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const [projectType, setProjectType] = useState("residential_projects");
-
-    const [projectList, setProjectList] = useState([
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png"), id: 1, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-2.png"), id: 2, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.png"), id: 3, isNew : true },
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-4.png"), id: 4, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-5.png"), id: 5, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap.png"),   id: 6, isNew : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.png"), id: 7, isNew : false },
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.png"), id: 8, isNew : false },
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png"), id: 9, isNew : false},
-    ]);
+    let projectList = createProjectList(projectData, projectType);
 
     const onClick = () => {
         navigation.navigate('PlansPricingView');
     }
 
-    const selectedProject = ()=> {
+    const selectedProject = (projectId)=> {
         if(access)
-            navigation.navigate('ProjectDetailView');
+            navigation.navigate('ProjectDetailView', {projectId});
     }
+
+    const getBuildersData = async () => {
+        if(builder.groupId!=undefined) {
+            const response = await axiosInstance.get(`/project/group/${builder.groupId}`);
+            setProjectData(response.data);
+        }
+        else {
+            const response = await axiosInstance.get(`/project/group/${builder.id}`);
+            setProjectData(response.data);
+        }
+        setLoading(false);
+    }
+
+    useEffect(()=> {
+        setUser(jwt_decode(token));
+        getBuildersData();
+    }, []);
+
+    const access = user!=undefined ? !user.isTrialEligible : false;
 
     return (
         <View style={styles.container}>
@@ -58,9 +70,11 @@ const PreAccessView = ({navigation, route}) => {
                     </View>
                 </View>}
                 <View style={styles.projectView}>
-                    <CustomFilterMenu  list={projectTypeList} item={projectType} setItem={setProjectType}  />
+                    <CustomFilterMenu  list={PropertyData} item={projectType} setItem={setProjectType}  />
                     <View style={[styles.flatListView, {height : access ? 625 : 500,}]}>
-                        <CustomCompanyList pressHandler={selectedProject} height={125} text="New Launch" data={projectList} />
+                        {!loading && projectList.length>0 && <CustomCompanyList pressHandler={(projectId) => selectedProject(projectId)} height={125} text="New Launch" data={projectList} />}
+                        {!loading && projectList.length==0 && <Text style={[styles.textStyle, styles.noData]}>No data available</Text>}
+                        {loading && <Loader />}
                     </View>
                 </View>
                 {!access && <View style={styles.plansView}>
@@ -142,7 +156,13 @@ const styles = StyleSheet.create({
     clickText : {
         color : "#0078E9",
     },
-    
+    noData : {
+        margin : 20,
+        color : "red",
+        fontSize : 15,
+        textAlign : "center",
+
+    }
 })
 
 export default PreAccessView;

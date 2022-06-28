@@ -31,7 +31,7 @@ const CustomCompanyList = (props) => {
         }
 
         const onPressHandler = ()=>{
-            if(pressHandler!=undefined) pressHandler();
+            if(pressHandler!=undefined) pressHandler(item.id);
             if(!isTouchable) return ;
             if(item.isTag) return ;
             if(item.isSelected)
@@ -41,7 +41,6 @@ const CustomCompanyList = (props) => {
             item.isSelected = !item.isSelected;
             setData(data);
         }
-        
         return (
             <TouchableOpacity activeOpacity={isTouchable ? 0.5 : 1} onPress={onPressHandler} style={[styles.touchableView, borderStyle]}>
                 <View style={styles.isNewTag}>
@@ -53,9 +52,10 @@ const CustomCompanyList = (props) => {
                 </View>}
                 <View style={styles.imgViewStyle}>
                     <Image 
-                        source={item.image_url}
+                        source={{uri : item.image_url}}
                         style={styles.imgStyle}
                         resizeMode = 'contain'
+                        // defaultSource={{uri : "https://media.istockphoto.com/vectors/black-linear-photo-camera-like-no-image-available-vector-id1055079680"}}  
                     />
                     {/* <Image 
                         source={item.image_url}
@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
         backgroundColor : "#EEEEEE",
     },
     imgStyle : {
-        maxHeight : 80,
-        maxWidth: 150,
+        height : 80,
+        width: 150,
     },
     touchableView : {
         flex : 1,

@@ -19,6 +19,5 @@ const menuSlice = createSlice({
   //   },
   // },
 });
-
+export const MenuReducer = menuSlice.reducer;
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default menuSlice.reducer;

@@ -1,4 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
+import axios from 'axios';
+import axiosInstance from '../../Api/AxiosApiInstance';
 
 const cities = [
   {name: 'Gurugram', id: 1},
@@ -62,27 +64,39 @@ const walkInScreensInitialState = {
   otp: 1234,
   cities,
   companies,
-  name: 'Deepak',
+  name: 'Arnav',
   planAndPrice,
   builderViewLoc,
   companyTypeDD,
   stateDD,
-  // selectBuilders,
-  // completeProfile,
+  data: [],
 };
 
 const walkInSlice = createSlice({
   name: 'walkInScreens',
   initialState: walkInScreensInitialState,
-  // reducers: {
-  //   updateName(state, action) {
-  //     state.name = action.payload;
-  //   },
-  //   updateCompany(state, action) {
-  //     state.location = action.payload;
-  //   },
-  // },
+  reducers: {
+    registerAccount(state, action) {},
+    loginUser(state, action) {},
+    loggedInUser(state, action) {
+      state.data = action.payload;
+    },
+  },
 });
 
-//export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default walkInSlice.reducer;
+export const walkInReducer = walkInSlice.reducer;
+
+export const registerAccount = async payload => {
+  const response = await axiosInstance.post('auth/register', payload);
+  return response.status;
+};
+
+export const loginUser = async payload => {
+  const response = await axiosInstance.post('auth/login', payload);
+  console.log({response});
+  return response;
+};
+
+export const loggedInUser = response => async dispatch => {
+  dispatch(walkInSlice.actions.loggedInUser(response));
+};

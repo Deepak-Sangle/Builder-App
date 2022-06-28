@@ -58,4 +58,4 @@ export const addBuilders = () => async dispatch => {
   dispatch(clientRegSlice.actions.addBuilders(response.data.data));
 };
 
-export default clientRegSlice.reducer;
+export const clientRegistrationReducer = clientRegSlice.reducer;

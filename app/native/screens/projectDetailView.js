@@ -16,22 +16,19 @@ import IonIcon from 'react-native-vector-icons/Ionicons'
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5'
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import UpcomingEventsCard from '../../helpers/upcomingEventsCard';
+import { useSelector } from '../../redux-toolkit/stores';
+import { useDispatch } from 'react-redux';
+import axiosInstance from '../../Api/AxiosApiInstance';
+import Loader from '../../helpers/Loader';
 
-const ProjectDetailView = () => {
+const ProjectDetailView = ({navigation, route}) => {
+    const {projectId} = route.params;
+    const dispatch = useDispatch();
 
     const icon = <IonIcon name="call-sharp" size={20} color="#FFFFFF" /> 
 
     //get all this values from fetch api's
-    const source = require('../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png');
-    const rera_no = "HERA34535D3";      
-    const address = "DLF Phase 5, Sector 54, 122002 - Gurgaon";
     const [isFav, setIsFav] = useState(false);
-
-    const [imagesList, setImagesList] = useState([
-        {source : require('../../../android/app/src/main/assets/images/temp_images/img.jpg'),   id : 1},
-        {source : require('../../../android/app/src/main/assets/images/temp_images/img1.jpeg'), id : 2},
-        {source : require('../../../android/app/src/main/assets/images/temp_images/img3.jpg'),  id : 3},
-    ]);
 
     const [managerDetails, setManagerDetails] = useState([
         {name : "Sammer Suri", source : require('../../../android/app/src/main/assets/images/temp_images/dp-1.jpg'), id : 1},
@@ -39,20 +36,6 @@ const ProjectDetailView = () => {
         {name : "Naruto Uzumaki", source : require('../../../android/app/src/main/assets/images/temp_images/dp-3.png'), id : 3},
     ]);
     
-    const [cardUpdates, setCardUpdates] = useState([
-        {title : "Lorem ipsum dolor sit amet", description : "Curabitur porttitor tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.", file : "Update-Rate-List.xls", youLiked : true, likes: "345",time : "39 mins", id: 1 },
-        {title : "Lorem ipsum dolor sit amet", description : "Curabitur porttitor Curabitur porttitor tellus et libero dignissim, commodo tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.", youLiked : false, likes: "345", time : "2 hours", id: 2, images : [require('../../../android/app/src/main/assets/images/temp_images/building1.jpg'), require('../../../android/app/src/main/assets/images/temp_images/building2.jpg')]},
-    ]);
-    
-    const [updateDetails, setUpdateDetails] = useState([
-        {title : "General Updates", value : "1546", id : 1},
-        {title : "Broker sales Incentives", value : "355", id : 2},
-        {title : "Offers for Clients", value : "567", id : 3},
-        {title : "News Updates", value : "256", id : 4},
-        {title : "Sales Update ", value : "123", id : 5},
-        {title : "New Update", value : "729", id : 6},
-    ]);
-
     const [actionsDetails, setActionsDetails] = useState([
         {icon : <AwesomeIcon name="building" size={20} color="#3D6386" />, id : 1, name: "Project info"},
         {icon : <IonIcon name="pricetags" size={20} color="#3D6386" />, id : 2, name: "Pricing"},
@@ -83,8 +66,9 @@ const ProjectDetailView = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [leftArrowColor, setLeftArrowColor] = useState("#A6A6A6");
     const [rightArrowColor, setRightArrowColor] = useState("#0078E9");
-
+    const [loading, setLoading] = useState(true);
     const [open, setOpen] = useState(false);
+
     const MAX_ACTION_OPEN = 6;
 
     const onCall = ()=>{
@@ -106,22 +90,51 @@ const ProjectDetailView = () => {
         setArrowColor();
     });
 
+    const getProjectDetails = async () => {
+        const response = await axiosInstance.get(`/project/${projectId}`);
+        setLoading(false);
+        setProjectDetails(response.data);
+    }
+
+    useEffect(()=> {
+        getProjectDetails();
+    }, []);
+
+    const [projectDetails, setProjectDetails] = useState({});
+    
+    var broadCast = [];
+    broadCast = useSelector(state => state.broadCastScreen.data);
+  
+    var temp = [];
+    temp = Object.keys(broadCast);
+  
+    var updateDetails = [];
+    for (var i = 0; i < temp.length; i++) {
+      var first = temp[i].split('_');
+      updateDetails.push({
+        title: first[0] + '\n' + first[1],
+        id: i + 1,
+        value: broadCast[temp[i]].length,
+        origVal: temp[i],
+        key: i + 1,
+      });
+    }
     return (
         <View style={styles.container}>
-            <ScrollView nestedScrollEnabled={true} style={{flex : 1}}>
+            {!loading && <ScrollView nestedScrollEnabled={true} style={{flex : 1}}>
                 
-                <LogoHeader text={"RERA No. "+ rera_no} isBack={true} isThreeDot={true} source={source} size={75}   />
+                <LogoHeader text={"RERA No. "+ projectDetails.reraNumber} isBack={true} isThreeDot={true} source={{uri : projectDetails.logo}} size={75}   />
                 
                 <View style={styles.allCardsView}>
                     <UpcomingEventsCard textblack={false} arrowColor="#00B055" backgroundColor="#00B055" heading="UPCOMING EVENT" date="Dec 15, 2020 at 6 p.m" address="Radission, Sohna Road" description="Golf Estate Phase 2 Launch Party" />
                     <UpcomingEventsCard textblack={true} arrowColor="#0078E9" backgroundColor="#F9D56B" heading="RUNNING POLL" date="Ends on: Dec 15, 2020" description="What should be the Pt should be the Pt should be the PLC charges" />
                 </View>
 
-                <HorizontalImageScroll size={350} data={imagesList}  />
+                {projectDetails.images!=undefined && <HorizontalImageScroll sourceKey="url" size={350} data={projectDetails.images}  />}
 
-                <View style={styles.map}>
+                {projectDetails.address && <View style={styles.map}>
                     <View style={{flex : 1}}>
-                        <Text style={[styles.textStyle, styles.address]}>{address}</Text>
+                        <Text style={[styles.textStyle, styles.address]}>{projectDetails.address}</Text>
                         <View style={styles.mapView}>
                             <CustomIcons name="location-pin" size={20} color="#0078E9" />
                             <TouchableOpacity activeOpacity={0.6} onPress={viewMap}>
@@ -134,7 +147,7 @@ const ProjectDetailView = () => {
                         {isFav && <MaterialIcon style={{textAlign : "center"}} name="star" size={40} color="#0078E9"/>}                        
                         <Text style={[styles.textStyle, styles.addtoFav]}> Add to Fav </Text>
                     </TouchableOpacity>
-                </View>
+                </View>}
                 
                 {managerDetails.map((manager,index)=>{
                     if(index != currentIndex) return ;
@@ -194,14 +207,11 @@ const ProjectDetailView = () => {
 
                     </View>
 
-                    <HorizontalDataScroll data={updateDetails} heading="PROJECT UPDATES"  />
-
-                    <UpdateCard setDetails={setCardUpdates} details={cardUpdates} />
-
-            </ScrollView>
-            <View>
+            </ScrollView>}
+            {!loading && <View>
                 <BottomNavigationTab />
-            </View>
+            </View>}
+            {loading && <Loader />}
         </View>
     );
 }

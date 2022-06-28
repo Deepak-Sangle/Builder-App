@@ -1,5 +1,6 @@
 // 2022-06-23T09:43:11.185Z
 import {months, weekday} from '../Constants/projectConstants'
+import { useSelector } from '../redux-toolkit/stores';
 
 const getDate = (date) => {
     return parseInt(date.substring(8,10));
@@ -127,6 +128,19 @@ const getProjectArray = (data, builderId) => {
     }
 }
 
+const createProjectList = (projectData, projectType) => {
+    const projectList = [];
+    projectData.map((prj)=> {
+        if(prj.projectType===projectType){
+            const temp = {image_url : prj.logo, id : prj._id, isNew : prj.projectStatus==="newLaunch"}
+            projectList.push(temp);
+        }
+    });
+    return projectList;
+}
+
+
+
 module.exports = {
     getDate, 
     getMonth,
@@ -138,5 +152,6 @@ module.exports = {
     getAmArray,
     getYearsArray,
     getMonthArray,
+    createProjectList,
     compareDates
 };

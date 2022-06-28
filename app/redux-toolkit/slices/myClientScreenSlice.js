@@ -21,6 +21,5 @@ const myClientSlice = createSlice({
   //   },
   // },
 });
-
+export const myClientReducer = myClientSlice.reducer;
 //export const {updateName, updateCompany} = nameCompanyReducer.actions;
-export default myClientSlice.reducer;
