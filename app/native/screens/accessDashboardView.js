@@ -134,6 +134,7 @@ const DashBoardView = ({navigation, route}) => {
         </View>
 
         <Divider />
+        {/* <Temp url="https://helloworld.com" /> */}
         <BroadcastView bottomNav={false} />
       </ScrollView>
       <View>

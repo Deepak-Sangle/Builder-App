@@ -1,6 +1,15 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {Text, View, StyleSheet, TextInput, Pressable} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
 import CustomButtons from '../../helpers/customButtons';
+import {otpCall} from '../../redux-toolkit/slices/walkInScreensSlice';
+import {useSelector} from 'react-redux';
 
 const OtpView = ({navigation}) => {
   const inputRef1 = useRef(null);
@@ -9,11 +18,13 @@ const OtpView = ({navigation}) => {
   const inputRef4 = useRef(null);
 
   const [otpArray, setOtpArray] = useState([]);
+  let otpEntered;
 
   const ref_array = [inputRef1, inputRef2, inputRef3, inputRef4];
 
   const RESEND_TIME_LIMIT = 30;
   const [resendTime, setResendTime] = useState(30);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onOtpChange = index => {
     return value => {
@@ -34,6 +45,9 @@ const OtpView = ({navigation}) => {
       }
     };
   };
+
+  // const getDetails = useSelector(state => state.walkInScreen.data);
+  // console.log(getDetails);
 
   const onOTPKeyPress = index => {
     return ({nativeEvent: {key: value}}) => {
@@ -67,6 +81,7 @@ const OtpView = ({navigation}) => {
   }, [resendTime]);
 
   function onSubmit() {
+    setIsLoading(true);
     var emptyOtp = 0;
     otpArray.map(otp => {
       if (otp === '') emptyOtp = 1;
@@ -77,8 +92,36 @@ const OtpView = ({navigation}) => {
     otpArray.map(otp => {
       newArr.push(parseInt(otp));
     });
-    console.log(newArr);
-    navigation.navigate('SelectcityView');
+    let otpString = newArr.toString();
+    otpEntered = parseFloat(otpString.replace(/,/g, ''));
+  }
+
+  const otp = async () => {
+    const otpString = otpEntered.toString();
+    console.log(otpString);
+
+    let payload = {
+      phoneNumber: '+918306355011',
+      otp: otpString,
+    };
+
+    const response = await otpCall(payload);
+    if (response.status === 200 || response.status === 201) {
+      setIsLoading(false);
+      console.log('success');
+      navigation.navigate('SelectcityView');
+    } else if (response.status === 400) {
+      setIsLoading(false);
+      console.log('warning');
+    } else {
+      setIsLoading(false);
+      console.log('error');
+    }
+  };
+
+  function otpApiCall() {
+    onSubmit();
+    otp();
   }
 
   function resendOtp() {
@@ -102,13 +145,25 @@ const OtpView = ({navigation}) => {
               maxLength={1}
               key={i}
               ref={inputRef}
-              autoFocus={i === 0 ? true : undefined}
+              autoFocus={i === 0 ? true : false}
               style={styles.inputBox}
             />
           ))}
         </View>
         <View style={{marginVertical: 25}}>
-          <CustomButtons text="VERIFY" isDone={false} pressHandler={onSubmit} />
+          {isLoading ? (
+            <ActivityIndicator
+              size="small"
+              color="#0078e9"
+              style={styles.loaderOtp}
+            />
+          ) : (
+            <CustomButtons
+              text="VERIFY"
+              isDone={false}
+              pressHandler={otpApiCall}
+            />
+          )}
         </View>
         <View style={styles.resendView}>
           {resendTime > 0 && (
@@ -176,6 +231,14 @@ const styles = StyleSheet.create({
   resendText: {
     textAlign: 'center',
     color: '#FFFFFF',
+  },
+  loaderOtp: {
+    padding: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    backgroundColor: '#fff',
   },
 });
 

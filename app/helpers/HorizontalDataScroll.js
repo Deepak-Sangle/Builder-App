@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/AntDesign';
 import UpdateCard from './updateCard';
 
 const HorizontalDataScroll = props => {
@@ -28,6 +29,11 @@ const HorizontalDataScroll = props => {
 
   const ScreenToBeRendered = ({index}) => {
     const keyy = data[index - 1].origVal;
+    const details = broadCast[keyy];
+    if (details == undefined) {
+      const empty = [];
+      return <UpdateCard details={empty} />;
+    }
     return <UpdateCard details={broadCast[keyy]} />;
   };
 
@@ -38,42 +44,52 @@ const HorizontalDataScroll = props => {
 
         <ScrollView horizontal={true}>
           <View style={styles.allupdateView}>
-            {data.length != 0 &&
-              data.map((val, index) => {
-                return (
-                  <TouchableOpacity onPress={() => setSelectedMemberID(val.id)}>
-                    <LinearGradient
-                      start={{x: 0.2, y: 0}}
-                      colors={
-                        index < GRADIENT_PAIRS
-                          ? [
-                              colorGradientPairs[index].color1,
-                              colorGradientPairs[index].color2,
-                            ]
-                          : [
-                              colorGradientPairs[index - GRADIENT_PAIRS].color1,
-                              colorGradientPairs[index - GRADIENT_PAIRS].color2,
-                            ]
-                      }
-                      key={val.key}
-                      style={styles.eachupdateView}>
-                      <Text style={[styles.textStyle, styles.updateText]}>
-                        {val.title}
-                      </Text>
-                      <Text style={[styles.textStyle, styles.updateValue]}>
-                        {val.value}
-                      </Text>
-                    </LinearGradient>
-                  </TouchableOpacity>
-                );
-              })}
+            {data.map((val, index) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => setSelectedMemberID(val.id)}
+                  key={val.key}>
+                  <LinearGradient
+                    start={{x: 0.2, y: 0}}
+                    colors={
+                      index < GRADIENT_PAIRS
+                        ? [
+                            colorGradientPairs[index].color1,
+                            colorGradientPairs[index].color2,
+                          ]
+                        : [
+                            colorGradientPairs[index - GRADIENT_PAIRS].color1,
+                            colorGradientPairs[index - GRADIENT_PAIRS].color2,
+                          ]
+                    }
+                    style={styles.eachupdateView}>
+                    <Text style={[styles.textStyle, styles.updateText]}>
+                      {val.title}
+                    </Text>
+                    <Text style={[styles.textStyle, styles.updateValue]}>
+                      {val.value}
+                    </Text>
+                  </LinearGradient>
+                  {/* {selectedMemberID === val.id && (
+                    <View style={styles.arrowView}>
+                      <Icon
+                        style={styles.arrowdown}
+                        name="caretdown"
+                        size={30}
+                        color="#736DFF"
+                      />
+                    </View>
+                  )} */}
+                </TouchableOpacity>
+              );
+            })}
           </View>
         </ScrollView>
       </View>
 
       <View>
-        {console.log(selectedMemberID)}
-        {data.length != 0 && <ScreenToBeRendered index={selectedMemberID} />}
+        {/* {console.log(selectedMemberID)} */}
+        <ScreenToBeRendered index={selectedMemberID} />
       </View>
     </ScrollView>
   );
@@ -116,6 +132,12 @@ const styles = StyleSheet.create({
   updateValue: {
     fontSize: 20,
     fontFamily: 'Nunito-Bold',
+  },
+  arrowdown: {
+    marginTop: -25,
+  },
+  arrowView: {
+    alignItems: 'center',
   },
 });
 

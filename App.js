@@ -58,7 +58,7 @@ import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemSc
 import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
 import BroadcastView from './app/native/screens/broadCastView';
-// import LoginScreenView from './app/native/screens/loginScreenView';
+import LoginScreenView from './app/native/screens/loginScreenView';
 import CreateTeamMem from './app/native/screens/createTeamMemberScreen/createTeamMem';
 import store from './app/redux-toolkit/stores/index';
 
@@ -78,26 +78,26 @@ const App = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="SlideView" component={SlideView} />
-          <Stack.Screen name="RegisterView" component={RegisterView} />
+          {/* <Stack.Screen name="SlideView" component={SlideView} />*/}
+          {/* <Stack.Screen name="RegisterView" component={RegisterView} /> */}
 
-          <Stack.Screen name="SelectcityView" component={SelectcityView} />
-          <Stack.Screen name="DialogBox" component={DialogBox} />
+          {/*<Stack.Screen name="DialogBox" component={DialogBox} />
           <Stack.Screen
             name="SelectCompanyView"
             component={SelectCompanyView}
           />
-          <Stack.Screen name="WelcomeView" component={WelcomeView} />
+          <Stack.Screen name="WelcomeView" component={WelcomeView} /> */}
           {/* <Stack.Screen name="LoginScreenView" component={LoginScreenView} /> */}
-          <Stack.Screen name="OtpView" component={OtpView} />
+          {/* <Stack.Screen name="OtpView" component={OtpView} />
+          <Stack.Screen name="SelectcityView" component={SelectcityView} /> */}
 
-          <Stack.Screen name="PlansPricingView" component={PlansPricingView} />
+          {/* <Stack.Screen name="PlansPricingView" component={PlansPricingView} />
           <Stack.Screen name="BuilderPlanView" component={BuilderPlanView} />
           <Stack.Screen name="PaymentView" component={PaymentView} />
           <Stack.Screen
             name="CompleteProfileView"
             component={CompleteProfileView}
-          />
+          /> */}
           {/* <Stack.Screen name="LoginScreenView" component={LoginScreenView} /> */}
 
           <Stack.Screen name="DashBoardView" component={DashBoardView} />

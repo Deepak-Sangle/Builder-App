@@ -18,39 +18,81 @@ export default function BroadcastView({bottomNav}) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addBroadcastData());
-  });
+  }, [broadCast]);
 
   var broadCast = [];
   broadCast = useSelector(state => state.broadCastScreen.data);
 
-  var temp = [];
-  temp = Object.keys(broadCast);
+  var updateDetails = [
+    {
+      id: 1,
+      key: 1,
+      title: 'General Updates',
+      value: `${
+        'GENERAL_UPDATES' in broadCast ? broadCast['GENERAL_UPDATES'].length : 0
+      }`,
+      origVal: 'GENERAL_UPDATES',
+    },
+    {
+      id: 2,
+      key: 2,
+      title: 'Offer for Brokers',
+      value: `${
+        'OFFER_BROKERS' in broadCast ? broadCast['OFFER_BROKERS'].length : 0
+      }`,
+      origVal: 'OFFER_BROKERS',
+    },
+    {
+      id: 3,
+      key: 3,
+      title: 'Offer for Clients',
+      value: `${
+        'OFFER_BUYERS' in broadCast ? broadCast['OFFER_BUYERS'].length : 0
+      }`,
+      origVal: 'OFFER_BUYERS',
+    },
+    {
+      id: 4,
+      key: 4,
+      title: 'Broker sales Incentives',
+      value: `${
+        'SALES_BROKER' in broadCast ? broadCast['SALES_BROKER'].length : 0
+      }`,
+      origVal: 'SALES_BROKER',
+    },
+    {
+      id: 5,
+      key: 5,
+      title: 'News Update',
+      value: `${
+        'NEWS_UPDATE' in broadCast ? broadCast['NEWS_UPDATE'].length : 0
+      }`,
+      origVal: 'NEWS_UPDATE',
+    },
+  ];
 
-  var updateDetails = [];
-  for (var i = 0; i < temp.length; i++) {
-    var first = temp[i].split('_');
-    updateDetails.push({
-      title: first[0] + '\n' + first[1],
-      id: i + 1,
-      value: broadCast[temp[i]].length,
-      origVal: temp[i],
-      key: i + 1,
-    });
-  }
+  // for (var i = 0; i < temp.length; i++) {
+  //   var first = temp[i].split('_');
+  //   updateDetails.push({
+  //     title: first[0] + '\n' + first[1],
+  //     id: i + 1,
+  //     value: broadCast[temp[i]].length,
+  //     origVal: temp[i],
+  //     key: i + 1,
+  //   });
+  // }
 
   return (
     <View style={{flex: 1}}>
       <ScrollView style={{flex: 1}}>
         <View>
-          {broadCast.length != 0 && (
-            <View style={{marginVertical: 20}}>
-              <HorizontalDataScroll
-                data={updateDetails}
-                heading="PROJECT UPDATES"
-                broadCast={broadCast}
-              />
-            </View>
-          )}
+          <View style={{marginVertical: 20}}>
+            <HorizontalDataScroll
+              data={updateDetails}
+              heading="PROJECT UPDATES"
+              broadCast={broadCast}
+            />
+          </View>
         </View>
       </ScrollView>
       {bottomNav === false ? (
@@ -65,43 +107,3 @@ export default function BroadcastView({bottomNav}) {
 }
 
 const styles = StyleSheet.create({});
-
-// const [cardUpdates, setCardUpdates] = useState([
-//   {
-//     title: 'Lorem ipsum dolor sit amet',
-//     name: 'M3M Sierra 68',
-//     companyLogo: require('../../../android/app/src/main/assets/images/temp_images/Bitmap-5.png'),
-//     description:
-//       'Curabitur porttitor tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.',
-//     file: 'Update-Rate-List.xls',
-//     youLiked: true,
-//     likes: '35',
-//     time: '39 mins',
-//     id: 1,
-//   },
-//   {
-//     title: 'Lorem ipsum dolor sit amet',
-//     name: 'M3M 65 Avenue',
-//     companyLogo: require('../../../android/app/src/main/assets/images/temp_images/Bitmap-4.png'),
-//     description:
-//       'Curabitur porttitor Curabitur porttitor tellus et libero dignissim, commodo tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.',
-//     youLiked: false,
-//     likes: '25',
-//     time: '2 hours',
-//     id: 2,
-//     images: [
-//       require('../../../android/app/src/main/assets/images/temp_images/building1.jpg'),
-//       require('../../../android/app/src/main/assets/images/temp_images/building2.jpg'),
-//     ],
-//   },
-//   {
-//     title: 'Lorem ipsum dolor sit lorem iipsum volar morghulis amet',
-//     name: 'M3M 65 Avenue',
-//     description:
-//       'Curabitur porttitor Curabitur porttitor tellus et libero dignissim, commodo tellus et libero dignissim, commodo vulputate augue condimentum. Etiam id diam elit.',
-//     youLiked: false,
-//     likes: '345',
-//     time: '2 hours',
-//     id: 3,
-//   },
-// ]);

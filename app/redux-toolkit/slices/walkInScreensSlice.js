@@ -61,7 +61,6 @@ const stateDD = [
 ];
 
 const walkInScreensInitialState = {
-  otp: 1234,
   cities,
   companies,
   name: 'Arnav',
@@ -88,6 +87,7 @@ export const walkInReducer = walkInSlice.reducer;
 
 export const registerAccount = async payload => {
   const response = await axiosInstance.post('auth/register', payload);
+  console.log({response});
   return response.status;
 };
 
@@ -99,4 +99,10 @@ export const loginUser = async payload => {
 
 export const loggedInUser = response => async dispatch => {
   dispatch(walkInSlice.actions.loggedInUser(response));
+};
+
+export const otpCall = async payload => {
+  const response = await axiosInstance.post('auth/otp', payload);
+  console.log({response});
+  return response;
 };

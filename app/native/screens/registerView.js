@@ -26,33 +26,61 @@ const RegisterView = ({navigation}) => {
   const [warning, setWarning] = useState(false);
   const [error, setError] = useState(false);
   const [mandatory, setMandatory] = useState(false);
+  const [emailValidation, setEmailValidation] = useState(false);
+  const [mobValidation, setMobValidation] = useState(false);
+
+  function ValidateEmail(mail) {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (mailformat.test(mail) === true) {
+      return true;
+    } else {
+      setEmailValidation(true);
+      return false;
+    }
+  }
+
+  function ValidatePhoneNumber(mob) {
+    var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    if (re.test(mob) === true) {
+      return true;
+    } else {
+      setMobValidation(true);
+      return false;
+    }
+  }
 
   const handleRegister = async () => {
     setIsLoading(true);
     if (user && email && password && mobile && company) {
-      let payload = {
-        fullName: user,
-        companyName: company,
-        email: email,
-        phoneNumber: mobile,
-        password: password,
-        userType: 'broker',
-      };
+      if (ValidateEmail(email) && ValidatePhoneNumber(mobile)) {
+        const withCode = '+91' + mobile;
+        let payload = {
+          fullName: user,
+          companyName: company,
+          email: email,
+          phoneNumber: withCode,
+          password: password,
+          userType: 'broker',
+        };
 
-      const response = await registerAccount(payload);
-      console.log(response);
-      if (response === 200 || response === 201) {
-        console.log('success');
-        setIsLoading(false);
-        navigation.navigate('OtpView');
-      } else if (response === 400) {
-        console.log('warning');
-        setIsLoading(false);
-        setWarning(true);
+        const response = await registerAccount(payload);
+        console.log(response);
+        if (response === 200 || response === 201) {
+          console.log('success');
+          setIsLoading(false);
+          navigation.navigate('OtpView');
+        } else if (response === 400) {
+          console.log('warning');
+          setIsLoading(false);
+          setWarning(true);
+        } else {
+          console.log('error');
+          setIsLoading(false);
+          setError(true);
+        }
       } else {
-        console.log('error');
+        console.log('Invalid email or password');
         setIsLoading(false);
-        setError(true);
       }
     } else {
       console.log('All fields are needed');
@@ -65,6 +93,8 @@ const RegisterView = ({navigation}) => {
     setWarning(false);
     setError(false);
     setMandatory(false);
+    setEmailValidation(false);
+    setMobValidation(false);
   };
 
   return (
@@ -186,6 +216,20 @@ const RegisterView = ({navigation}) => {
           <Dialog.Button label="Cancel" onPress={handleCancel} />
         </Dialog.Container>
       </View>
+      <View>
+        <Dialog.Container visible={emailValidation}>
+          <Dialog.Title>Error</Dialog.Title>
+          <Dialog.Description>Invalid email</Dialog.Description>
+          <Dialog.Button label="Cancel" onPress={handleCancel} />
+        </Dialog.Container>
+      </View>
+      <View>
+        <Dialog.Container visible={mobValidation}>
+          <Dialog.Title>Error</Dialog.Title>
+          <Dialog.Description>Invalid mobile number</Dialog.Description>
+          <Dialog.Button label="Cancel" onPress={handleCancel} />
+        </Dialog.Container>
+      </View>
     </ScrollView>
   );
 };
@@ -274,6 +318,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     fontFamily: 'Nunito-Bold',
     color: '#fff',
+  },
+  hideText: {
+    display: 'none',
+  },
+  showText: {
+    fontSize: 50,
   },
 });
 
