@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Location from 'react-native-vector-icons/FontAwesome5';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 
 export default function ImageAndCal({data}) {
   return (

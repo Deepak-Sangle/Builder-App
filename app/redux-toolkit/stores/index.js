@@ -13,6 +13,7 @@ import {eventScreenReducer} from '../slices/eventScreenSlice';
 import {walkInReducer} from '../slices/walkInScreensSlice';
 import {createTeamMemberReducer} from '../slices/createTeamMemSlice';
 import { dashboardReducer } from '../slices/dashboardScreenSlice';
+import { meetingReducer } from '../slices/meetingsSlice';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ const store = configureStore({
     broadCastScreen: broadcastReducer,
     clientRegScreen: clientRegistrationReducer,
     dashboardScreen : dashboardReducer,
+    meetingsScreen : meetingReducer,
   },
 });
 

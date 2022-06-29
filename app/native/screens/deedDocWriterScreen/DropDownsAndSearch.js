@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Dropdown from '../myClientScreen/Dropdown';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 import SearchDeedAndDoc from './SearchDeedAndDoc';
 
 export default function DropAndSearch({loc, cards}) {

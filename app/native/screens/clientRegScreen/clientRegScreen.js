@@ -32,6 +32,8 @@ export default function ClientRegScreen({navigation}) {
   const [projectList, setProjectList] = useState()
   const [checked, setChecked] = useState(false);
   const [user, setUser] = useState(null);
+  const [err, setErr] = useState();
+  const [heading, setHeading] = useState();
 
   const sendRequest = () => {
     const newNumber = user.phone.slice(3,9) + contactNumber;

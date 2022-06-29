@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Dimensions} from 'react-native';
 import UpcomingCard from './upcomingCard';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 
 export default function UpcmoingVisitSection({clientData}) {
   const leng = clientData.length;

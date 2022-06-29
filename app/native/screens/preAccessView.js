@@ -19,7 +19,7 @@ import Loader from '../../helpers/Loader';
 const PreAccessView = ({navigation, route}) => {
     const {builder} = route.params;
     
-    const source = {uri : builder.groupLogo};
+    const source = {uri : builder.groupLogo!=undefined ? builder.groupLogo : builder.logo};
     const icon = <MaterialIcon name="arrow-forward-ios" size={15} color="#FFFFFF" />
 
     const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const PreAccessView = ({navigation, route}) => {
                 <View style={styles.projectView}>
                     <CustomFilterMenu  list={PropertyData} item={projectType} setItem={setProjectType}  />
                     <View style={[styles.flatListView, {height : access ? 625 : 500,}]}>
-                        {!loading && projectList.length>0 && <CustomCompanyList pressHandler={(projectId) => selectedProject(projectId)} height={125} text="New Launch" data={projectList} />}
+                        {!loading && projectList.length>0 && <CustomCompanyList pressHandler={(projectId) => selectedProject(projectId)} numOfRows={access ? 5 : 4} height={125} text="New Launch" data={projectList} />}
                         {!loading && projectList.length==0 && <Text style={[styles.textStyle, styles.noData]}>No data available</Text>}
                         {loading && <Loader />}
                     </View>

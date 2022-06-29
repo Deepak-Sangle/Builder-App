@@ -71,7 +71,7 @@ const DashBoardView = ({navigation}) => {
   builders = useSelector(state => state.dashboardScreen.data);
   allBuilders = useSelector(state => state.dashboardScreen.allBuilders);
   subscriptions = useSelector(state => state.dashboardScreen.subscriptions);
-  // loading = useSelector(state => state.dashboardScreen.loading);
+  loading = useSelector(state => state.dashboardScreen.loading);
   
   let access;
   access = (user!=null && subscriptions!=undefined) ? ( (user.isTrialEligible || subscriptions.length > 0) ? true : false ) : false;
@@ -90,7 +90,7 @@ const DashBoardView = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      {!loading && <ScrollView nestedScrollEnabled={true} style={styles.container}>
+      <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <LogoHeader topPadding={30} isThreeDot={true} size={55} />
 
         <View style={styles.searchBar}>
@@ -101,7 +101,8 @@ const DashBoardView = ({navigation}) => {
           />
         </View>
 
-        {!access && (
+      {!loading && <View>
+        {access && (
           <View style={styles.allCardsView}>
             <UpcomingEventsCard
               textblack={false}
@@ -122,7 +123,7 @@ const DashBoardView = ({navigation}) => {
             />
           </View>
         )}
-        {access && <View style={styles.expiredView}>
+        {!access && <View style={styles.expiredView}>
           <View style={styles.topView}>
             <View style={styles.circle}><Icons name='cross' color='#B92A36' size={20} /></View>
             <View style={styles.rightView}>
@@ -149,14 +150,14 @@ const DashBoardView = ({navigation}) => {
             size={100}
           />
         </View>
-
-        <Divider />
+        </View>}
+        {!loading && <Divider />}
         <BroadcastView bottomNav={false} />
-      </ScrollView>}
-      {!loading && <View>
+        {loading && <Loader />}
+      </ScrollView>
+      <View>
         <BottomNavigationTab />
-      </View>}
-      {loading && <Loader />}
+      </View>
     </View>
   );
 };

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import CustomButtons from '../../helpers/customButtons';
 import LogoHeader from '../../helpers/LogoHeader';
+import {deviceWidth} from '../../Constants/projectConstants'
 
 const SlideView = ({navigation}) => {
   const [slideDetails, setSlideDetails] = useState([
@@ -34,44 +35,52 @@ const SlideView = ({navigation}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const onStarted = () => {
+    this.scroll.scrollTo({ x: deviceWidth * (currentSlide+1) });
     if (currentSlide < 2) setCurrentSlide(currentSlide + 1);
     else {
       navigation.navigate('RegisterView');
     }
   };
 
+  const setIndex = (event) => {
+    const viewSize = event.nativeEvent.layoutMeasurement.width;
+    const contentOffset = event.nativeEvent.contentOffset.x;
+    const selection = Math.floor(contentOffset/viewSize);
+    setCurrentSlide(selection);
+  }
+
   return (
     <ScrollView>
       <View style={styles.container}>
         <LogoHeader size={70} isHeader={true} isDescription={true} />
       </View>
-      <View style={[styles.circleView, styles.container]}>
-        <View style={styles.bigcircle}></View>
-      </View>
-      {slideDetails.map((slide, index) => {
-        if (index != currentSlide) return;
-        return (
-          <View key={index} style={[styles.container]}>
-            <Text style={[styles.textStyle, styles.heading]}>
-              {slide.heading}
-            </Text>
-            <Text style={[styles.textStyle, styles.description]}>
-              {slide.description}
-            </Text>
-            <View style={styles.horizontalBars}>
-              {[0, 1, 2].map(i => {
-                if (currentSlide != i)
-                  return <View key={i} style={styles.dot}></View>;
-                else
-                  return <View key={i} style={[styles.dot, styles.bar]}></View>;
-              })}
-              {/* <View style={[styles.dot, styles.bar]}></View>
-                            <View style={styles.dot}></View>
-                            <View style={styles.dot}></View> */}
+      <ScrollView pagingEnabled onMomentumScrollEnd={setIndex} horizontal ref={(node) => (this.scroll = node)} >
+        {slideDetails.map((slide, index) => {
+          return (
+            <View key={index} width={deviceWidth}>
+              <View style={[styles.circleView, styles.container]}>
+                <View style={styles.bigcircle}></View>
+              </View>
+              <View style={[styles.container]}>
+                <Text style={[styles.textStyle, styles.heading]}>
+                  {slide.heading}
+                </Text>
+                <Text style={[styles.textStyle, styles.description]}>
+                  {slide.description}
+                </Text>
+                <View style={styles.horizontalBars}>
+                  {[0, 1, 2].map(i => {
+                    if (index != i)
+                      return <View key={i} style={styles.dot}></View>;
+                    else
+                      return <View key={i} style={[styles.dot, styles.bar]}></View>;
+                  })}
+                </View>
+              </View>
             </View>
-          </View>
-        );
-      })}
+          );
+        })}
+      </ScrollView>
       <View style={[styles.container, {paddingHorizontal: 20}]}>
         <CustomButtons
           pressHandler={onStarted}

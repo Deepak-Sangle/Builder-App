@@ -11,7 +11,7 @@ import LogoHeader from '../../helpers/LogoHeader';
 import {registerAccount} from '../../redux-toolkit/slices/walkInScreensSlice';
 import {useState} from 'react';
 import {ActivityIndicator} from 'react-native-paper';
-import deviceWidth from '../../Constants/projectConstants';
+import {deviceWidth} from '../../Constants/projectConstants';
 import Dialog from 'react-native-dialog';
 
 const RegisterView = ({navigation}) => {

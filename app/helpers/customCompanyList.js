@@ -14,6 +14,7 @@ const CustomCompanyList = (props) => {
     const height = props.height ? props.height : 175;
     const isTouchable = props.isTouchable ? props.isTouchable : false;
     const pressHandler = props.pressHandler;
+    const numOfRows = props.numOfRows;
 
     if(size%2){
         data.push({});
@@ -21,7 +22,7 @@ const CustomCompanyList = (props) => {
     
     const renderList = ({item, index})=> {
         const borderStyle = {
-            borderBottomWidth : ((index>=size-2) ? 0 : 1),
+            borderBottomWidth : (((index+1)>2*numOfRows) ? 0 : 1),
             borderRightWidth : (index%2) ? 0 : 1, 
             height : height,
         }

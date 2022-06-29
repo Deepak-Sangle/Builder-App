@@ -53,7 +53,7 @@ import SorryScreen from './app/native/screens/SorryScreen/sorryScreen';
 import DeedDocScreen from './app/native/screens/deedDocWriterScreen/deedDoc';
 import TeamPack from './app/native/screens/teamPackScreen/teamPack';
 import MyClient from './app/native/screens/myClientScreen/myClient';
-// import LoginView from './app/native/screens/loginView';
+import LoginView from './app/native/screens/loginView';
 import AlreadyMember from './app/native/screens/alreadyMemberScreen/alreadyMemScreen';
 import BuildersView from './app/native/screens/buildersView';
 import VisitsPlannedView from './app/native/screens/visitsPlannedView';
@@ -81,10 +81,6 @@ const App = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
-        {/* <Stack.Screen name='ProjectDetailView' component={ProjectDetailView} /> */}
-          {/* <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} /> */}
-          {/* <Stack.Screen name='BroadcastView' component={BroadcastView} /> */}
-          <Stack.Screen name='DashBoardView' component={DashBoardView} />
           <Stack.Screen name='SlideView' component={SlideView} />
           <Stack.Screen name='RegisterView' component={RegisterView} />
           <Stack.Screen name='OtpView' component={OtpView} />
@@ -92,7 +88,7 @@ const App = () => {
           <Stack.Screen name='DialogBox' component={DialogBox} />
           <Stack.Screen name='SelectCompanyView' component={SelectCompanyView} />
           <Stack.Screen name='WelcomeView' component={WelcomeView} />
-          {/* <Stack.Screen name='LoginView' component={LoginView} /> */}
+          <Stack.Screen name='LoginView' component={LoginView} />
           <Stack.Screen name='LoginScreenView' component={LoginScreenView} />
           <Stack.Screen name='PlansPricingView' component={PlansPricingView} />
           <Stack.Screen name='BuilderPlanView' component={BuilderPlanView} />
@@ -109,11 +105,12 @@ const App = () => {
           <Stack.Screen name='TeamDashboardView' component={TeamDashboardView} />
           <Stack.Screen name='PlanNewVisit' component={PlanNewVisit} />
           <Stack.Screen name='VisitsPlannedView' component={VisitsPlannedView} />
-          {/* <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} /> */}
-          <Stack.Screen name='BuilderScreen' component={BuilderScreen} />
+          <Stack.Screen name='DashBoardView' component={DashBoardView} />
+          <Stack.Screen name='ClientRegScreen' component={ClientRegScreen} />
+          <Stack.Screen name='BroadcastView' component={BroadcastView} />
           <Stack.Screen name='CreateTeamView' component={CreateTeamView} />
 
-          {/* <Stack.Screen name='MyEvents' component={MyEvents} /> */}
+          <Stack.Screen name='MyEvents' component={MyEvents} />
           <Stack.Screen name='MenuScreen' component={MenuScreen}/>      
           <Stack.Screen name='SorryScreen' component={SorryScreen} />
           <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />

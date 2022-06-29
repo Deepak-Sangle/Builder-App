@@ -11,41 +11,45 @@ import BottomNavigationTab from '../../helpers/bottomNavigationTab';
 import CustomSearchBar from '../../helpers/customSearchBar';
 import CustomGradient from '../../helpers/customGradient';
 
+import { useSelector } from '../../redux-toolkit/stores';
+
 const BuildersView = ({navigation}) => {
     
-    const [locationList, setLocationList] = useState([
-        {label : "Gurugram", value : "gurugram"},
-        {label : "New Delhi", value : "delhi"},
-        {label : "Mumbai", value : "mumbai"},
-    ]);
+    const locationList = useSelector(state => state.walkInScreen.builderViewLoc);
 
-    const [location, setLocation] = useState("gurugram");
-
-    const [data, setData] = useState([
-        {title : "All Builders", value : 10, id : 1},
-        {title : "Connected Builders", value : 4, id : 2},
-        {title : "Favorite Projects", value : 23, id : 3},
-    ]);
+    const [location, setLocation] = useState(locationList[0].value);
 
     const [selectedTab, setSelectedTab] = useState(0);
 
     const [searchQuery, setSearchQuery] = useState("");
 
+    const allBuilders = useSelector(state => state.dashboardScreen.allBuilders);
+    const myBuilders = useSelector(state => state.dashboardScreen.data);
+
+    // const company = (selectedTab===0) ? allBuilders : myBuilders ; 
+
+    const [data, setData] = useState([
+        {title : "All Builders", value : allBuilders.length, id : 1},
+        {title : "Connected Builders", value : myBuilders.length, id : 2},
+        {title : "Favorite Projects", value : 0, id : 3},
+    ]);
+
+
     const [company,setCompany] = useState([
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png"), num_of_projects : 18, id: 1, isTag : true},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-2.png"), num_of_projects : 12, id: 2, isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.png"), num_of_projects : 12, id: 3, isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-4.png"), num_of_projects : 18, id: 4, isTag : true},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-5.png"), num_of_projects : 12, id: 5, isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-1.png"), num_of_projects : 18, id: 7, isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-2.png"), num_of_projects : 18, id: 8, isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-3.png"), num_of_projects : 12, id: 9, isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-5.png"), num_of_projects : 12, id: 10, isTag : false},
-        {image_url : require("../../../android/app/src/main/assets/images/temp_images/Bitmap-4.png"), num_of_projects : 18, id: 4, isTag : true},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/a48647e2-d478-415e-b0bf-3ed2fbc6811d/logo/', num_of_projects : 18, id: 1, isTag : true},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/2cf1b0ea-5783-431c-8d91-a97b8c4ce41b/logo/1655357093', num_of_projects : 12, id: 2, isTag : false},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/2cf1b0ea-5783-431c-8d91-a97b8c4ce41b/logo/1655357093', num_of_projects : 12, id: 3, isTag : false},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/a48647e2-d478-415e-b0bf-3ed2fbc6811d/logo/', num_of_projects : 18, id: 4, isTag : true},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/2cf1b0ea-5783-431c-8d91-a97b8c4ce41b/logo/1655357093', num_of_projects : 12, id: 5, isTag : false},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/2cf1b0ea-5783-431c-8d91-a97b8c4ce41b/logo/1655357093', num_of_projects : 18, id: 7, isTag : false},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/a48647e2-d478-415e-b0bf-3ed2fbc6811d/logo/', num_of_projects : 18, id: 8, isTag : false},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/2cf1b0ea-5783-431c-8d91-a97b8c4ce41b/logo/1655357093', num_of_projects : 12, id: 9, isTag : false},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/a48647e2-d478-415e-b0bf-3ed2fbc6811d/logo/', num_of_projects : 12, id: 10, isTag : false},
+        {image_url : 'https://s3.ap-south-1.amazonaws.com/web.buildersbroadcast.com/web.buildersbroadcast.com/2cf1b0ea-5783-431c-8d91-a97b8c4ce41b/logo/1655357093', num_of_projects : 18, id: 4, isTag : true},
     ]);
 
     const onProjectPressed = () => {
-        navigation.navigate('PreAccessView', {access : true});
+        navigation.navigate('PreAccessView', {builder : '2cf1b0ea-5783-431c-8d91-a97b8c4ce41b'});       //TODO - Deepak - hardcoded for now, will change later
     }
 
     const BuildersTab = ()=>{ 
@@ -91,7 +95,7 @@ const BuildersView = ({navigation}) => {
                     <CustomSearchBar text="Search builders or project" searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                 </View>
                 <View style={styles.companylist}>
-                    <CustomCompanyList pressHandler={onProjectPressed} data={company} setData={setCompany} text="CONNECTED"/>
+                    <CustomCompanyList pressHandler={onProjectPressed} data={company} text="CONNECTED"/>
                 </View>
             </ScrollView>
             <View>

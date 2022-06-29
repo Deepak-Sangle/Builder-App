@@ -10,7 +10,7 @@ import {
 import LogoHeader from '../../helpers/LogoHeader';
 import CustomIcons from '../../helpers/CustomIcons';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import deviceWidth from '../../Constants/projectConstants';
+import {deviceWidth} from '../../Constants/projectConstants';
 import {
   loginUser,
   loggedInUser,

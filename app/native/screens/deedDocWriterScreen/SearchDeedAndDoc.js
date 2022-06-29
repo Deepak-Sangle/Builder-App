@@ -7,7 +7,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 
 export default function SearchDeedAndDoc({value, style}) {
   const [query, setQuery] = useState();

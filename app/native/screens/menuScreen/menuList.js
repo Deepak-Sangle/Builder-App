@@ -14,7 +14,7 @@ export default function MenuList({navigation}) {
 
   return (
     <View style={styles.menuList}>
-      <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigation.navigate('TeamPack')}><Text style={styles.createYourTeamText}>Create Your Team</Text></TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigation.navigate('CreateTeamView')}><Text style={styles.createYourTeamText}>Create Your Team</Text></TouchableOpacity>
       <Badge size={20} style={styles.badgeMenu}>
         PRO
       </Badge>

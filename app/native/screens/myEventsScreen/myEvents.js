@@ -4,7 +4,7 @@ import Dropdown from '../myClientScreen/Dropdown';
 import {EventsDropDown} from './dummyDataEvents/EventsDropdown';
 import ImageAndCal from './ImageAndCal';
 import OtherEventsCards from './OtherEventsCards';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 import LogoHeader from '../../../helpers/LogoHeader';
 import {useDispatch, useSelector} from 'react-redux';
 import {addEventData} from '../../../redux-toolkit/slices/eventScreenSlice';

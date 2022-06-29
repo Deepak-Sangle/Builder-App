@@ -17,9 +17,10 @@ const meetingSlice = createSlice({
     }
 });
 
-export default meetingSlice.reducer;
+export const meetingReducer = meetingSlice.reducer;
 
 export const addMeetingsData = () => async dispatch => {
     const response = await axiosInstance.get('/meetings');
+    console.log(response.data);
     dispatch(meetingSlice.actions.addMeetingsData(response.data));
 };
