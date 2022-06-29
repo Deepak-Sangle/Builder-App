@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Share,
 } from 'react-native';
 import {Divider} from 'react-native-paper';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
@@ -24,9 +25,6 @@ import {useDispatch, useSelector} from 'react-redux';
 const UpdateCard = props => {
   const completeData = props.details;
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getShareData());
-  // }, []);
 
   return (
     <View>
@@ -79,15 +77,6 @@ const UpdateCard = props => {
               else final = final + ' years ago';
             }
 
-            {
-              /* useEffect(() => {
-              dispatch(getShareData(refId));
-            });
-            let shareData = [];
-            shareData = useSelector(state => state.broadCastScreen.shareData);
-            console.log(shareData); */
-            }
-
             const onLike = async () => {
               let payload = {
                 referenceId: refId,
@@ -125,20 +114,56 @@ const UpdateCard = props => {
               }
             };
 
+            const openShare = async () => {
+              try {
+                const uri = await dispatch(getShareData(refId));
+
+                const result = await Share.share({
+                  title:
+                    'Checkout ' +
+                    `${data.title}` +
+                    ' post by ' +
+                    `${data.author.name}`,
+                  message: uri,
+                });
+                if (result.action === Share.sharedAction) {
+                  if (result.activityType) {
+                    // shared with activity type of result.activityType
+                  } else {
+                    // shared
+                  }
+                } else if (result.action === Share.dismissedAction) {
+                  // dismissed
+                }
+              } catch (error) {
+                console.log(error.message);
+              }
+            };
+
             const onShare = async () => {
               let payload = {
                 referenceId: refId,
                 shareTime: currentdate,
               };
 
+              //dispatch(getShareData(payload));
+
               const response = await shareContent(payload);
+
               if (response.status === 200 || response.status === 201) {
                 console.log('success');
+              } else if (response.status === 409) {
+                console.log('Already Shared');
               } else if (response.status === 400) {
                 console.log('warning');
               } else {
                 console.log('error');
               }
+            };
+
+            const shareBtn = () => {
+              openShare();
+              onShare();
             };
 
             const onView = async () => {
@@ -179,7 +204,6 @@ const UpdateCard = props => {
                       </Text>
                     </View>
                   </View>
-
                   <Divider />
 
                   {isImages && (
@@ -206,11 +230,9 @@ const UpdateCard = props => {
                   <Text style={[styles.textStyle, styles.headingText]}>
                     {data.title}
                   </Text>
-
                   <Text style={[styles.textStyle, styles.descriptionText]}>
                     {data.description}
                   </Text>
-
                   {/* {isFile && (
               <TouchableOpacity activeOpacity={0.5} style={styles.fileView}>
                 <EntypoIcon
@@ -222,7 +244,6 @@ const UpdateCard = props => {
                 <Text style={[styles.textStyle, styles.file]}>{data.file}</Text>
               </TouchableOpacity>
             )} */}
-
                   <View style={styles.bottomView}>
                     <View>
                       {data.hasUserLiked == true ? (
@@ -264,7 +285,7 @@ const UpdateCard = props => {
                     </View>
 
                     <TouchableOpacity
-                      onPress={onShare}
+                      onPress={shareBtn}
                       activeOpacity={0.5}
                       style={styles.shareView}>
                       <EntypoIcon
@@ -382,6 +403,9 @@ const styles = StyleSheet.create({
     height: 200,
     width: 200,
     marginRight: 10,
+  },
+  singleImg: {
+    width: '100%',
   },
   nthingText: {
     fontFamily: 'Nunito-SemiBold',

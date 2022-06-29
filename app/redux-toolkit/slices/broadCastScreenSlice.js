@@ -3,7 +3,6 @@ import axiosAPIInstanceProject from '../../Api/axiosInstanceProject';
 
 const broadcastScreenInitialState = {
   data: [],
-  shareData: [],
 };
 
 const broadcastScreenSlice = createSlice({
@@ -28,21 +27,21 @@ export const addBroadcastData = () => async dispatch => {
   dispatch(broadcastScreenSlice.actions.addBroadcastData(response.data));
 };
 
-export const getShareData = broadCastId => async dispatch => {
-  const url = '/broadcasts/' + `${broadCastId}` + '/export';
-  const stringUrl = url.toString();
-  const response = await axiosAPIInstanceProject.get(stringUrl);
-  dispatch(
-    broadcastScreenSlice.actions.getShareData(response.data.message.url),
-  );
-};
-
 export const shareContent = async payload => {
   const response = await axiosAPIInstanceProject.post(
     'media/counter?action=share',
     payload,
   );
   return response;
+};
+
+export const getShareData = referenceId => async dispatch => {
+  const url = '/broadcasts/' + `${referenceId}` + '/export';
+  const stringUrl = url.toString();
+  console.log(stringUrl);
+  const response = await axiosAPIInstanceProject.get(stringUrl);
+  //dispatch(broadcastScreenSlice.actions.getShareData(response.data));
+  return response.data.message.url;
 };
 
 export const viewContent = async payload => {
