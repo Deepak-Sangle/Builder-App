@@ -81,6 +81,7 @@ const App = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown : false}}>
+          <Stack.Screen name='TeamPack' component={TeamPack} />
           <Stack.Screen name='SlideView' component={SlideView} />
           <Stack.Screen name='RegisterView' component={RegisterView} />
           <Stack.Screen name='OtpView' component={OtpView} />
@@ -115,7 +116,7 @@ const App = () => {
           <Stack.Screen name='SorryScreen' component={SorryScreen} />
           <Stack.Screen name='DeedDocScreen' component={DeedDocScreen} />
           <Stack.Screen name='MyClient' component={MyClient} />
-          <Stack.Screen name='TeamPack' component={TeamPack} />
+          {/* <Stack.Screen name='TeamPack' component={TeamPack} /> */}
           <Stack.Screen name='AlreadyMember' component={AlreadyMember} />
           <Stack.Screen name="CreateTeamMem" component={CreateTeamMem} />
         </Stack.Navigator>

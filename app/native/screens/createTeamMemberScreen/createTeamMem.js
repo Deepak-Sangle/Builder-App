@@ -11,7 +11,7 @@ import {
 import LogoHeader from '../../../helpers/LogoHeader';
 import BottomNavigationTab from '../../../helpers/bottomNavigationTab';
 import MemberCard from './MemberCard';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 
 export default function CreateTeamMem() {
   return (
@@ -39,13 +39,13 @@ export default function CreateTeamMem() {
 const styles = StyleSheet.create({
   removeMem: {
     alignSelf: 'center',
-    fontFamily: 'Nunito-Bold',
+    fontFamily: 'Nunito-Regular',
     color: '#b21313',
     textDecorationLine: 'underline',
   },
   removeMemView: {
     backgroundColor: '#f8eeee',
-    padding: 20,
+    padding: 30,
     width: deviceWidth,
     marginTop:'10%'
   },

@@ -1,16 +1,39 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
 import {Checkbox} from 'react-native-paper';
 import {deviceWidth} from '../../../Constants/projectConstants';
 import Plus from 'react-native-vector-icons/AntDesign';
 import CustomButtons from '../../../helpers/customButtons';
+import Icons from 'react-native-vector-icons/AntDesign';
+import jwt_decode from "jwt-decode";
+import { token} from '../../../Constants/projectConstants';
+import Loader from '../../../helpers/Loader';
 
 export default function ClientDetails({navigation}) {
   const [checked, setChecked] = useState(false);
-
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [fullName, setFullName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  
   const createTeam = () => {
+
+    const payload = {
+      fullName,
+      phoneNumber,
+      status : "ADDED",
+      teamId : "",      //TODO - Deepak - 
+      userId : user.userId,
+      
+    }
+
     navigation.navigate('AlreadyMember');
   };
+
+  useEffect(()=> {
+    setUser(jwt_decode(token));
+    
+  }, []);
 
   return (
     <View style={styles.teamPackComp}>
@@ -18,15 +41,22 @@ export default function ClientDetails({navigation}) {
         <Text style={styles.createTeamTxt}>CREATE YOUR TEAM</Text>
       </View>
       <View style={styles.teamPackPart2}>
-        <Text style={styles.createTeamTxt}>Full Name</Text>
-        <TextInput style={styles.clientDetailsTextInput1} />
+        <View style={styles.countView}>
+          <Text style={styles.countText}>01</Text>
+        </View>
+        <Text style={styles.createTeamTxt2}>Full Name</Text>
+        <TextInput onChangeText={setFullName} style={styles.clientDetailsTextInput1} />
 
-        <Text style={styles.createTeamTxt}>Mobile No.</Text>
-        <TextInput
-          style={styles.clientDetailsTextInput1}
-          keyboardType={'phone-pad'}
-          placeholder="Enter mobile number"
-        />
+        <Text style={styles.createTeamTxt2}>Mobile No.</Text>
+        <View style={styles.mobileView}>
+          <TextInput
+            style={styles.clientDetailsTextInput1}
+            keyboardType={'phone-pad'}
+            placeholder="Enter mobile number"
+            onChangeText={setPhoneNumber}
+          />
+          <Icons style={styles.icon} name="contacts" color="#0078E9" size={30} />
+        </View>
 
         <View style={styles.checkBoxSection}>
           <Checkbox
@@ -80,19 +110,45 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     marginBottom: 20,
   },
+  countView : {
+    backgroundColor : "#0078E9",
+    borderRadius : 100,
+    alignSelf : "flex-start",
+    position : "absolute",
+    left : -15,
+    top : -15,
+  },
+  countText : {
+    fontFamily : "Nunito-Regular",
+    fontSize : 14,
+    color : "#FFFFFF",
+    margin : 10,
+  },
   clientDetailsTextInput1: {
     padding: 0,
     marginTop: 10,
     marginBottom: 20,
     borderBottomWidth: 0.3,
     fontSize: 14,
+    fontFamily: 'Nunito-SemiBold',
+    color : "#1E1E1E"
+
   },
   contactNoClientDetails: {
     width: '7%',
     fontSize: 17,
   },
+  icon : {
+    position : "absolute",
+    right : 0,
+  },
   createTeamTxt: {
     fontFamily: 'Nunito-Bold',
+    color : "#545454"
+  },
+  createTeamTxt2 : {
+    fontFamily: 'Nunito-Regular',
+    color : "#5E5E5E"
   },
   checkBoxSection: {
     flexDirection: 'row',
@@ -100,10 +156,12 @@ const styles = StyleSheet.create({
     marginLeft: '-2%',
   },
   checkBoxText: {
-    fontFamily: 'Nunito-SemiBold',
+    fontFamily: 'Nunito-Regular',
+    color : "#4A4A4A",
   },
   checkBoxDescText: {
     fontFamily: 'Nunito-Regular',
+    color : "#C1C1C1",
   },
   chchkBxTxtComp: {
     flexDirection: 'column',

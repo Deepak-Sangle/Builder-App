@@ -19,13 +19,23 @@ export default function ClientVisitTime(props) {
   const [am, setAm] = useState(d.getHours()>=12 ? 1 : 0);
 
   const dateList = getDateArray(month, year);
+  const minutesList = getMinutesArray(date, month, year, hours, am);
+  const hoursList = getHoursArray(date, month, year);
 
   useEffect(()=> {
-    console.log(date, dateList[0].value);
     if(date < dateList[0].value) setDate(dateList[0].value);
     else if(date > dateList[dateList.length-1].value) setDate(dateList[0].value);
     if(month < getMonthArray(year)[0].value) setMonth(getMonthArray(year)[0].value);
   }, [month, year]);
+
+  useEffect(()=> {
+    if(hours < hoursList[0].value) setHours(hoursList[0].value);
+    if(d.getHours()>12 && am===0) setAm(1);
+  }, [month, year, date]);
+
+  useEffect(()=> {
+    if(minutes < minutesList[0].value) setMinutes(minutesList[0].value);
+  }, [month, year, date, hours])
 
   useEffect(()=> {
     const hh = (am===0) ? hours : hours+12;
@@ -56,10 +66,10 @@ export default function ClientVisitTime(props) {
         <Text style={[styles.clientDetailsText, {color : "#3E506D"}]}>Select Time</Text>
         <View style={{flexDirection : "row"}}>
           <View style={styles.setTime}>
-            <CustomFilterMenu placeholder="HH" down={true} list={getHoursArray(date, month, year)} item={hours} setItem={setHours} backgroundColor={"#FFFFFF"} />
+            <CustomFilterMenu placeholder="HH" down={true} list={hoursList} item={hours} setItem={setHours} backgroundColor={"#FFFFFF"} />
           </View>
           <View style={styles.setTime}>
-            <CustomFilterMenu placeholder="MM" down={true} list={getMinutesArray(date, month, year)} item={minutes} setItem={setMinutes} backgroundColor={"#FFFFFF"} />
+            <CustomFilterMenu placeholder="MM" down={true} list={minutesList} item={minutes} setItem={setMinutes} backgroundColor={"#FFFFFF"} />
           </View>
           <View style={styles.setTime}>
             <CustomFilterMenu down={true} list={getAmArray(date, month, year)} item={am} setItem={setAm} backgroundColor={"#FFFFFF"} />

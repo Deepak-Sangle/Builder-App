@@ -4,10 +4,18 @@ import LogoHeader from "../../helpers/LogoHeader";
 import CustomButtons from "../../helpers/customButtons";
 import CreateTeamCard from "../../helpers/createTeamCard";
 import Icons from 'react-native-vector-icons/Entypo'
+import { useSelector } from "react-redux";
+import {createTeam} from '../../redux-toolkit/slices/createTeamMemSlice'
+import ErrorDialog from "../../helpers/dialogBox";
 
 const CreateTeamView = ({navigation}) => {
 
     const [counter, setCounter] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [showDialog, setShowDialog] = useState(false);
+
+    const heading = "Could not create a Team!";
+    const err = "Please try again";
 
     const decreaseCounter = ()=> {
         if(counter <= 1) setCounter(1);
@@ -17,9 +25,22 @@ const CreateTeamView = ({navigation}) => {
     const increaseCounter = ()=> {
         setCounter(counter+1);
     }
-
-    const Pay = () => {
-        navigation.navigate('TeamPack');
+    const Pay = async () => {
+        setLoading(true);    
+        const payload = {
+            status : "PENDING",
+            size : counter
+        }
+        const status = await createTeam(payload);
+        console.log(status, payload);
+        if(status===200 || status===201){
+            navigation.navigate('TeamPack');
+            setLoading(false);
+        }
+        else {
+            setShowDialog(true);
+            setLoading(false);
+        }
     }
 
     const CounterCard = ()=> {
@@ -53,7 +74,9 @@ const CreateTeamView = ({navigation}) => {
                         <Text style={[styles.textStyle, styles.secLine]}>Rs. {2399*counter}</Text>
                     </View>
                 </View>
-                <CustomButtons text="PROCEED TO PAY" isDone={true} pressHandler={Pay} />
+                {!loading && <CustomButtons text="PROCEED TO PAY" isDone={true} pressHandler={Pay} />}
+                {loading && <CustomButtons showLoader={true} text="" isDone={true} pressHandler={() => {}} />}
+                {showDialog && <ErrorDialog visible={showDialog} setVisible={setShowDialog} heading={heading} err={err} />}
             </View>
         </View>
     );

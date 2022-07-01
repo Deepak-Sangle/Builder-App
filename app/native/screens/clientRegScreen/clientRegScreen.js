@@ -44,6 +44,9 @@ export default function ClientRegScreen({navigation}) {
         setShowDialog(true);
         return;
     }
+    else {
+        showDialog(false);
+    }
     const data = {
       builderId : builder,
       broker : user.userId,

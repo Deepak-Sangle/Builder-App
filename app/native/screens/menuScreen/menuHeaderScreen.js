@@ -14,7 +14,7 @@ export default function MenuHeaderScreen({navigation}) {
   return (
     <View style={styles.menuHeader}>
       <TouchableOpacity activeOpacity={0.5} onPressOut={goBack} style={styles.menuHeaderPart1}>
-        <Cross name="cross" size={30} />
+        <Cross name="cross" color={"#4A4A4A"} size={30} />
       </TouchableOpacity>
       <View style={styles.menuHeaderPart2}>
         <View>
@@ -31,12 +31,12 @@ export default function MenuHeaderScreen({navigation}) {
             {getDetails.menuScreen.name}
             {'\n'}
           </Text>
-          <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigation.navigate('ManageAccount')}><Text>Manage your account</Text></TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.7} onPressOut={()=> navigation.navigate('ManageAccount')}><Text style={styles.mangAcc}>Manage your account</Text></TouchableOpacity>
         </View>
       </View>
       <View style={styles.menuHeaderPart3}>
         <View style={styles.locIcon}>
-          <Location name="map-marker-alt" />
+          <Location name="map-marker-alt" size={20} color={"#898989"} />
         </View>
         <Text style={styles.locText}>{getDetails.menuScreen.location}</Text>
       </View>
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   menuHeaderPart3: {
     marginLeft: '5%',
     backgroundColor: '#fff',
-    fontWeight: 'bold',
     borderRadius: 20,
     flexDirection: 'row',
     elevation: 3,
@@ -79,27 +78,29 @@ const styles = StyleSheet.create({
     shadowColor: '#333',
     shadowOpacity: 0.3,
     shadowRadius: 2,
-    paddingTop: 5,
-    paddingBottom: 5,
+    alignItems : "center",
     alignSelf: 'flex-start',
+    paddingVertical : 7,
   },
   locIcon: {
-    justifyContent: 'center',
-    alignItems: 'center',
     marginLeft: 10,
   },
   locText: {
     marginLeft: 7,
-    fontFamily: 'Nunito-Bold',
+    fontFamily: 'Nunito-Regular',
     marginRight: 10,
+    color : "#4A4A4A",
   },
   textMenu: {
     fontFamily: 'Nunito-Bold',
+    color : "#545454",
   },
   textMenuName: {
     fontFamily: 'Nunito-SemiBold',
   },
   mangAcc: {
     fontFamily: 'Nunito-Regular',
+    color : "#009AFD",
+    textDecorationLine : "underline"
   },
 });

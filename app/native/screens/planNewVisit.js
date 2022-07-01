@@ -61,11 +61,12 @@ const PlanNewVisit = ({navigation}) => {
           contactNumber : newNumber,
           meetingType:"CLIENTVISIT",
           dayOfWeek,
+          projectSubType : propertySubType,
         }
         for(const key in data) {
           if(data[key]===undefined){
-            setErr(`Please enter the correct ${key}`);
-            setHeading(`Invalid ${key}`);
+            setErr(`Please enter ${key}`);
+            setHeading(`Could not Register`);
             setShowDialog(true);
             return;
           }
@@ -76,7 +77,7 @@ const PlanNewVisit = ({navigation}) => {
         console.log(data);
         dispatch(registerClientVisit(data));
         const status = getDetails.status;
-    
+        console.log(status);
         if(status===200 || status===201){
           navigation.navigate('MyClient');
         }

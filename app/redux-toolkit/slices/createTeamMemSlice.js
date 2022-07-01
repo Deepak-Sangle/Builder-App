@@ -11,6 +11,7 @@ const createTeamMemScreenSlice = createSlice({
   initialState: createTeamMemInitState,
   reducers: {
     addTeamMem(state, action) {},
+    createTeam(state, action) {},
   },
 });
 
@@ -18,5 +19,10 @@ export const createTeamMemberReducer = createTeamMemScreenSlice.reducer;
 
 export const addTeamMem = async payload => {
   const response = await axiosInstance.post('teams/createTeamMember', payload);
+  return response.status;
+};
+
+export const createTeam = async payload => {
+  const response = await axiosAPIInstanceProject.post('brokerTeam', payload);
   return response.status;
 };

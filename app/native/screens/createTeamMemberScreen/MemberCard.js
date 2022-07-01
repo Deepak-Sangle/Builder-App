@@ -13,7 +13,7 @@ import Contacts from 'react-native-contacts';
 import {PermissionsAndroid} from 'react-native';
 import {addTeamMem} from '../../../redux-toolkit/slices/createTeamMemSlice';
 import Contact from 'react-native-vector-icons/AntDesign';
-import deviceWidth from '../../../Constants/projectConstants';
+import {deviceWidth} from '../../../Constants/projectConstants';
 import Dialog from 'react-native-dialog';
 
 export default function MemberCard() {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 20,
     alignSelf: 'center',
-    width: deviceWidth - 35,
+    width: deviceWidth - 80,
   },
   createMemTextInput1: {
     padding: 0,
@@ -199,11 +199,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Bold',
     alignSelf: 'center',
     marginTop: '10%',
-    width: deviceWidth - 35,
+    width: deviceWidth - 80,
   },
   saveChangeLoaderView: {
     alignSelf: 'center',
-    width: deviceWidth - 35,
+    width: deviceWidth - 80,
     padding: 15,
     marginTop: '15%',
     backgroundColor: '#0078e9',

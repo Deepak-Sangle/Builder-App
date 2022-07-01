@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ActivityIndicator } from 'react-native-paper';
 
 const CustomButtons = props => {
   const text = props.text;
@@ -11,7 +11,8 @@ const CustomButtons = props => {
   const right = props.right;
   const radius = props.radius ? props.radius : 7;
   const borderColor = props.borderColor;
-
+  const showLoader = props.showLoader!=undefined ? props.showLoader : false;
+  
   const primary_color = isDone ? '#0078E9' : '#FFFFFF';
   const secondary_color = isDone ? '#FFFFFF' : '#0078E9';
   const pressHandler = props.pressHandler;
@@ -36,7 +37,8 @@ const CustomButtons = props => {
       onPress={pressHandler}>
       {left && icon}
       <Text style={[styles.btntext_2, textcolor]}>
-        <Text>{text}</Text>
+        {!showLoader && <Text>{text}</Text>}
+        {showLoader && <ActivityIndicator size={20} animating={true} color={secondary_color} />}
       </Text>
       {right && icon}
     </TouchableOpacity>
